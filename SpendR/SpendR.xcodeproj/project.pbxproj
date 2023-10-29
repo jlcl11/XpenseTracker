@@ -19,8 +19,6 @@
 		91D120222AEEC33F0073810E /* FirebaseOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D120212AEEC33F0073810E /* FirebaseOperations.swift */; };
 		91D1202A2AEEC9740073810E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D120292AEEC9740073810E /* Extensions.swift */; };
 		91D1202F2AEECAA30073810E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91D1202E2AEECAA30073810E /* Assets.xcassets */; };
-		91D120312AEECC1F0073810E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D120302AEECC1F0073810E /* HomeViewController.swift */; };
-		91D120332AEECC4C0073810E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D120322AEECC4C0073810E /* SignUpViewController.swift */; };
 		91D120372AEECFE50073810E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D120362AEECFE50073810E /* GoogleService-Info.plist */; };
 		A1E04AACCFB7A580629F2E8A /* Pods_SpendR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56347127FDAD87069F3ECEBF /* Pods_SpendR.framework */; };
 /* End PBXBuildFile section */
@@ -42,8 +40,6 @@
 		91D120212AEEC33F0073810E /* FirebaseOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseOperations.swift; sourceTree = "<group>"; };
 		91D120292AEEC9740073810E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		91D1202E2AEECAA30073810E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Utils/Assets.xcassets; sourceTree = "<group>"; };
-		91D120302AEECC1F0073810E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		91D120322AEECC4C0073810E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		91D120362AEECFE50073810E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F6153F491354E660035C874E /* Pods-SpendR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpendR.release.xcconfig"; path = "Target Support Files/Pods-SpendR/Pods-SpendR.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				91D120112AEEBECA0073810E /* LoginViewController.swift */,
-				91D120322AEECC4C0073810E /* SignUpViewController.swift */,
 			);
 			path = InitialViews;
 			sourceTree = "<group>";
@@ -149,7 +144,6 @@
 		91D120262AEEC8CB0073810E /* LoggedInViews */ = {
 			isa = PBXGroup;
 			children = (
-				91D120302AEECC1F0073810E /* HomeViewController.swift */,
 			);
 			path = LoggedInViews;
 			sourceTree = "<group>";
@@ -298,13 +292,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91D120332AEECC4C0073810E /* SignUpViewController.swift in Sources */,
 				91D120222AEEC33F0073810E /* FirebaseOperations.swift in Sources */,
 				91D1201D2AEEC3000073810E /* Tag.swift in Sources */,
 				91D120122AEEBECA0073810E /* LoginViewController.swift in Sources */,
 				91D1201C2AEEC3000073810E /* Movements.swift in Sources */,
 				91D11FF92AEEBBC90073810E /* AppDelegate.swift in Sources */,
-				91D120312AEECC1F0073810E /* HomeViewController.swift in Sources */,
 				91D120202AEEC32A0073810E /* UsefullFunctions.swift in Sources */,
 				91D11FFB2AEEBBC90073810E /* SceneDelegate.swift in Sources */,
 				91D1202A2AEEC9740073810E /* Extensions.swift in Sources */,
