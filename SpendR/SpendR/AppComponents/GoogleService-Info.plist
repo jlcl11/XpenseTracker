@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>958623291544-m7tidoa7av50soa2nm2nq439dr2tsu4b.apps.googleusercontent.com</string>
+	<string>106515383700-3sfrksbj6qpcf7nbiv72iavkllfhkvt0.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.958623291544-m7tidoa7av50soa2nm2nq439dr2tsu4b</string>
+	<string>com.googleusercontent.apps.106515383700-3sfrksbj6qpcf7nbiv72iavkllfhkvt0</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDg6eWKPj3h8JbCHk5KD7Ttp6K8JHDeiP0</string>
+	<string>AIzaSyDHv-x2Ubp76G3ta7YOKsgRpxhcIoSzjls</string>
 	<key>GCM_SENDER_ID</key>
-	<string>958623291544</string>
+	<string>106515383700</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>Jose-Luis-Corral-Lopez.SpendR</string>
+	<string>Jose--Luis-Corral.SpendR</string>
 	<key>PROJECT_ID</key>
-	<string>spendr-8cd3f</string>
+	<string>xpensetracker-fdb16</string>
 	<key>STORAGE_BUCKET</key>
-	<string>spendr-8cd3f.appspot.com</string>
+	<string>xpensetracker-fdb16.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:958623291544:ios:723c8258318672a9a098ed</string>
+	<string>1:106515383700:ios:1c465487a5f00d7520bb81</string>
 </dict>
 </plist>

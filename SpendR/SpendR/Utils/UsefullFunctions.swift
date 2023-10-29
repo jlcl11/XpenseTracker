@@ -17,6 +17,6 @@ class UsefullFunctions {
     }
     
     func showNewPage( sender: UIViewController, destination: UIViewController) {
-        
+        sender.show(destination, sender: sender)
     }
 }

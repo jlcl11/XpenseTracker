@@ -3,4 +3,54 @@
    uuid = "280D34B0-27FE-4A56-A4EA-BB96D50BA183"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C323553D-3D10-43EC-93DB-082E4D3BB980"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpendR/Controllers/InitialViews/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "goToSignInButton(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C323553D-3D10-43EC-93DB-082E4D3BB980 - 1dda693be6e88b91"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpendR.LoginViewController.goToSignInButton(Any) -&gt; ()"
+                  moduleName = "SpendR"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joseluiscorral/Documents/repos/XpenseTracker/SpendR/SpendR/Controllers/InitialViews/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "C323553D-3D10-43EC-93DB-082E4D3BB980 - 1dda693be6e88b91"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpendR.LoginViewController.goToSignInButton(Any) -&gt; ()"
+                  moduleName = "SpendR"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joseluiscorral/Documents/repos/XpenseTracker/SpendR/SpendR/Controllers/InitialViews/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
