@@ -28,7 +28,6 @@ class LoginViewController: UIViewController {
     
     @IBAction func goToSignInButton(_ sender: Any) {
         UsefullFunctions().showNewPage(sender: self, destination: SignUpViewController())
-
     }
     
 }
