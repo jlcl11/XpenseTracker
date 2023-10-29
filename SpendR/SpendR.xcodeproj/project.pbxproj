@@ -11,19 +11,23 @@
 		91D11FFB2AEEBBC90073810E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D11FFA2AEEBBC90073810E /* SceneDelegate.swift */; };
 		91D11FFD2AEEBBC90073810E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D11FFC2AEEBBC90073810E /* ViewController.swift */; };
 		91D120002AEEBBC90073810E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91D11FFE2AEEBBC90073810E /* Main.storyboard */; };
-		91D120022AEEBBC90073810E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91D120012AEEBBC90073810E /* Assets.xcassets */; };
 		91D120052AEEBBC90073810E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91D120032AEEBBC90073810E /* LaunchScreen.storyboard */; };
+		91D120102AEEBCCD0073810E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91D1200F2AEEBCCD0073810E /* Assets.xcassets */; };
+		A1E04AACCFB7A580629F2E8A /* Pods_SpendR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56347127FDAD87069F3ECEBF /* Pods_SpendR.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		56347127FDAD87069F3ECEBF /* Pods_SpendR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpendR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		788775B47BF83BB04882ABD4 /* Pods-SpendR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpendR.debug.xcconfig"; path = "Target Support Files/Pods-SpendR/Pods-SpendR.debug.xcconfig"; sourceTree = "<group>"; };
 		91D11FF52AEEBBC90073810E /* SpendR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpendR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D11FF82AEEBBC90073810E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91D11FFA2AEEBBC90073810E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		91D11FFC2AEEBBC90073810E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		91D11FFF2AEEBBC90073810E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		91D120012AEEBBC90073810E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91D120042AEEBBC90073810E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		91D120062AEEBBC90073810E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91D1200F2AEEBCCD0073810E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F6153F491354E660035C874E /* Pods-SpendR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpendR.release.xcconfig"; path = "Target Support Files/Pods-SpendR/Pods-SpendR.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1E04AACCFB7A580629F2E8A /* Pods_SpendR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				91D11FF72AEEBBC90073810E /* SpendR */,
 				91D11FF62AEEBBC90073810E /* Products */,
+				AE281CDD5514A42A0CEBD0F9 /* Pods */,
+				E0A12E2B3066A214795DD20E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +65,55 @@
 			children = (
 				91D11FF82AEEBBC90073810E /* AppDelegate.swift */,
 				91D11FFA2AEEBBC90073810E /* SceneDelegate.swift */,
-				91D11FFC2AEEBBC90073810E /* ViewController.swift */,
-				91D11FFE2AEEBBC90073810E /* Main.storyboard */,
-				91D120012AEEBBC90073810E /* Assets.xcassets */,
-				91D120032AEEBBC90073810E /* LaunchScreen.storyboard */,
+				91D1200D2AEEBC770073810E /* Controllers */,
+				91D1200C2AEEBC6C0073810E /* Views */,
+				91D1200E2AEEBC850073810E /* Utils */,
 				91D120062AEEBBC90073810E /* Info.plist */,
+				91D1200F2AEEBCCD0073810E /* Assets.xcassets */,
 			);
 			path = SpendR;
+			sourceTree = "<group>";
+		};
+		91D1200C2AEEBC6C0073810E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				91D11FFE2AEEBBC90073810E /* Main.storyboard */,
+				91D120032AEEBBC90073810E /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		91D1200D2AEEBC770073810E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				91D11FFC2AEEBBC90073810E /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		91D1200E2AEEBC850073810E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		AE281CDD5514A42A0CEBD0F9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				788775B47BF83BB04882ABD4 /* Pods-SpendR.debug.xcconfig */,
+				F6153F491354E660035C874E /* Pods-SpendR.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E0A12E2B3066A214795DD20E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56347127FDAD87069F3ECEBF /* Pods_SpendR.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +123,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 91D120092AEEBBC90073810E /* Build configuration list for PBXNativeTarget "SpendR" */;
 			buildPhases = (
+				321C719BF800C8C74E96C958 /* [CP] Check Pods Manifest.lock */,
 				91D11FF12AEEBBC90073810E /* Sources */,
 				91D11FF22AEEBBC90073810E /* Frameworks */,
 				91D11FF32AEEBBC90073810E /* Resources */,
+				D5647AD4AB40AA5D33648A6B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,12 +177,54 @@
 			buildActionMask = 2147483647;
 			files = (
 				91D120052AEEBBC90073810E /* LaunchScreen.storyboard in Resources */,
-				91D120022AEEBBC90073810E /* Assets.xcassets in Resources */,
+				91D120102AEEBCCD0073810E /* Assets.xcassets in Resources */,
 				91D120002AEEBBC90073810E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		321C719BF800C8C74E96C958 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SpendR-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5647AD4AB40AA5D33648A6B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpendR/Pods-SpendR-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpendR/Pods-SpendR-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpendR/Pods-SpendR-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		91D11FF12AEEBBC90073810E /* Sources */ = {
@@ -287,6 +380,7 @@
 		};
 		91D1200A2AEEBBC90073810E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 788775B47BF83BB04882ABD4 /* Pods-SpendR.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -314,6 +408,7 @@
 		};
 		91D1200B2AEEBBC90073810E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6153F491354E660035C874E /* Pods-SpendR.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
