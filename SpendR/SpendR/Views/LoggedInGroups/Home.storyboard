@@ -57,8 +57,7 @@
                                                     <segment title="" image="dollarsign.circle" catalog="system"/>
                                                 </segments>
                                                 <connections>
-                                                    <action selector="sortByDateOrValue:" destination="Y6W-OH-hqX" eventType="valueChanged" id="pya-HA-SiN"/>
-                                                    <action selector="sortByValueOrDate:" destination="Y6W-OH-hqX" eventType="valueChanged" id="mkZ-Re-LeV"/>
+                                                    <action selector="sortByDateOrValue:" destination="Y6W-OH-hqX" eventType="valueChanged" id="GNt-Xc-yWv"/>
                                                 </connections>
                                             </segmentedControl>
                                         </subviews>
@@ -79,8 +78,7 @@
                                                     <segment title="" image="arrow.down" catalog="system"/>
                                                 </segments>
                                                 <connections>
-                                                    <action selector="sortAscendingOrDescending:" destination="Y6W-OH-hqX" eventType="valueChanged" id="y7w-gD-GeE"/>
-                                                    <action selector="sortByAscendingOrDescending:" destination="Y6W-OH-hqX" eventType="valueChanged" id="BOO-FB-NcY"/>
+                                                    <action selector="sortByAscendingOrDescending:" destination="Y6W-OH-hqX" eventType="valueChanged" id="dCU-Nu-vgT"/>
                                                 </connections>
                                             </segmentedControl>
                                         </subviews>

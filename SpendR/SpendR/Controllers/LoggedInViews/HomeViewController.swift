@@ -30,6 +30,48 @@ class HomeViewController: UIViewController {
         viewSetting()
     }
     
+    // MARK: Filtering
+    
+    @IBAction func sortByDateOrValue(_ sender: Any) {
+        currentSortCriteria = (sender as AnyObject).selectedSegmentIndex == 0 ? .date : .amount
+
+        sortMovements()
+    }
+    
+    @IBAction func sortByAscendingOrDescending(_ sender: Any) {
+        isAscendingOrder = (sender as AnyObject).selectedSegmentIndex == 0
+        sortMovements()
+    }
+    
+    
+    func sortMovements() {
+        switch currentSortCriteria {
+        case .date:
+            if isAscendingOrder {
+                filteredMovements.sort { $0.properties.date ?? Date() < $1.properties.date ?? Date() }
+            } else {
+                filteredMovements.sort { $0.properties.date ?? Date() > $1.properties.date ?? Date() }
+            }
+        case .amount:
+            if isAscendingOrder {
+                filteredMovements.sort { $0.properties.amount ?? 0.0 < $1.properties.amount ?? 0.0 }
+            } else {
+                filteredMovements.sort { $0.properties.amount ?? 0.0 > $1.properties.amount ?? 0.0 }
+            }
+        }
+        
+        movementsTableView.reloadData()
+    }
+    
+    private func filterMovementsByTags() {
+        filteredMovements = selectedTags.isEmpty ? (loggedUser?.movements ?? []) : (loggedUser?.movements.filter { movement in
+            let movementTags = movement.tags.compactMap { $0.properties?.name }
+            return !selectedTags.isDisjoint(with: Set(movementTags))
+        } ?? [])
+        
+        movementsTableView.reloadData()
+    }
+    
     // MARK: View Setting
     
     private func viewSetting() {
@@ -49,31 +91,10 @@ class HomeViewController: UIViewController {
 
     private func setUpTableView() {
         movementsTableView.delegate = self
-        movementsTableView.dataSource = self     
+        movementsTableView.dataSource = self
         movementsTableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         movementsTableView.reloadData()
         filteredMovements = loggedUser?.movements ?? []
-    }
-    
-    // MARK: Filtering
-    
-    func sortMovements() {
-        switch currentSortCriteria {
-        case .date:
-            if isAscendingOrder {
-                filteredMovements.sort { $0.properties.date ?? Date() < $1.properties.date ?? Date() }
-            } else {
-                filteredMovements.sort { $0.properties.date ?? Date() > $1.properties.date ?? Date() }
-            }
-        case .amount:
-            if isAscendingOrder {
-                filteredMovements.sort { $0.properties.amount ?? 0.0 < $1.properties.amount ?? 0.0 }
-            } else {
-                filteredMovements.sort { $0.properties.amount ?? 0.0 > $1.properties.amount ?? 0.0 }
-            }
-        }
-        
-        movementsTableView.reloadData()
     }
     
     // MARK: Horizontal buttons setup
@@ -133,14 +154,5 @@ class HomeViewController: UIViewController {
         if let tag = loggedUser?.userTags.first(where: { $0.properties?.name == tagName }) {
             selectedTags.contains(tagName) ? setColoredHorizontalButtons(button: button, tag: tag) : setDefaultHorizontalButtons(button: button, tagName: tagName)
         }
-    }
-    
-    private func filterMovementsByTags() {
-        filteredMovements = selectedTags.isEmpty ? (loggedUser?.movements ?? []) : (loggedUser?.movements.filter { movement in
-            let movementTags = movement.tags.compactMap { $0.properties?.name }
-            return !selectedTags.isDisjoint(with: Set(movementTags))
-        } ?? [])
-        
-        movementsTableView.reloadData()
     }
 }
