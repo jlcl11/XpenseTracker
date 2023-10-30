@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		914608CA2AEFB128008BFC93 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 914608C92AEFB128008BFC93 /* SignUp.storyboard */; };
 		914608CC2AEFB148008BFC93 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914608CB2AEFB148008BFC93 /* SignUpViewController.swift */; };
+		914608D42AEFDDAE008BFC93 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 914608D32AEFDDAE008BFC93 /* Home.storyboard */; };
+		914608D62AEFDE21008BFC93 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914608D52AEFDE21008BFC93 /* HomeViewController.swift */; };
+		914EA05B2AF00DBA00D41568 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 914EA05A2AF00DBA00D41568 /* CustomTableViewCell.xib */; };
+		914EA05E2AF00DF400D41568 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914EA05D2AF00DF400D41568 /* CustomTableViewCell.swift */; };
 		91D11FF92AEEBBC90073810E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D11FF82AEEBBC90073810E /* AppDelegate.swift */; };
 		91D11FFB2AEEBBC90073810E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D11FFA2AEEBBC90073810E /* SceneDelegate.swift */; };
 		91D120052AEEBBC90073810E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91D120032AEEBBC90073810E /* LaunchScreen.storyboard */; };
@@ -30,6 +34,10 @@
 		788775B47BF83BB04882ABD4 /* Pods-SpendR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpendR.debug.xcconfig"; path = "Target Support Files/Pods-SpendR/Pods-SpendR.debug.xcconfig"; sourceTree = "<group>"; };
 		914608C92AEFB128008BFC93 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		914608CB2AEFB148008BFC93 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		914608D32AEFDDAE008BFC93 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		914608D52AEFDE21008BFC93 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		914EA05A2AF00DBA00D41568 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		914EA05D2AF00DF400D41568 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		91D11FF52AEEBBC90073810E /* SpendR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpendR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D11FF82AEEBBC90073810E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91D11FFA2AEEBBC90073810E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +68,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		914608D22AEFDD51008BFC93 /* LoggedInGroups */ = {
+			isa = PBXGroup;
+			children = (
+				914608D32AEFDDAE008BFC93 /* Home.storyboard */,
+				914EA0592AF00D9A00D41568 /* MovementCells */,
+			);
+			path = LoggedInGroups;
+			sourceTree = "<group>";
+		};
+		914EA0592AF00D9A00D41568 /* MovementCells */ = {
+			isa = PBXGroup;
+			children = (
+				914EA05A2AF00DBA00D41568 /* CustomTableViewCell.xib */,
+			);
+			path = MovementCells;
+			sourceTree = "<group>";
+		};
+		914EA05C2AF00DDC00D41568 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				914EA05D2AF00DF400D41568 /* CustomTableViewCell.swift */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
 		91D11FEC2AEEBBC90073810E = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +127,7 @@
 		91D1200C2AEEBC6C0073810E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				914608D22AEFDD51008BFC93 /* LoggedInGroups */,
 				91D120162AEEC1770073810E /* InitialViews */,
 				91D120032AEEBBC90073810E /* LaunchScreen.storyboard */,
 			);
@@ -150,6 +184,8 @@
 		91D120262AEEC8CB0073810E /* LoggedInViews */ = {
 			isa = PBXGroup;
 			children = (
+				914608D52AEFDE21008BFC93 /* HomeViewController.swift */,
+				914EA05C2AF00DDC00D41568 /* CustomCells */,
 			);
 			path = LoggedInViews;
 			sourceTree = "<group>";
@@ -243,8 +279,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				91D120142AEEBED80073810E /* Login.storyboard in Resources */,
+				914EA05B2AF00DBA00D41568 /* CustomTableViewCell.xib in Resources */,
 				91D120372AEECFE50073810E /* GoogleService-Info.plist in Resources */,
 				91D1202F2AEECAA30073810E /* Assets.xcassets in Resources */,
+				914608D42AEFDDAE008BFC93 /* Home.storyboard in Resources */,
 				91D120052AEEBBC90073810E /* LaunchScreen.storyboard in Resources */,
 				914608CA2AEFB128008BFC93 /* SignUp.storyboard in Resources */,
 			);
@@ -305,7 +343,9 @@
 				91D120122AEEBECA0073810E /* LoginViewController.swift in Sources */,
 				91D1201C2AEEC3000073810E /* Movements.swift in Sources */,
 				91D11FF92AEEBBC90073810E /* AppDelegate.swift in Sources */,
+				914EA05E2AF00DF400D41568 /* CustomTableViewCell.swift in Sources */,
 				91D120202AEEC32A0073810E /* UsefullFunctions.swift in Sources */,
+				914608D62AEFDE21008BFC93 /* HomeViewController.swift in Sources */,
 				91D11FFB2AEEBBC90073810E /* SceneDelegate.swift in Sources */,
 				91D1202A2AEEC9740073810E /* Extensions.swift in Sources */,
 				91D1201E2AEEC3000073810E /* User.swift in Sources */,
