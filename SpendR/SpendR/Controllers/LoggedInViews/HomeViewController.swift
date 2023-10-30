@@ -27,6 +27,16 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        viewSetting()
+    }
+    
+    // MARK: View Setting
+    
+    private func viewSetting() {
+        setUpView()
+        setUpTableView()
+        createHorizontalScrollViewWithButtons()
+        //searchBar.delegate = self
     }
     
     private func setUpView() {
@@ -34,8 +44,15 @@ class HomeViewController: UIViewController {
         balanceLabel.text = "\(loggedUser?.properties.balance ?? 0) \(loggedUser?.properties.currency ?? "")"
         navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.backButtonTitle = "Home"
-        createHorizontalScrollViewWithButtons()
         balanceLabel.textColor = (loggedUser?.properties.balance ?? 0 > 0) ? .systemGreen : (loggedUser?.properties.balance ?? 0 < 0) ? .red : .black
+    }
+
+    private func setUpTableView() {
+        movementsTableView.delegate = self
+        movementsTableView.dataSource = self     
+        movementsTableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+        movementsTableView.reloadData()
+        filteredMovements = loggedUser?.movements ?? []
     }
     
     // MARK: Horizontal buttons setup
