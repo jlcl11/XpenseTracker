@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		914608CA2AEFB128008BFC93 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 914608C92AEFB128008BFC93 /* SignUp.storyboard */; };
+		914608CC2AEFB148008BFC93 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914608CB2AEFB148008BFC93 /* SignUpViewController.swift */; };
 		91D11FF92AEEBBC90073810E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D11FF82AEEBBC90073810E /* AppDelegate.swift */; };
 		91D11FFB2AEEBBC90073810E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D11FFA2AEEBBC90073810E /* SceneDelegate.swift */; };
 		91D120052AEEBBC90073810E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91D120032AEEBBC90073810E /* LaunchScreen.storyboard */; };
@@ -26,6 +28,8 @@
 /* Begin PBXFileReference section */
 		56347127FDAD87069F3ECEBF /* Pods_SpendR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpendR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		788775B47BF83BB04882ABD4 /* Pods-SpendR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpendR.debug.xcconfig"; path = "Target Support Files/Pods-SpendR/Pods-SpendR.debug.xcconfig"; sourceTree = "<group>"; };
+		914608C92AEFB128008BFC93 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
+		914608CB2AEFB148008BFC93 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		91D11FF52AEEBBC90073810E /* SpendR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpendR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D11FF82AEEBBC90073810E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91D11FFA2AEEBBC90073810E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,10 +81,10 @@
 		91D11FF72AEEBBC90073810E /* SpendR */ = {
 			isa = PBXGroup;
 			children = (
+				91D120062AEEBBC90073810E /* Info.plist */,
 				91D1202D2AEECA600073810E /* AppComponents */,
 				91D120152AEEBFFE0073810E /* Models */,
 				91D1200D2AEEBC770073810E /* Controllers */,
-				91D120062AEEBBC90073810E /* Info.plist */,
 				91D1200C2AEEBC6C0073810E /* Views */,
 				91D1200E2AEEBC850073810E /* Utils */,
 			);
@@ -129,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				91D120132AEEBED80073810E /* Login.storyboard */,
+				914608C92AEFB128008BFC93 /* SignUp.storyboard */,
 			);
 			path = InitialViews;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				91D120112AEEBECA0073810E /* LoginViewController.swift */,
+				914608CB2AEFB148008BFC93 /* SignUpViewController.swift */,
 			);
 			path = InitialViews;
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 				91D120372AEECFE50073810E /* GoogleService-Info.plist in Resources */,
 				91D1202F2AEECAA30073810E /* Assets.xcassets in Resources */,
 				91D120052AEEBBC90073810E /* LaunchScreen.storyboard in Resources */,
+				914608CA2AEFB128008BFC93 /* SignUp.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				914608CC2AEFB148008BFC93 /* SignUpViewController.swift in Sources */,
 				91D120222AEEC33F0073810E /* FirebaseOperations.swift in Sources */,
 				91D1201D2AEEC3000073810E /* Tag.swift in Sources */,
 				91D120122AEEBECA0073810E /* LoginViewController.swift in Sources */,

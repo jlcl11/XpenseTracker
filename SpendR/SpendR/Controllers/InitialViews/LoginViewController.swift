@@ -27,7 +27,10 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func goToSignInButton(_ sender: Any) {
-        UsefullFunctions().showNewPage(sender: self, destination: SignUpViewController())
+        
+        let signUpVC = UIStoryboard(name: "SignUp", bundle: nil).instantiateViewController(withIdentifier: "SignUp") as! SignUpViewController
+
+        UsefullFunctions().showNewPage(sender: self, destination: signUpVC)
     }
     
 }
