@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
         setUpView()
         setUpTableView()
         createHorizontalScrollViewWithButtons()
-        //searchBar.delegate = self
+        searchBar.delegate = self
     }
     
     private func setUpView() {
@@ -53,6 +53,27 @@ class HomeViewController: UIViewController {
         movementsTableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         movementsTableView.reloadData()
         filteredMovements = loggedUser?.movements ?? []
+    }
+    
+    // MARK: Filtering
+    
+    func sortMovements() {
+        switch currentSortCriteria {
+        case .date:
+            if isAscendingOrder {
+                filteredMovements.sort { $0.properties.date ?? Date() < $1.properties.date ?? Date() }
+            } else {
+                filteredMovements.sort { $0.properties.date ?? Date() > $1.properties.date ?? Date() }
+            }
+        case .amount:
+            if isAscendingOrder {
+                filteredMovements.sort { $0.properties.amount ?? 0.0 < $1.properties.amount ?? 0.0 }
+            } else {
+                filteredMovements.sort { $0.properties.amount ?? 0.0 > $1.properties.amount ?? 0.0 }
+            }
+        }
+        
+        movementsTableView.reloadData()
     }
     
     // MARK: Horizontal buttons setup

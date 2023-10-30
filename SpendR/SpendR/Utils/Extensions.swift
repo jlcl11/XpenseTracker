@@ -50,16 +50,14 @@ extension String {
     }
 }
 
-//MARK: Setting up TableView
+//MARK: Setting up the TableView
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredMovements.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = movementsTableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as? CustomTableViewCell else {
-            return UITableViewCell()
-        }
+        guard let cell = movementsTableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as? CustomTableViewCell else { return UITableViewCell() }
         
         let movement = filteredMovements[indexPath.row]
         
@@ -84,3 +82,30 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: Setting Up the Search bar
+
+extension HomeViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filteredMovements = loggedUser?.movements.filter { movement in
+            return movement.properties.description?.localizedCaseInsensitiveContains(searchText) ?? false
+        } ?? loggedUser!.movements
+
+        if filteredMovements.isEmpty { filteredMovements = loggedUser?.movements ?? []}
+        movementsTableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        
+        filteredMovements = loggedUser?.movements ?? loggedUser!.movements
+        sortMovements()
+        
+        movementsTableView.reloadData()
+    }
+
+}
+
