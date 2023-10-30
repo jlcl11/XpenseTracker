@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" rowHeight="74" id="KGk-i7-Jjw" customClass="CustomTableViewCell" customModule="SpendR" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="599" height="74"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="599" height="74"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zEu-5Q-MuB">
+                        <rect key="frame" x="20" y="5.9999999999999964" width="58" height="61"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="62.329999999999998" id="378-3b-Qdg"/>
+                            <constraint firstAttribute="width" constant="58" id="beu-6h-CrA"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Viajes y servicios" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxm-b9-qMX">
+                        <rect key="frame" x="86" y="9" width="387" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="387" id="8ya-q5-89O"/>
+                            <constraint firstAttribute="height" constant="36" id="hh3-JB-fMh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 de Mayo 1998" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-T5-IWI">
+                        <rect key="frame" x="86" y="42" width="323" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Bqi-ka-OeA"/>
+                            <constraint firstAttribute="width" constant="323" id="Nd4-3z-fOm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40.56 €" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcC-Vd-2UV">
+                        <rect key="frame" x="449" y="27" width="120" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="UV8-uq-vnH"/>
+                            <constraint firstAttribute="height" constant="21" id="lfc-SW-TjU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="zEu-5Q-MuB" secondAttribute="bottom" constant="6.6699999999999999" id="0gV-Ex-Ljd"/>
+                    <constraint firstItem="kxm-b9-qMX" firstAttribute="leading" secondItem="zEu-5Q-MuB" secondAttribute="trailing" constant="8" symbolic="YES" id="8B1-mS-axA"/>
+                    <constraint firstItem="kxm-b9-qMX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="DAQ-Ph-nNE"/>
+                    <constraint firstItem="YcC-Vd-2UV" firstAttribute="leading" secondItem="kxm-b9-qMX" secondAttribute="trailing" constant="-24" id="Gm6-21-U5B"/>
+                    <constraint firstItem="YcC-Vd-2UV" firstAttribute="leading" secondItem="OfD-T5-IWI" secondAttribute="trailing" constant="40" id="PDa-hi-WHh"/>
+                    <constraint firstItem="OfD-T5-IWI" firstAttribute="leading" secondItem="zEu-5Q-MuB" secondAttribute="trailing" constant="8" symbolic="YES" id="YXs-RF-3lU"/>
+                    <constraint firstItem="OfD-T5-IWI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="42" id="atx-z6-9dU"/>
+                    <constraint firstItem="YcC-Vd-2UV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="27" id="bxW-XO-p28"/>
+                    <constraint firstItem="zEu-5Q-MuB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="dSy-jg-7u6"/>
+                    <constraint firstItem="kxm-b9-qMX" firstAttribute="leading" secondItem="zEu-5Q-MuB" secondAttribute="trailing" constant="8" symbolic="YES" id="fDG-1S-ITq"/>
+                    <constraint firstAttribute="bottom" secondItem="OfD-T5-IWI" secondAttribute="bottom" constant="11" id="p9l-0t-Sji"/>
+                    <constraint firstAttribute="bottom" secondItem="YcC-Vd-2UV" secondAttribute="bottom" constant="26" id="pZV-NX-Ak0"/>
+                    <constraint firstItem="zEu-5Q-MuB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="uhw-eO-JnH"/>
+                    <constraint firstAttribute="bottom" secondItem="kxm-b9-qMX" secondAttribute="bottom" constant="29" id="vLN-24-bck"/>
+                    <constraint firstAttribute="trailing" secondItem="YcC-Vd-2UV" secondAttribute="trailing" constant="20" symbolic="YES" id="zjQ-Y2-EIf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="iconImage" destination="zEu-5Q-MuB" id="fIS-qD-4zm"/>
+                <outlet property="priceLabel" destination="YcC-Vd-2UV" id="fRq-Ef-2n0"/>
+                <outlet property="subtitleLabel" destination="OfD-T5-IWI" id="R4B-hl-lXL"/>
+                <outlet property="titleLabel" destination="kxm-b9-qMX" id="sVo-Bb-fNS"/>
+            </connections>
+            <point key="canvasLocation" x="154.96183206106869" y="7.746478873239437"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="square.and.arrow.up.circle.fill" catalog="system" width="128" height="123"/>
+    </resources>
+</document>

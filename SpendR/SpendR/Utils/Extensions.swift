@@ -47,3 +47,4 @@ extension String {
         return ceil(boundingBox.width)
     }
 }
+
