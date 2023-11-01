@@ -72,6 +72,21 @@ class HomeViewController: UIViewController {
         movementsTableView.reloadData()
     }
     
+    func filterMovementsByTagsAndSearchText(searchText: String) -> [Movement] {
+        let movementsBasedOnTags = selectedTags.isEmpty ? (loggedUser?.movements ?? []) : (loggedUser?.movements.filter { movement in
+            let movementTags = movement.tags.compactMap { $0.properties?.name }
+            return !selectedTags.isDisjoint(with: Set(movementTags))
+        } ?? [])
+        
+        if searchText.isEmpty {
+            return movementsBasedOnTags
+        } else {
+            return movementsBasedOnTags.filter { movement in
+                return movement.properties.description?.localizedCaseInsensitiveContains(searchText) ?? false
+            }
+        }
+    }
+    
     // MARK: View Setting
     
     private func viewSetting() {

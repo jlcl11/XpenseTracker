@@ -88,12 +88,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredMovements = filterMovementsByTagsAndSearchText(searchText: searchText)
         
-        filteredMovements = loggedUser?.movements.filter { movement in
-            return movement.properties.description?.localizedCaseInsensitiveContains(searchText) ?? false
-        } ?? loggedUser!.movements
-
-        if filteredMovements.isEmpty { filteredMovements = loggedUser?.movements ?? []}
+        if filteredMovements.isEmpty { filteredMovements = loggedUser?.movements ?? [] }
+        
         movementsTableView.reloadData()
     }
     
@@ -101,11 +99,9 @@ extension HomeViewController: UISearchBarDelegate {
         searchBar.text = ""
         searchBar.resignFirstResponder()
         
-        filteredMovements = loggedUser?.movements ?? loggedUser!.movements
+        if filteredMovements.isEmpty { filteredMovements = loggedUser?.movements ?? []}
         sortMovements()
         
         movementsTableView.reloadData()
     }
-
 }
-
