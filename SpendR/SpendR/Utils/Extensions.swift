@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
  
+// MARK: Color rgb initializer
 extension UIColor {
 
     convenience init(rgb: Int) {
@@ -40,10 +41,67 @@ extension UIColor {
     }
 }
 
+// MARK: Meassuring Strings length
 extension String {
     func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
         let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil)
         return ceil(boundingBox.width)
+    }
+}
+
+//MARK: Setting up the TableView
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredMovements.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = movementsTableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as? CustomTableViewCell else { return UITableViewCell() }
+        
+        let movement = filteredMovements[indexPath.row]
+        
+        if let amount = movement.properties.amount, let currency = self.loggedUser?.properties.currency, let iconName = movement.tags.first?.properties?.iconName, let description = movement.properties.description {
+            cell.priceLabel.textColor = amount.isLess(than: 0) ? .red : .systemGreen
+            cell.priceLabel.text = "\(amount) \(currency)"
+            cell.iconImage.image = UIImage(systemName: iconName)
+            cell.iconImage.tintColor = movement.tags.first?.color
+            cell.titleLabel.text = description
+        } else {
+            cell.priceLabel.text = ""
+        }
+        
+        if let date = movement.properties.date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            cell.subtitleLabel.text = dateFormatter.string(from: date)
+        } else {
+            cell.subtitleLabel.text = "Ejemplo"
+        }
+        
+        return cell
+    }
+}
+
+// MARK: Setting Up the Search bar
+
+extension HomeViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredMovements = filterMovementsByTagsAndSearchText(searchText: searchText)
+        
+        if filteredMovements.isEmpty { filteredMovements = loggedUser?.movements ?? [] }
+        
+        movementsTableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        
+        if filteredMovements.isEmpty { filteredMovements = loggedUser?.movements ?? []}
+        sortMovements()
+        
+        movementsTableView.reloadData()
     }
 }
