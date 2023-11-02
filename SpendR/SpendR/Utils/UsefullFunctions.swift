@@ -19,4 +19,9 @@ class UsefullFunctions {
     func showNewPage( sender: UIViewController, destination: UIViewController) {
         sender.show(destination, sender: sender)
     }
+    
+    func presentNewPage( sender: UIViewController, destination: UIViewController) {
+        let navVC = UINavigationController(rootViewController: destination)
+        sender.present(navVC, animated: true)
+    }
 }
