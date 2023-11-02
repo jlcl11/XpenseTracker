@@ -91,7 +91,7 @@ class FirebaseOperations {
           guard error == nil else { UsefullFunctions().showAlert(title: "Something went wrong", message: error?.localizedDescription ?? "", viewController: sender)
               return
           }
-            if let signInResult = result { goToHomeScreen(sender: sender) } else {}
+            if result != nil { goToHomeScreen(sender: sender) } else {}
         }
     }
 
@@ -165,7 +165,6 @@ class FirebaseOperations {
         let tagsData = movement.tags.map { createTagData(from: $0) }
         
         return [
-            "owner": movement.properties.owner ?? "",
             "description": movement.properties.description ?? "",
             "amount": movement.properties.amount ?? 0,
             "date": Timestamp(date: movement.properties.date ?? Date()),

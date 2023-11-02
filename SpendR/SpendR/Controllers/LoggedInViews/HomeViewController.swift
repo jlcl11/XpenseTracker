@@ -30,6 +30,15 @@ class HomeViewController: UIViewController {
         viewSetting()
     }
     
+    @IBAction func addMovementButton(_ sender: Any) {
+        
+        let newMovement = UIStoryboard(name: "NewMovement", bundle: nil).instantiateViewController(withIdentifier: "NewMovement") as! NewMovementViewController
+
+        let navVC = UINavigationController(rootViewController: newMovement)
+        present(navVC, animated: true)
+    }
+    
+    
     // MARK: Filtering
     
     @IBAction func sortByDateOrValue(_ sender: Any) {

@@ -13,6 +13,8 @@
 		914608D62AEFDE21008BFC93 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914608D52AEFDE21008BFC93 /* HomeViewController.swift */; };
 		914EA05B2AF00DBA00D41568 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 914EA05A2AF00DBA00D41568 /* CustomTableViewCell.xib */; };
 		914EA05E2AF00DF400D41568 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914EA05D2AF00DF400D41568 /* CustomTableViewCell.swift */; };
+		9162F34B2AF2703F00B97E1D /* NewMovementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162F34A2AF2703F00B97E1D /* NewMovementViewController.swift */; };
+		9162F34D2AF2706100B97E1D /* NewMovement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9162F34C2AF2706100B97E1D /* NewMovement.storyboard */; };
 		91D11FF92AEEBBC90073810E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D11FF82AEEBBC90073810E /* AppDelegate.swift */; };
 		91D11FFB2AEEBBC90073810E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D11FFA2AEEBBC90073810E /* SceneDelegate.swift */; };
 		91D120052AEEBBC90073810E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91D120032AEEBBC90073810E /* LaunchScreen.storyboard */; };
@@ -38,6 +40,8 @@
 		914608D52AEFDE21008BFC93 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		914EA05A2AF00DBA00D41568 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		914EA05D2AF00DF400D41568 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		9162F34A2AF2703F00B97E1D /* NewMovementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMovementViewController.swift; sourceTree = "<group>"; };
+		9162F34C2AF2706100B97E1D /* NewMovement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewMovement.storyboard; sourceTree = "<group>"; };
 		91D11FF52AEEBBC90073810E /* SpendR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpendR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D11FF82AEEBBC90073810E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91D11FFA2AEEBBC90073810E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				914608D32AEFDDAE008BFC93 /* Home.storyboard */,
+				9162F34C2AF2706100B97E1D /* NewMovement.storyboard */,
 				914EA0592AF00D9A00D41568 /* MovementCells */,
 			);
 			path = LoggedInGroups;
@@ -185,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				914608D52AEFDE21008BFC93 /* HomeViewController.swift */,
+				9162F34A2AF2703F00B97E1D /* NewMovementViewController.swift */,
 				914EA05C2AF00DDC00D41568 /* CustomCells */,
 			);
 			path = LoggedInViews;
@@ -280,6 +286,7 @@
 			files = (
 				91D120142AEEBED80073810E /* Login.storyboard in Resources */,
 				914EA05B2AF00DBA00D41568 /* CustomTableViewCell.xib in Resources */,
+				9162F34D2AF2706100B97E1D /* NewMovement.storyboard in Resources */,
 				91D120372AEECFE50073810E /* GoogleService-Info.plist in Resources */,
 				91D1202F2AEECAA30073810E /* Assets.xcassets in Resources */,
 				914608D42AEFDDAE008BFC93 /* Home.storyboard in Resources */,
@@ -347,6 +354,7 @@
 				91D120202AEEC32A0073810E /* UsefullFunctions.swift in Sources */,
 				914608D62AEFDE21008BFC93 /* HomeViewController.swift in Sources */,
 				91D11FFB2AEEBBC90073810E /* SceneDelegate.swift in Sources */,
+				9162F34B2AF2703F00B97E1D /* NewMovementViewController.swift in Sources */,
 				91D1202A2AEEC9740073810E /* Extensions.swift in Sources */,
 				91D1201E2AEEC3000073810E /* User.swift in Sources */,
 			);

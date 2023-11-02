@@ -148,7 +148,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="nEZ-zi-7U8">
                             <connections>
-                                <action selector="addMovementButton:" destination="Y6W-OH-hqX" id="mOd-Ea-myz"/>
+                                <action selector="addMovementButton:" destination="Y6W-OH-hqX" id="gc5-Mi-PIE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
