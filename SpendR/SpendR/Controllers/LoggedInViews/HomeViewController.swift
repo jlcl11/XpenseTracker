@@ -33,8 +33,9 @@ class HomeViewController: UIViewController {
     @IBAction func addMovementButton(_ sender: Any) {
         
         let newMovement = UIStoryboard(name: "NewMovement", bundle: nil).instantiateViewController(withIdentifier: "NewMovement") as! NewMovementViewController
-
+        newMovement.tags = loggedUser?.userTags ?? []
         let navVC = UINavigationController(rootViewController: newMovement)
+        
         present(navVC, animated: true)
     }
     
