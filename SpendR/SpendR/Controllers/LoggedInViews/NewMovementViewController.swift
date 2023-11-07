@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewMovementViewController: UIViewController {
+class NewMovementViewController: ReusableHorizontalScrollView {
 
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -16,12 +16,12 @@ class NewMovementViewController: UIViewController {
     @IBOutlet weak var decriptionTextView: UITextView!
     
     var tags:[Tag] = []
-    var selectedTags: Set<String> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-       // createHorizontalScrollViewWithButtons()
+        selectedTags = []
+        createHorizontalScrollViewWithButtons(tagNames: tags.compactMap { $0.properties?.name } ?? [], scrollView: tagScrollView)
         datePicker.maximumDate = Date()
     }
     
@@ -31,5 +31,5 @@ class NewMovementViewController: UIViewController {
     
     @IBAction func saveMovement(_ sender: Any) {
     }
-
+    
 }
