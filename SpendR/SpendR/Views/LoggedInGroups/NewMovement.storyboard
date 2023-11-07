@@ -86,7 +86,7 @@
                                         <rect key="frame" x="270.66666666666669" y="9.6666666666666856" width="92.333333333333314" height="31"/>
                                         <color key="thumbTintColor" systemColor="systemRedColor"/>
                                         <connections>
-                                            <action selector="incomeSwitch:" destination="Y6W-OH-hqX" eventType="valueChanged" id="q23-tv-6Fc"/>
+                                            <action selector="incomeSwitch:" destination="Y6W-OH-hqX" eventType="valueChanged" id="Jbt-KI-5Jn"/>
                                         </connections>
                                     </switch>
                                 </subviews>
