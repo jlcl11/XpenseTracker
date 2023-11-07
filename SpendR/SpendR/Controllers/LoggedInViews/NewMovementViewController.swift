@@ -22,7 +22,10 @@ class NewMovementViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    @IBAction func saveMovement(_ sender: Any) {
+    @IBAction func incomeSwitch(_ sender: Any) {
+        incomeSwitch.thumbTintColor = incomeSwitch.isOn ? .white : .red
     }
     
+    @IBAction func saveMovement(_ sender: Any) {
+    }
 }

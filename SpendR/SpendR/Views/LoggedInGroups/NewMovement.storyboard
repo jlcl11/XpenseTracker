@@ -58,8 +58,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="392" id="A6W-8J-GVB"/>
                                 </constraints>
-                                <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non purus ac libero volutpat viverra. Vestibulum auctor mi at nunc dignissim, nec malesuada tortor tristique. Sed euismod, leo nec auctor iaculis, ipsum odio faucibus libero, eu congue metus nisi a purus. Phasellus bibendum ante ut metus vehicula, a sagittis nulla finibus. Curabitur euismod enim nec quam scelerisque, eget porta libero tristique. In hendrerit, dolor sit amet vulputate vehicula, nisi urna fringilla augue, nec convallis libero elit a libero. Sed nec mauris eu lectus consectetur aliquam. Integer auctor massa vel augue consequat, vel elementum urna scelerisque. Sed facilisis metus a rhoncus tincidunt.
-</mutableString>
+                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non purus ac libero volutpat viverra. Vestibulum auctor mi at nunc dignissim, nec malesuada tortor tristique. Sed euismod, leo nec auctor iaculis, ipsum odio faucibus libero, eu congue metus nisi a purus. Phasellus bibendum ante ut metus vehicula, a sagittis nulla finibus. Curabitur euismod enim nec quam scelerisque, eget porta libero tristique. In hendrerit, dolor sit amet vulputate vehicula, nisi urna fringilla augue, nec convallis libero elit a libero. Sed nec mauris eu lectus consectetur aliquam. Integer auctor massa vel augue consequat, vel elementum urna scelerisque. Sed facilisis metus a rhoncus tincidunt.
+</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -86,7 +86,7 @@
                                         <rect key="frame" x="270.66666666666669" y="9.6666666666666856" width="92.333333333333314" height="31"/>
                                         <color key="thumbTintColor" systemColor="systemRedColor"/>
                                         <connections>
-                                            <action selector="isIncomeSwitch:" destination="Y6W-OH-hqX" eventType="valueChanged" id="BhJ-QL-fUg"/>
+                                            <action selector="incomeSwitch:" destination="Y6W-OH-hqX" eventType="valueChanged" id="q23-tv-6Fc"/>
                                         </connections>
                                     </switch>
                                 </subviews>
@@ -155,10 +155,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
