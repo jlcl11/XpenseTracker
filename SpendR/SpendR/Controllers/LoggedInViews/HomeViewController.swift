@@ -43,7 +43,7 @@ class HomeViewController: ReusableHorizontalScrollView {
     private func viewSetting() {
         setUpView()
         setUpTableView()
-        createHorizontalScrollViewWithButtons(tagNames: loggedUser?.userTags.compactMap { $0.properties?.name } ?? [], scrollView: scrollView)
+        createHorizontalScrollViewWithButtons(tags: loggedUser?.userTags ?? [], scrollView: scrollView)
         buttonAction = { button in
             self.filterMovementsByTags()
               }

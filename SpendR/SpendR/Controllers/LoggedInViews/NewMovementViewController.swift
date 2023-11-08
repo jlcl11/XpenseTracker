@@ -21,7 +21,7 @@ class NewMovementViewController: ReusableHorizontalScrollView {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         selectedTags = []
-        createHorizontalScrollViewWithButtons(tagNames: tags.compactMap { $0.properties?.name } ?? [], scrollView: tagScrollView)
+        createHorizontalScrollViewWithButtons(tags: tags, scrollView: tagScrollView)
         datePicker.maximumDate = Date()
     }
     
