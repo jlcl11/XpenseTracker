@@ -19,10 +19,7 @@ class NewMovementViewController: ReusableHorizontalScrollView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        selectedTags = []
-        createHorizontalScrollViewWithButtons(tags: tags, scrollView: tagScrollView)
-        datePicker.maximumDate = Date()
+        setupView()
     }
     
     @IBAction func incomeSwitch(_ sender: Any) {
@@ -30,6 +27,23 @@ class NewMovementViewController: ReusableHorizontalScrollView {
     }
     
     @IBAction func saveMovement(_ sender: Any) {
+        let movementTagsProperties = selectedTags.compactMap { tagName in
+            return tags.first { $0.properties?.name == tagName }?.properties
+        }
+
+        let newMovement = Movement(properties: MovementProperties(description: decriptionTextView.text, amount: Double(amountTextField.text ?? "") ?? 0, date: datePicker.date, isIncome: incomeSwitch.isOn, tags: movementTagsProperties))
+        print(newMovement)
     }
     
+    //MARK: View Setting
+    private func setupView(){
+        navigationController?.navigationBar.prefersLargeTitles = true
+        selectedTags = []
+        createHorizontalScrollViewWithButtons(tags: tags, scrollView: tagScrollView)
+        
+        let calendar = Calendar.current
+            datePicker.maximumDate = Date()
+            datePicker.minimumDate = calendar.date(byAdding: .year, value: -1, to: Date())
+        decriptionTextView.delegate = self
+    }
 }

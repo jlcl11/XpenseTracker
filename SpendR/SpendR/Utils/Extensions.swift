@@ -105,3 +105,9 @@ extension HomeViewController: UISearchBarDelegate {
         movementsTableView.reloadData()
     }
 }
+
+extension NewMovementViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.text = ""
+    }
+}
