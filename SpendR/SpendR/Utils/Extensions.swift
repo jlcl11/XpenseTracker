@@ -61,7 +61,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let movement = filteredMovements[indexPath.row]
         
-        if let amount = movement.properties.amount, let currency = self.loggedUser?.properties.currency, let iconName = movement.tags.first?.properties?.iconName, let description = movement.properties.description {
+        if let amount = movement.properties.amount, let currency = UserManager.shared.getCurrentUser()?.properties.currency, let iconName = movement.tags.first?.properties?.iconName, let description = movement.properties.description {
             cell.priceLabel.textColor = amount.isLess(than: 0) ? .red : .systemGreen
             cell.priceLabel.text = "\(amount) \(currency)"
             cell.iconImage.image = UIImage(systemName: iconName)
@@ -90,7 +90,7 @@ extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredMovements = filterMovementsByTagsAndSearchText(searchText: searchText)
         
-        if filteredMovements.isEmpty { filteredMovements = loggedUser?.movements ?? [] }
+        if filteredMovements.isEmpty { filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? [] }
         
         movementsTableView.reloadData()
     }
@@ -99,7 +99,7 @@ extension HomeViewController: UISearchBarDelegate {
         searchBar.text = ""
         searchBar.resignFirstResponder()
         
-        if filteredMovements.isEmpty { filteredMovements = loggedUser?.movements ?? []}
+        if filteredMovements.isEmpty { filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? []}
         sortMovements()
         
         movementsTableView.reloadData()

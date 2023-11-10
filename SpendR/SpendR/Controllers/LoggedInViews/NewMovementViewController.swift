@@ -30,7 +30,6 @@ class NewMovementViewController: ReusableHorizontalScrollView {
         let movementTagsProperties = selectedTags.compactMap { tagName in
             return tags.first { $0.properties?.name == tagName }?.properties
         }
-
         let newMovement = Movement(properties: MovementProperties(description: decriptionTextView.text, amount: Double(amountTextField.text ?? "") ?? 0, date: datePicker.date, isIncome: incomeSwitch.isOn, tags: movementTagsProperties))
         print(newMovement)
     }
