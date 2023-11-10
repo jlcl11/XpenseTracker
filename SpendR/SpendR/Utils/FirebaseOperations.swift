@@ -109,11 +109,11 @@ class FirebaseOperations {
         self.fetchUserByEmail(email: Auth.auth().currentUser?.email ?? "") { result in
             switch result {
             case .success(let user):
+                UserManager.shared.setCurrentUser(user)  // Configura el usuario en UserManager
                 let signUpVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home") as! HomeViewController
-                signUpVC.loggedUser = user
-                    UsefullFunctions().showNewPage(sender: sender, destination: signUpVC)
+                UsefullFunctions().showNewPage(sender: sender, destination: signUpVC)
             case .failure(let error):
-                    UsefullFunctions().showAlert(title: "Something went wrong", message: error.localizedDescription, viewController: sender)
+                UsefullFunctions().showAlert(title: "Something went wrong", message: error.localizedDescription, viewController: sender)
             }
         }
     }

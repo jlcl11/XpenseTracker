@@ -14,6 +14,7 @@
 		914608D62AEFDE21008BFC93 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914608D52AEFDE21008BFC93 /* HomeViewController.swift */; };
 		914EA05B2AF00DBA00D41568 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 914EA05A2AF00DBA00D41568 /* CustomTableViewCell.xib */; };
 		914EA05E2AF00DF400D41568 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914EA05D2AF00DF400D41568 /* CustomTableViewCell.swift */; };
+		9159EB562AFE5C350035E541 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159EB552AFE5C350035E541 /* UserManager.swift */; };
 		9162F34B2AF2703F00B97E1D /* NewMovementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162F34A2AF2703F00B97E1D /* NewMovementViewController.swift */; };
 		9162F34D2AF2706100B97E1D /* NewMovement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9162F34C2AF2706100B97E1D /* NewMovement.storyboard */; };
 		91D11FF92AEEBBC90073810E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D11FF82AEEBBC90073810E /* AppDelegate.swift */; };
@@ -42,6 +43,7 @@
 		914608D52AEFDE21008BFC93 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		914EA05A2AF00DBA00D41568 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		914EA05D2AF00DF400D41568 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		9159EB552AFE5C350035E541 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		9162F34A2AF2703F00B97E1D /* NewMovementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMovementViewController.swift; sourceTree = "<group>"; };
 		9162F34C2AF2706100B97E1D /* NewMovement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewMovement.storyboard; sourceTree = "<group>"; };
 		91D11FF52AEEBBC90073810E /* SpendR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpendR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,14 @@
 			path = CustomCells;
 			sourceTree = "<group>";
 		};
+		9159EB572AFE5E250035E541 /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				9159EB552AFE5C350035E541 /* UserManager.swift */,
+			);
+			path = Singletons;
+			sourceTree = "<group>";
+		};
 		91D11FEC2AEEBBC90073810E = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +172,7 @@
 		91D1200E2AEEBC850073810E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				9159EB572AFE5E250035E541 /* Singletons */,
 				91D1201F2AEEC32A0073810E /* UsefullFunctions.swift */,
 				91D120212AEEC33F0073810E /* FirebaseOperations.swift */,
 				91D120292AEEC9740073810E /* Extensions.swift */,
@@ -358,6 +369,7 @@
 				914608CC2AEFB148008BFC93 /* SignUpViewController.swift in Sources */,
 				91D120222AEEC33F0073810E /* FirebaseOperations.swift in Sources */,
 				91D1201D2AEEC3000073810E /* Tag.swift in Sources */,
+				9159EB562AFE5C350035E541 /* UserManager.swift in Sources */,
 				91D120122AEEBECA0073810E /* LoginViewController.swift in Sources */,
 				91D1201C2AEEC3000073810E /* Movements.swift in Sources */,
 				91D11FF92AEEBBC90073810E /* AppDelegate.swift in Sources */,
