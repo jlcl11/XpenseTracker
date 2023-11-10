@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NewMovementDelegate: class {
+    func didAddNewMovement()
+}
+
 class NewMovementViewController: ReusableHorizontalScrollView {
 
     @IBOutlet weak var amountTextField: UITextField!
@@ -16,6 +20,7 @@ class NewMovementViewController: ReusableHorizontalScrollView {
     @IBOutlet weak var decriptionTextView: UITextView!
     
     var tags:[Tag] = []
+    weak var delegate: NewMovementDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +36,13 @@ class NewMovementViewController: ReusableHorizontalScrollView {
             return tags.first { $0.properties?.name == tagName }?.properties
         }
         let newMovement = Movement(properties: MovementProperties(description: decriptionTextView.text, amount: Double(amountTextField.text ?? "") ?? 0, date: datePicker.date, isIncome: incomeSwitch.isOn, tags: movementTagsProperties))
-        print(newMovement)
+        if var currentUser = UserManager.shared.getCurrentUser() {
+                currentUser.movements.append(newMovement)
+                UserManager.shared.setCurrentUser(currentUser)
+            }
+        self.dismiss(animated: true) {
+            self.delegate?.didAddNewMovement()
+           }
     }
     
     //MARK: View Setting

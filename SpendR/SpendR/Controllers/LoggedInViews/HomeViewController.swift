@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: ReusableHorizontalScrollView {
+class HomeViewController: ReusableHorizontalScrollView  {
     enum SortCriteria {
         case date
         case amount
@@ -29,11 +29,10 @@ class HomeViewController: ReusableHorizontalScrollView {
     }
     
     @IBAction func addMovementButton(_ sender: Any) {
-        
         let newMovement = UIStoryboard(name: "NewMovement", bundle: nil).instantiateViewController(withIdentifier: "NewMovement") as! NewMovementViewController
         newMovement.tags = UserManager.shared.getCurrentUser()?.userTags ?? []
+        newMovement.delegate = self
         let navVC = UINavigationController(rootViewController: newMovement)
-        
         present(navVC, animated: true)
     }
     

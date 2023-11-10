@@ -106,6 +106,14 @@ extension HomeViewController: UISearchBarDelegate {
     }
 }
 
+extension HomeViewController: NewMovementDelegate {
+    func didAddNewMovement() {
+        filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? []
+        sortMovements()
+    }
+}
+
+// MARK: New movement text delegate
 extension NewMovementViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.text = ""
