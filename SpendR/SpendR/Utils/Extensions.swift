@@ -133,4 +133,10 @@ extension NewMovementViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.text = ""
     }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            let currentText = textView.text as NSString
+            let newText = currentText.replacingCharacters(in: range, with: text)
+            let characterLimit = 100
+        return newText.count <= characterLimit
+        }
 }

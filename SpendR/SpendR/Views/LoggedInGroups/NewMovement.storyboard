@@ -53,7 +53,7 @@
                                     <constraint firstAttribute="height" constant="45" id="Pgh-5z-WzD"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Place your description here" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="AMV-sQ-VcP">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Place your description here ( max 100 characters)" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="AMV-sQ-VcP">
                                 <rect key="frame" x="16" y="351" width="361" height="392"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="392" id="A6W-8J-GVB"/>
@@ -153,10 +153,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
