@@ -9,6 +9,7 @@ import UIKit
 
 protocol NewMovementDelegate: class {
     func didAddNewMovement()
+    func setUpBalanceLabel() 
 }
 
 class NewMovementViewController: ReusableHorizontalScrollView {
@@ -39,8 +40,10 @@ class NewMovementViewController: ReusableHorizontalScrollView {
         if var currentUser = UserManager.shared.getCurrentUser() {
                 currentUser.movements.append(newMovement)
                 UserManager.shared.setCurrentUser(currentUser)
+            FirebaseOperations().uploadUser(user: currentUser, vc: self)
             }
         self.dismiss(animated: true) {
+            self.delegate?.setUpBalanceLabel()
             self.delegate?.didAddNewMovement()
            }
     }

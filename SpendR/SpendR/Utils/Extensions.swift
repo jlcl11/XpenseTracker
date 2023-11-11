@@ -62,7 +62,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let movement = filteredMovements[indexPath.row]
         
         if let amount = movement.properties.amount, let currency = UserManager.shared.getCurrentUser()?.properties.currency, let iconName = movement.tags.first?.properties?.iconName, let description = movement.properties.description {
-            cell.priceLabel.textColor = amount.isLess(than: 0) ? .red : .systemGreen
+            cell.priceLabel.textColor = movement.properties.isIncome ?? false ? .red : .systemGreen
             cell.priceLabel.text = "\(amount) \(currency)"
             cell.iconImage.image = UIImage(systemName: iconName)
             cell.iconImage.tintColor = movement.tags.first?.color
@@ -107,6 +107,21 @@ extension HomeViewController: UISearchBarDelegate {
 }
 
 extension HomeViewController: NewMovementDelegate {
+    func setUpBalanceLabel()  {
+        var balance:Double = 0
+        if let movements = UserManager.shared.getCurrentUser()?.movements {
+            for movement in movements {
+                balance += (movement.properties.isIncome ?? false) ? (movement.properties.amount ?? 0) : -(movement.properties.amount ?? 0)
+            }
+        }
+        balanceLabel.textColor = (UserManager.shared.getCurrentUser()?.properties.balance ?? 0 > 0) ? .systemGreen : (UserManager.shared.getCurrentUser()?.properties.balance ?? 0 < 0) ? .red : .black
+        guard let currency = UserManager.shared.getCurrentUser()?.properties.currency else {
+            return
+        }
+
+        balanceLabel.text = "\(balance) \(currency)"
+    }
+    
     func didAddNewMovement() {
         filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? []
         sortMovements()
