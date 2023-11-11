@@ -91,7 +91,7 @@ class FirebaseOperations {
           guard error == nil else { UsefullFunctions().showAlert(title: "Something went wrong", message: error?.localizedDescription ?? "", viewController: sender)
               return
           }
-            if let signInResult = result { goToHomeScreen(sender: sender) } else {}
+            if result != nil { goToHomeScreen(sender: sender) } else {}
         }
     }
 
@@ -109,11 +109,11 @@ class FirebaseOperations {
         self.fetchUserByEmail(email: Auth.auth().currentUser?.email ?? "") { result in
             switch result {
             case .success(let user):
+                UserManager.shared.setCurrentUser(user)  // Configura el usuario en UserManager
                 let signUpVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home") as! HomeViewController
-                signUpVC.loggedUser = user
-                    UsefullFunctions().showNewPage(sender: sender, destination: signUpVC)
+                UsefullFunctions().showNewPage(sender: sender, destination: signUpVC)
             case .failure(let error):
-                    UsefullFunctions().showAlert(title: "Something went wrong", message: error.localizedDescription, viewController: sender)
+                UsefullFunctions().showAlert(title: "Something went wrong", message: error.localizedDescription, viewController: sender)
             }
         }
     }
@@ -133,7 +133,7 @@ class FirebaseOperations {
         }
     }
 
-    private func uploadUser(user: User, vc: UIViewController) {
+    func uploadUser(user: User, vc: UIViewController) {
         let userData = createUserData(from: user)
         
         db.collection("users").document("\(user.properties.email ?? "")").setData(userData) { error in
@@ -165,7 +165,6 @@ class FirebaseOperations {
         let tagsData = movement.tags.map { createTagData(from: $0) }
         
         return [
-            "owner": movement.properties.owner ?? "",
             "description": movement.properties.description ?? "",
             "amount": movement.properties.amount ?? 0,
             "date": Timestamp(date: movement.properties.date ?? Date()),
@@ -181,5 +180,4 @@ class FirebaseOperations {
             "iconName": tag.properties?.iconName ?? ""
         ]
     }
-
 }

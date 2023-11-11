@@ -61,8 +61,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let movement = filteredMovements[indexPath.row]
         
-        if let amount = movement.properties.amount, let currency = self.loggedUser?.properties.currency, let iconName = movement.tags.first?.properties?.iconName, let description = movement.properties.description {
-            cell.priceLabel.textColor = amount.isLess(than: 0) ? .red : .systemGreen
+        if let amount = movement.properties.amount, let currency = UserManager.shared.getCurrentUser()?.properties.currency, let iconName = movement.tags.first?.properties?.iconName, let description = movement.properties.description {
+            cell.priceLabel.textColor = movement.properties.isIncome ?? false ? .red : .systemGreen
             cell.priceLabel.text = "\(amount) \(currency)"
             cell.iconImage.image = UIImage(systemName: iconName)
             cell.iconImage.tintColor = movement.tags.first?.color
@@ -90,7 +90,7 @@ extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredMovements = filterMovementsByTagsAndSearchText(searchText: searchText)
         
-        if filteredMovements.isEmpty { filteredMovements = loggedUser?.movements ?? [] }
+        if filteredMovements.isEmpty { filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? [] }
         
         movementsTableView.reloadData()
     }
@@ -99,9 +99,44 @@ extension HomeViewController: UISearchBarDelegate {
         searchBar.text = ""
         searchBar.resignFirstResponder()
         
-        if filteredMovements.isEmpty { filteredMovements = loggedUser?.movements ?? []}
+        if filteredMovements.isEmpty { filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? []}
         sortMovements()
         
         movementsTableView.reloadData()
     }
+}
+
+extension HomeViewController: NewMovementDelegate {
+    func setUpBalanceLabel()  {
+        var balance:Double = 0
+        if let movements = UserManager.shared.getCurrentUser()?.movements {
+            for movement in movements {
+                balance += (movement.properties.isIncome ?? false) ? (movement.properties.amount ?? 0) : -(movement.properties.amount ?? 0)
+            }
+        }
+        balanceLabel.textColor = (UserManager.shared.getCurrentUser()?.properties.balance ?? 0 > 0) ? .systemGreen : (UserManager.shared.getCurrentUser()?.properties.balance ?? 0 < 0) ? .red : .black
+        guard let currency = UserManager.shared.getCurrentUser()?.properties.currency else {
+            return
+        }
+
+        balanceLabel.text = "\(balance) \(currency)"
+    }
+    
+    func didAddNewMovement() {
+        filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? []
+        sortMovements()
+    }
+}
+
+// MARK: New movement text delegate
+extension NewMovementViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.text = ""
+    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            let currentText = textView.text as NSString
+            let newText = currentText.replacingCharacters(in: range, with: text)
+            let characterLimit = 100
+        return newText.count <= characterLimit
+        }
 }

@@ -27,7 +27,7 @@ struct Movement {
 }
 
 struct MovementProperties: Codable {
-    let owner: String?
+
     let description: String?
     let amount: Double?
     let date: Date?
