@@ -140,12 +140,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="hello" id="ovy-lU-rEO">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="person.circle" catalog="system" id="6n2-Lt-lgc">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="goToUserPage:" destination="Y6W-OH-hqX" id="Xc3-Ux-bdY"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Item" image="person.circle" catalog="system" id="6n2-Lt-lgc">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="goToUserPage:" destination="Y6W-OH-hqX" id="Xc3-Ux-bdY"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="chart.bar.xaxis.ascending" catalog="system" id="hu0-ir-2Y0">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="goToUserPage:" destination="Y6W-OH-hqX" id="2FV-Zi-q7S"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="nEZ-zi-7U8">
                             <connections>
                                 <action selector="addMovementButton:" destination="Y6W-OH-hqX" id="gc5-Mi-PIE"/>
@@ -168,6 +176,7 @@
         <image name="arrow.down" catalog="system" width="118" height="128"/>
         <image name="arrow.up" catalog="system" width="118" height="128"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
+        <image name="chart.bar.xaxis.ascending" catalog="system" width="128" height="97"/>
         <image name="dollarsign.circle" catalog="system" width="128" height="123"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">

@@ -133,7 +133,7 @@ class FirebaseOperations {
         }
     }
 
-    private func uploadUser(user: User, vc: UIViewController) {
+    func uploadUser(user: User, vc: UIViewController) {
         let userData = createUserData(from: user)
         
         db.collection("users").document("\(user.properties.email ?? "")").setData(userData) { error in
@@ -180,5 +180,4 @@ class FirebaseOperations {
             "iconName": tag.properties?.iconName ?? ""
         ]
     }
-
 }

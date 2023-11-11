@@ -12,7 +12,7 @@ class HomeViewController: ReusableHorizontalScrollView  {
         case date
         case amount
     }
-
+    
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var movementsTableView: UITableView!
@@ -24,7 +24,6 @@ class HomeViewController: ReusableHorizontalScrollView  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
         viewSetting()
     }
     
@@ -50,10 +49,9 @@ class HomeViewController: ReusableHorizontalScrollView  {
     
     private func setUpView() {
         title = "Welcome \(UserManager.shared.getCurrentUser()?.properties.name ?? "")"
-        balanceLabel.text = "\(UserManager.shared.getCurrentUser()?.properties.balance ?? 0) \(UserManager.shared.getCurrentUser()?.properties.currency ?? "")"
+        setUpBalanceLabel()
         navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.backButtonTitle = "Home"
-        balanceLabel.textColor = (UserManager.shared.getCurrentUser()?.properties.balance ?? 0 > 0) ? .systemGreen : (UserManager.shared.getCurrentUser()?.properties.balance ?? 0 < 0) ? .red : .black
     }
 
     private func setUpTableView() {
