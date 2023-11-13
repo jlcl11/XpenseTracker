@@ -81,6 +81,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movementDetailVC = UIStoryboard(name: "MovementDetail", bundle: nil).instantiateViewController(withIdentifier: "MovementDetail") as! MovementDetailViewController
+        movementDetailVC.movement = filteredMovements[indexPath.row]
+        UsefullFunctions().showNewPage(sender: self, destination: movementDetailVC)
+    }
 }
 
 // MARK: Setting Up the Search bar
