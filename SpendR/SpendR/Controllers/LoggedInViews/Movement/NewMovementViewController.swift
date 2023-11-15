@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol NewMovementDelegate: class {
+protocol homeScreenDelegate: class {
     func didAddNewMovement()
     func setUpBalanceLabel() 
 }
@@ -21,7 +21,7 @@ class NewMovementViewController: ReusableHorizontalScrollView {
     @IBOutlet weak var decriptionTextView: UITextView!
     
     var tags:[Tag] = []
-    weak var delegate: NewMovementDelegate?
+    weak var delegate: homeScreenDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class NewMovementViewController: ReusableHorizontalScrollView {
         let newMovement = Movement(properties: MovementProperties(description: decriptionTextView.text, amount: Double(amountTextField.text ?? "") ?? 0, date: datePicker.date, isIncome: incomeSwitch.isOn, tags: movementTagsProperties))
         if var currentUser = UserManager.shared.getCurrentUser() {
                 currentUser.movements.append(newMovement)
-                UserManager.shared.setCurrentUser(currentUser)
+            UserManager.shared.setCurrentUser(currentUser)
             FirebaseOperations().uploadUser(user: currentUser, vc: self)
             }
         self.dismiss(animated: true) {

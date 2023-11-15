@@ -62,7 +62,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let movement = filteredMovements[indexPath.row]
         
         if let amount = movement.properties.amount, let currency = UserManager.shared.getCurrentUser()?.properties.currency, let iconName = movement.tags.first?.properties?.iconName, let description = movement.properties.description {
-            cell.priceLabel.textColor = movement.properties.isIncome ?? false ? .red : .systemGreen
+            cell.priceLabel.textColor = movement.properties.isIncome ?? false ? .systemGreen : .red
             cell.priceLabel.text = "\(amount) \(currency)"
             cell.iconImage.image = UIImage(systemName: iconName)
             cell.iconImage.tintColor = movement.tags.first?.color
@@ -85,6 +85,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movementDetailVC = UIStoryboard(name: "MovementDetail", bundle: nil).instantiateViewController(withIdentifier: "MovementDetail") as! MovementDetailViewController
         movementDetailVC.movement = filteredMovements[indexPath.row]
+        movementDetailVC.delegate = self
         UsefullFunctions().showNewPage(sender: self, destination: movementDetailVC)
     }
 }
@@ -112,7 +113,7 @@ extension HomeViewController: UISearchBarDelegate {
     }
 }
 
-extension HomeViewController: NewMovementDelegate {
+extension HomeViewController: homeScreenDelegate {
     func setUpBalanceLabel()  {
         var balance:Double = 0
         if let movements = UserManager.shared.getCurrentUser()?.movements {
@@ -145,4 +146,17 @@ extension NewMovementViewController: UITextViewDelegate {
             let characterLimit = 100
         return newText.count <= characterLimit
         }
+}
+
+//MARK: Movement properties equatable
+
+extension MovementProperties: Equatable {
+    // Implementa la función == para comparar dos instancias de MovementProperties
+    static func ==(lhs: MovementProperties, rhs: MovementProperties) -> Bool {
+        return lhs.description == rhs.description &&
+            lhs.amount == rhs.amount &&
+            lhs.date == rhs.date &&
+            lhs.isIncome == rhs.isIncome &&
+            lhs.tags == rhs.tags
+    }
 }
