@@ -17,6 +17,7 @@ class MovementDetailViewController: ReusableHorizontalScrollView {
     @IBOutlet weak var descriptionTextView: UITextView!
     
     var movement:Movement?
+    weak var delegate: homeScreenDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +25,14 @@ class MovementDetailViewController: ReusableHorizontalScrollView {
     }
     
     @IBAction func deleteMovementButton(_ sender: Any) {
-        if let currentUser = UserManager.shared.getCurrentUser(),
-             let movementToRemove = movement {
-             
-             currentUser.movements.removeAll { $0 == movementToRemove }
         
-         }
+        if var currentUser = UserManager.shared.getCurrentUser() {
+            currentUser.movements.removeAll {$0 == movement}
+            FirebaseOperations().uploadUser(user: currentUser, vc: self)
+            UserManager.shared.setCurrentUser(currentUser)
+            self.delegate?.didAddNewMovement()
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     private func viewSetting() {
