@@ -32,7 +32,7 @@ struct Movement: Equatable {
 }
 
 struct MovementProperties: Codable {
-
+    let name:String?
     let description: String?
     let amount: Double?
     let date: Date?
