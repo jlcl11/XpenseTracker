@@ -150,22 +150,16 @@ extension NewMovementViewController: UITextViewDelegate {
         let currentText = textView.text as NSString
         let newText = currentText.replacingCharacters(in: range, with: text)
         let characterLimit = 500
+
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+
         return newText.count <= characterLimit
     }
 
-    // Cambia el nombre del método a textViewShouldEndEditing
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        textView.resignFirstResponder()
-        return true
-    }
-    
-    // Cambia el estilo de retorno del teclado a .done
-    func textViewShouldReturn(_ textView: UITextView) -> Bool {
-        textView.resignFirstResponder()
-        return true
-    }
 }
-
 
 // MARK: New movement textfield delegate
 extension NewMovementViewController: UITextFieldDelegate {
