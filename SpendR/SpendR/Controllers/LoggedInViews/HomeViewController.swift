@@ -31,8 +31,7 @@ class HomeViewController: ReusableHorizontalScrollView  {
         let newMovement = UIStoryboard(name: "NewMovement", bundle: nil).instantiateViewController(withIdentifier: "NewMovement") as! NewMovementViewController
         newMovement.tags = UserManager.shared.getCurrentUser()?.userTags ?? []
         newMovement.delegate = self
-        let navVC = UINavigationController(rootViewController: newMovement)
-        UsefullFunctions().presentNewPage(sender: self, destination: navVC)
+        UsefullFunctions().presentNewPage(sender: self, destination: newMovement)
     }
     
     // MARK: View Setting

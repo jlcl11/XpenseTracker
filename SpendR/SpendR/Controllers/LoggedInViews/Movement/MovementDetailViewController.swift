@@ -31,6 +31,7 @@ class MovementDetailViewController: ReusableHorizontalScrollView {
             FirebaseOperations().uploadUser(user: currentUser, vc: self)
             UserManager.shared.setCurrentUser(currentUser)
             self.delegate?.didAddNewMovement()
+            self.delegate?.setUpBalanceLabel()
             navigationController?.popViewController(animated: true)
         }
     }
