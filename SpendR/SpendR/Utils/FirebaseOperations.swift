@@ -165,6 +165,7 @@ class FirebaseOperations {
         
         return [
             "description": movement.properties.description ?? "",
+            "name" : movement.properties.name ?? "",
             "amount": movement.properties.amount ?? 0,
             "date": Timestamp(date: movement.properties.date ?? Date()),
             "isIncome": movement.properties.isIncome ?? false,

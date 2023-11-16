@@ -37,11 +37,12 @@ class MovementDetailViewController: ReusableHorizontalScrollView {
     }
     
     private func viewSetting() {
-        title = movement?.properties.description
+        title = movement?.properties.name
         incomeLableConfiguration()
         datePicker.date = movement?.properties.date ?? Date()
         createHorizontalScrollViewWithButtons(tags: movement?.tags ?? [], scrollView: tagsScrollView)
         descriptionTextView.isEditable = false
+        descriptionTextView.text = movement?.properties.description
     }
     
     func incomeLableConfiguration() {
