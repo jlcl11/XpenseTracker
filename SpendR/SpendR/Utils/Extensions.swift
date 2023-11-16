@@ -73,7 +73,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let date = movement.properties.date {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd"
             cell.subtitleLabel.text = dateFormatter.string(from: date)
         } else {
             cell.subtitleLabel.text = "Ejemplo"
