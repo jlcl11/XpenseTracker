@@ -8,7 +8,7 @@
 import Foundation
 
 struct User {
-    let properties: UserProperties
+    var properties: UserProperties
     let userTags: [Tag]
     var movements: [Movement]
 }

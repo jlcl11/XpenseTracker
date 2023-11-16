@@ -113,6 +113,7 @@ extension HomeViewController: UISearchBarDelegate {
     }
 }
 
+//MARK: Home screen Delegate
 extension HomeViewController: homeScreenDelegate {
     func setUpBalanceLabel()  {
         var balance:Double = 0
@@ -121,6 +122,10 @@ extension HomeViewController: homeScreenDelegate {
                 balance += (movement.properties.isIncome ?? false) ? (movement.properties.amount ?? 0) : -(movement.properties.amount ?? 0)
             }
         }
+        var user: User = UserManager.shared.getCurrentUser() ?? User(properties: UserProperties(name: "", surname: "", email: "", currency: "", currencyName: ""), userTags: [], movements: [])
+        user.properties.balance = balance
+        UserManager.shared.setCurrentUser(user)
+        
         balanceLabel.textColor = (UserManager.shared.getCurrentUser()?.properties.balance ?? 0 > 0) ? .systemGreen : (UserManager.shared.getCurrentUser()?.properties.balance ?? 0 < 0) ? .red : .black
         guard let currency = UserManager.shared.getCurrentUser()?.properties.currency else {
             return
