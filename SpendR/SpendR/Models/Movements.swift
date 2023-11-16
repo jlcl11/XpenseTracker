@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct Movement {
+struct Movement: Equatable {
     let properties: MovementProperties
     let tags: [Tag]
 
@@ -24,10 +24,15 @@ struct Movement {
         }
         self.tags = movementTags
     }
+
+    static func ==(lhs: Movement, rhs: Movement) -> Bool {
+        // Compara las propiedades y las etiquetas para determinar la igualdad
+        return lhs.properties == rhs.properties && lhs.tags == rhs.tags
+    }
 }
 
 struct MovementProperties: Codable {
-
+    let name:String?
     let description: String?
     let amount: Double?
     let date: Date?

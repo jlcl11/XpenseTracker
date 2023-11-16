@@ -129,6 +129,7 @@ class FirebaseOperations {
                 return
             }else {
                 self.uploadUser(user: user, vc: vc)
+                UsefullFunctions().showAlert(title: "Welcome!", message: "You've been signed up successfully", viewController: vc)
             }
         }
     }
@@ -139,9 +140,7 @@ class FirebaseOperations {
         db.collection("users").document("\(user.properties.email ?? "")").setData(userData) { error in
             if let error = error {
                 UsefullFunctions().showAlert(title: "Oh oh!", message: error.localizedDescription, viewController: vc)
-            } else {
-                UsefullFunctions().showAlert(title: "Welcome!", message: "You've been signed up successfully", viewController: vc)
-            }
+            } 
         }
     }
 
@@ -166,6 +165,7 @@ class FirebaseOperations {
         
         return [
             "description": movement.properties.description ?? "",
+            "name" : movement.properties.name ?? "",
             "amount": movement.properties.amount ?? 0,
             "date": Timestamp(date: movement.properties.date ?? Date()),
             "isIncome": movement.properties.isIncome ?? false,
