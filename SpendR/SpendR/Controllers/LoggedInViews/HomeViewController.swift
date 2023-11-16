@@ -34,6 +34,11 @@ class HomeViewController: ReusableHorizontalScrollView  {
         UsefullFunctions().presentNewPage(sender: self, destination: newMovement)
     }
     
+    @IBAction func goToGraphPage(_ sender: Any) {
+        let graphController = UIStoryboard(name: "Graph", bundle: nil).instantiateViewController(withIdentifier: "Graph") as! GraphViewController
+        UsefullFunctions().showNewPage(sender: self, destination: graphController)
+    }
+    
     // MARK: View Setting
     
     private func viewSetting() {
