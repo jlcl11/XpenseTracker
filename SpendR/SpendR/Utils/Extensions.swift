@@ -61,12 +61,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let movement = filteredMovements[indexPath.row]
         
-        if let amount = movement.properties.amount, let currency = UserManager.shared.getCurrentUser()?.properties.currency, let iconName = movement.tags.first?.properties?.iconName, let description = movement.properties.description {
-            cell.priceLabel.textColor = movement.properties.isIncome ?? false ? .red : .systemGreen
+        if let amount = movement.properties.amount, let currency = UserManager.shared.getCurrentUser()?.properties.currency, let iconName = movement.tags.first?.properties?.iconName, let name = movement.properties.name {
+            cell.priceLabel.textColor = movement.properties.isIncome ?? false ? .systemGreen : .red
             cell.priceLabel.text = "\(amount) \(currency)"
             cell.iconImage.image = UIImage(systemName: iconName)
             cell.iconImage.tintColor = movement.tags.first?.color
-            cell.titleLabel.text = description
+            cell.titleLabel.text = name
         } else {
             cell.priceLabel.text = ""
         }
@@ -80,6 +80,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movementDetailVC = UIStoryboard(name: "MovementDetail", bundle: nil).instantiateViewController(withIdentifier: "MovementDetail") as! MovementDetailViewController
+        movementDetailVC.movement = filteredMovements[indexPath.row]
+        movementDetailVC.delegate = self
+        UsefullFunctions().showNewPage(sender: self, destination: movementDetailVC)
     }
 }
 
@@ -106,7 +113,8 @@ extension HomeViewController: UISearchBarDelegate {
     }
 }
 
-extension HomeViewController: NewMovementDelegate {
+//MARK: Home screen Delegate
+extension HomeViewController: homeScreenDelegate {
     func setUpBalanceLabel()  {
         var balance:Double = 0
         if let movements = UserManager.shared.getCurrentUser()?.movements {
@@ -114,6 +122,10 @@ extension HomeViewController: NewMovementDelegate {
                 balance += (movement.properties.isIncome ?? false) ? (movement.properties.amount ?? 0) : -(movement.properties.amount ?? 0)
             }
         }
+        var user: User = UserManager.shared.getCurrentUser() ?? User(properties: UserProperties(name: "", surname: "", email: "", currency: "", currencyName: ""), userTags: [], movements: [])
+        user.properties.balance = balance
+        UserManager.shared.setCurrentUser(user)
+        
         balanceLabel.textColor = (UserManager.shared.getCurrentUser()?.properties.balance ?? 0 > 0) ? .systemGreen : (UserManager.shared.getCurrentUser()?.properties.balance ?? 0 < 0) ? .red : .black
         guard let currency = UserManager.shared.getCurrentUser()?.properties.currency else {
             return
@@ -128,15 +140,50 @@ extension HomeViewController: NewMovementDelegate {
     }
 }
 
-// MARK: New movement text delegate
+// MARK: New movement textview delegate
 extension NewMovementViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.text = ""
     }
+
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-            let currentText = textView.text as NSString
-            let newText = currentText.replacingCharacters(in: range, with: text)
-            let characterLimit = 100
-        return newText.count <= characterLimit
+        let currentText = textView.text as NSString
+        let newText = currentText.replacingCharacters(in: range, with: text)
+        let characterLimit = 500
+
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
         }
+
+        return newText.count <= characterLimit
+    }
+
+}
+
+// MARK: New movement textfield delegate
+extension NewMovementViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            let currentText = textField.text ?? ""
+            let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+            let characterLimit = 15
+            return newText.count <= characterLimit
+        }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+//MARK: Movement properties equatable
+
+extension MovementProperties: Equatable {
+    // Implementa la función == para comparar dos instancias de MovementProperties
+    static func ==(lhs: MovementProperties, rhs: MovementProperties) -> Bool {
+        return lhs.description == rhs.description &&
+            lhs.amount == rhs.amount &&
+            lhs.date == rhs.date &&
+            lhs.isIncome == rhs.isIncome &&
+            lhs.tags == rhs.tags
+    }
 }

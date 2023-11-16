@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol NewMovementDelegate: class {
+protocol homeScreenDelegate: class {
     func didAddNewMovement()
     func setUpBalanceLabel() 
 }
@@ -19,9 +19,10 @@ class NewMovementViewController: ReusableHorizontalScrollView {
     @IBOutlet weak var incomeSwitch: UISwitch!
     @IBOutlet weak var tagScrollView: UIScrollView!
     @IBOutlet weak var decriptionTextView: UITextView!
+    @IBOutlet weak var nameTextField: UITextField!
     
     var tags:[Tag] = []
-    weak var delegate: NewMovementDelegate?
+    weak var delegate: homeScreenDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +37,10 @@ class NewMovementViewController: ReusableHorizontalScrollView {
         let movementTagsProperties = selectedTags.compactMap { tagName in
             return tags.first { $0.properties?.name == tagName }?.properties
         }
-        let newMovement = Movement(properties: MovementProperties(description: decriptionTextView.text, amount: Double(amountTextField.text ?? "") ?? 0, date: datePicker.date, isIncome: incomeSwitch.isOn, tags: movementTagsProperties))
+        let newMovement = Movement(properties: MovementProperties(name: nameTextField.text, description: decriptionTextView.text, amount: Double(amountTextField.text ?? "") ?? 0, date: datePicker.date, isIncome: incomeSwitch.isOn, tags: movementTagsProperties))
         if var currentUser = UserManager.shared.getCurrentUser() {
                 currentUser.movements.append(newMovement)
-                UserManager.shared.setCurrentUser(currentUser)
+            UserManager.shared.setCurrentUser(currentUser)
             FirebaseOperations().uploadUser(user: currentUser, vc: self)
             }
         self.dismiss(animated: true) {
@@ -58,5 +59,6 @@ class NewMovementViewController: ReusableHorizontalScrollView {
             datePicker.maximumDate = Date()
             datePicker.minimumDate = calendar.date(byAdding: .year, value: -1, to: Date())
         decriptionTextView.delegate = self
+        nameTextField.delegate = self
     }
 }
