@@ -39,6 +39,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="43.666666666666664" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="1D"/>
+                                        <connections>
+                                            <action selector="seeMovementsFromYesterday:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="mMb-xr-mzR"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjZ-kv-DZU">
                                         <rect key="frame" x="43.666666666666657" y="0.0" width="4" height="34.333333333333336"/>
@@ -53,6 +56,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="1W"/>
+                                        <connections>
+                                            <action selector="seeMovementsFromLastWeek:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="FXi-4c-zs7"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wy-Be-pSc">
                                         <rect key="frame" x="95.333333333333314" y="0.0" width="4" height="34.333333333333336"/>
@@ -64,6 +70,9 @@
                                         <rect key="frame" x="99.333333333333314" y="0.0" width="46" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="1M"/>
+                                        <connections>
+                                            <action selector="seeMovementsFromLastMonth:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="6OB-et-MAh"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FV8-t9-jTE">
                                         <rect key="frame" x="145.33333333333334" y="0.0" width="4" height="34.333333333333336"/>
@@ -75,6 +84,9 @@
                                         <rect key="frame" x="149.33333333333334" y="0.0" width="42.333333333333343" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="1Y"/>
+                                        <connections>
+                                            <action selector="seeMovementsFromLastYear:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="87X-oL-ihf"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aw4-r5-hVM">
                                         <rect key="frame" x="191.66666666666666" y="0.0" width="4" height="34.333333333333336"/>
@@ -86,6 +98,9 @@
                                         <rect key="frame" x="195.66666666666666" y="0.0" width="46" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="All"/>
+                                        <connections>
+                                            <action selector="seeAllMovements:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="6HF-wa-gsr"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -96,6 +111,12 @@
                                     <constraint firstAttribute="height" constant="393" id="zNv-4a-I40"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There aren't enough movements to dislay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kww-fa-veR">
+                                <rect key="frame" x="46.666666666666657" y="416.33333333333331" width="300" height="19.333333333333314"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Log-Cl-QMe">
                                 <rect key="frame" x="0.0" y="606.33333333333337" width="393" height="211.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -110,18 +131,22 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Log-Cl-QMe" secondAttribute="trailing" id="07k-IA-6ZE"/>
                             <constraint firstItem="gg0-9i-tJ6" firstAttribute="top" secondItem="2hF-Cn-scs" secondAttribute="bottom" constant="16" id="1UK-f5-N09"/>
                             <constraint firstItem="2hF-Cn-scs" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="245-w4-mfy"/>
+                            <constraint firstItem="kww-fa-veR" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="88M-Xe-HTX"/>
                             <constraint firstItem="Log-Cl-QMe" firstAttribute="top" secondItem="gg0-9i-tJ6" secondAttribute="bottom" constant="8" id="92J-1V-a9U"/>
                             <constraint firstItem="2hF-Cn-scs" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="135.33000000000001" id="FDo-eu-e92"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="2hF-Cn-scs" secondAttribute="trailing" constant="16" id="WeP-Rz-BYb"/>
                             <constraint firstItem="Log-Cl-QMe" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="c6I-VZ-FBc"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gg0-9i-tJ6" secondAttribute="trailing" id="dH3-Gu-8Q7"/>
                             <constraint firstItem="Log-Cl-QMe" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="mBB-Sg-Ut2"/>
+                            <constraint firstItem="kww-fa-veR" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="rad-F2-faf"/>
                             <constraint firstItem="gg0-9i-tJ6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="uMU-xy-EUr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chart" id="FA7-lF-C1l"/>
                     <connections>
                         <outlet property="graphView" destination="gg0-9i-tJ6" id="M5V-lM-anB"/>
+                        <outlet property="notEnoughMovementsLabel" destination="kww-fa-veR" id="QJ6-OL-7EJ"/>
+                        <outlet property="tableView" destination="Log-Cl-QMe" id="K6o-Ue-8Yb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
