@@ -1,15 +1,19 @@
 import UIKit
 import Charts
 
-class GraphViewController: UIViewController, ChartViewDelegate {
-
+class GraphViewController: ReusableHorizontalScrollView, ChartViewDelegate {
+    
     @IBOutlet weak var graphView: UIView!
-    @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var notEnoughMovementsLabel: UILabel!
+    @IBOutlet weak var movementView: UIView!
+    @IBOutlet weak var movementNameLabel: UILabel!
+    @IBOutlet weak var movementAmountLabel: UILabel!
+    @IBOutlet weak var movementDatePicker: UIDatePicker!
+    @IBOutlet weak var movementTagScrollView: UIScrollView!
+    
     var barChart = BarChartView()
     var filteredMovements: [Movement] = []
     var entries: [BarChartDataEntry] = []
-    @IBOutlet weak var notEnoughMovementsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,18 +32,18 @@ class GraphViewController: UIViewController, ChartViewDelegate {
     private func updateGraphView() {
         entries = generateChartDataEntries()
 
-        // Verificar si hay al menos dos entradas antes de crear el conjunto de datos y actualizar el gráfico.
         guard entries.count >= 2 else {
             graphView.isHidden = true
             notEnoughMovementsLabel.isHidden = false
             return
         }
+        movementView.isHidden = true
         graphView.isHidden = false
         notEnoughMovementsLabel.isHidden
         = true
         
         let data = createBarChartData(with: entries)
-        configureXAxis()
+        configureXAxis(with: .year)
         configureYAxis()
         configureLegend()
         updateChartWithData(data)
@@ -221,7 +225,17 @@ class GraphViewController: UIViewController, ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         if let barEntry = entry as? BarChartDataEntry {
             let index = Int(barEntry.x)
-            print("Selected bar at index: \(index)")
+            setupMovementView(index: index)
         }
+    }
+    func setupMovementView(index: Int) {
+        movementView.isHidden = false
+        movementNameLabel.text = filteredMovements[index].properties.name
+        if let amount = filteredMovements[index].properties.amount, let currency = UserManager.shared.getCurrentUser()?.properties.currency {
+            movementAmountLabel.text = "\(String(describing: amount)) \(currency)"
+        }
+        movementDatePicker.isEnabled = false
+        movementDatePicker.date = filteredMovements[index].properties.date ?? Date()
+        createHorizontalScrollViewWithButtons(tags: filteredMovements[index].tags, scrollView: movementTagScrollView)
     }
 }
