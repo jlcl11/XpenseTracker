@@ -3,6 +3,7 @@ import Charts
 
 class GraphViewController: ReusableHorizontalScrollView, ChartViewDelegate {
     
+    //TODO: Arreglar el scrollview y las fechas de la gráfica
     @IBOutlet weak var graphView: UIView!
     @IBOutlet weak var notEnoughMovementsLabel: UILabel!
     @IBOutlet weak var movementView: UIView!
@@ -57,26 +58,31 @@ class GraphViewController: ReusableHorizontalScrollView, ChartViewDelegate {
     // MARK: - Actions
 
     @IBAction func seeMovementsFromYesterday(_ sender: Any) {
+        movementView.isHidden = true
         filterMovements(from: Date(), byAdding: .hour, value: -24)
         configureXAxis(with: .hour)
     }
 
     @IBAction func seeMovementsFromLastWeek(_ sender: Any) {
+        movementView.isHidden = true
         filterMovements(from: Date(), byAdding: .day, value: -7)
         configureXAxis(with: .weekday)
     }
 
     @IBAction func seeMovementsFromLastMonth(_ sender: Any) {
+        movementView.isHidden = true
         filterMovements(from: Date(), byAdding: .month, value: -1)
         configureXAxis(with: .day)
     }
 
     @IBAction func seeMovementsFromLastYear(_ sender: Any) {
+        movementView.isHidden = true
         filterMovements(from: Date(), byAdding: .year, value: -1)
         configureXAxis(with: .month)
     }
 
     @IBAction func seeAllMovements(_ sender: Any) {
+        movementView.isHidden = true
         filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? []
         updateGraphView()
         configureXAxis(with: .year)
@@ -236,6 +242,7 @@ class GraphViewController: ReusableHorizontalScrollView, ChartViewDelegate {
         }
         movementDatePicker.isEnabled = false
         movementDatePicker.date = filteredMovements[index].properties.date ?? Date()
+        removeButtonsFromScrollView(movementTagScrollView)
         createHorizontalScrollViewWithButtons(tags: filteredMovements[index].tags, scrollView: movementTagScrollView)
     }
 }
