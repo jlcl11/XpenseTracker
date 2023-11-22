@@ -10,6 +10,7 @@ target 'SpendR' do
   pod 'Firebase/Firestore' 
   pod 'FirebaseFirestoreSwift'
   pod 'GoogleSignIn'
+  pod 'Charts'
   
   post_install do |installer|
     installer.aggregate_targets.each do |target|
