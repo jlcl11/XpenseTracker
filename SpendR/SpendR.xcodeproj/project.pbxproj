@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		911779D82AFAC42700FA7B60 /* ReusableHorizontalScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911779D72AFAC42700FA7B60 /* ReusableHorizontalScrollView.swift */; };
+		913FE7692B063B0F006BF261 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913FE7682B063B0F006BF261 /* GraphViewController.swift */; };
+		913FE76B2B0645D4006BF261 /* Graph.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 913FE76A2B0645D4006BF261 /* Graph.storyboard */; };
 		914608CA2AEFB128008BFC93 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 914608C92AEFB128008BFC93 /* SignUp.storyboard */; };
 		914608CC2AEFB148008BFC93 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914608CB2AEFB148008BFC93 /* SignUpViewController.swift */; };
 		914608D42AEFDDAE008BFC93 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 914608D32AEFDDAE008BFC93 /* Home.storyboard */; };
@@ -39,6 +41,8 @@
 		56347127FDAD87069F3ECEBF /* Pods_SpendR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpendR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		788775B47BF83BB04882ABD4 /* Pods-SpendR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpendR.debug.xcconfig"; path = "Target Support Files/Pods-SpendR/Pods-SpendR.debug.xcconfig"; sourceTree = "<group>"; };
 		911779D72AFAC42700FA7B60 /* ReusableHorizontalScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableHorizontalScrollView.swift; sourceTree = "<group>"; };
+		913FE7682B063B0F006BF261 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		913FE76A2B0645D4006BF261 /* Graph.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Graph.storyboard; sourceTree = "<group>"; };
 		914608C92AEFB128008BFC93 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		914608CB2AEFB148008BFC93 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		914608D32AEFDDAE008BFC93 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -88,14 +92,15 @@
 			path = utilVCs;
 			sourceTree = "<group>";
 		};
-		914608D22AEFDD51008BFC93 /* LoggedInGroups */ = {
+		914608D22AEFDD51008BFC93 /* LoggedInPages */ = {
 			isa = PBXGroup;
 			children = (
 				914B97172AFFFD1D00C2AB64 /* Movement */,
 				914EA0592AF00D9A00D41568 /* MovementCells */,
 				914608D32AEFDDAE008BFC93 /* Home.storyboard */,
+				913FE76A2B0645D4006BF261 /* Graph.storyboard */,
 			);
-			path = LoggedInGroups;
+			path = LoggedInPages;
 			sourceTree = "<group>";
 		};
 		914B97172AFFFD1D00C2AB64 /* Movement */ = {
@@ -174,7 +179,7 @@
 		91D1200C2AEEBC6C0073810E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				914608D22AEFDD51008BFC93 /* LoggedInGroups */,
+				914608D22AEFDD51008BFC93 /* LoggedInPages */,
 				91D120162AEEC1770073810E /* InitialViews */,
 				91D120032AEEBBC90073810E /* LaunchScreen.storyboard */,
 			);
@@ -236,6 +241,7 @@
 				914B971A2AFFFD9700C2AB64 /* Movement */,
 				914EA05C2AF00DDC00D41568 /* CustomCells */,
 				914608D52AEFDE21008BFC93 /* HomeViewController.swift */,
+				913FE7682B063B0F006BF261 /* GraphViewController.swift */,
 			);
 			path = LoggedInViews;
 			sourceTree = "<group>";
@@ -335,6 +341,7 @@
 				91D120372AEECFE50073810E /* GoogleService-Info.plist in Resources */,
 				91D1202F2AEECAA30073810E /* Assets.xcassets in Resources */,
 				914608D42AEFDDAE008BFC93 /* Home.storyboard in Resources */,
+				913FE76B2B0645D4006BF261 /* Graph.storyboard in Resources */,
 				91D120052AEEBBC90073810E /* LaunchScreen.storyboard in Resources */,
 				914608CA2AEFB128008BFC93 /* SignUp.storyboard in Resources */,
 			);
@@ -403,6 +410,7 @@
 				91D11FFB2AEEBBC90073810E /* SceneDelegate.swift in Sources */,
 				9162F34B2AF2703F00B97E1D /* NewMovementViewController.swift in Sources */,
 				91D1202A2AEEC9740073810E /* Extensions.swift in Sources */,
+				913FE7692B063B0F006BF261 /* GraphViewController.swift in Sources */,
 				911779D82AFAC42700FA7B60 /* ReusableHorizontalScrollView.swift in Sources */,
 				91D1201E2AEEC3000073810E /* User.swift in Sources */,
 			);

@@ -22,6 +22,16 @@ class ReusableHorizontalScrollView: UIViewController {
 
         scrollView.contentSize = CGSize(width: xOffset, height: scrollView.frame.height)
     }
+    
+    func removeButtonsFromScrollView(_ scrollView: UIScrollView) {
+            for subview in scrollView.subviews {
+                if let button = subview as? UIButton {
+                    button.removeFromSuperview()
+                }
+            }
+            
+            selectedTags.removeAll()
+        }
 
     func setColoredHorizontalButtons(button: UIButton, tag: Tag) {
         button.layer.backgroundColor = tag.color?.cgColor
