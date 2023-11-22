@@ -1,7 +1,7 @@
 import UIKit
 import Charts
 
-class GraphViewController: ReusableHorizontalScrollView, ChartViewDelegate {
+class GraphViewController: ReusableHorizontalScrollView {
     
     // TODO: Arreglar el scrollview y las fechas de la gráfica
     @IBOutlet weak var graphView: UIView!
@@ -30,7 +30,7 @@ class GraphViewController: ReusableHorizontalScrollView, ChartViewDelegate {
         barChart.extraBottomOffset = 10.0
     }
 
-    private func updateGraphView() {
+     func updateGraphView() {
         entries = generateChartDataEntries()
 
         guard entries.count >= 2 else {
@@ -49,7 +49,7 @@ class GraphViewController: ReusableHorizontalScrollView, ChartViewDelegate {
         updateChartWithData(data)
     }
 
-    private func updateChartWithData(_ data: BarChartData) {
+     func updateChartWithData(_ data: BarChartData) {
         barChart.data = data
         barChart.notifyDataSetChanged()
     }
@@ -90,82 +90,7 @@ class GraphViewController: ReusableHorizontalScrollView, ChartViewDelegate {
         updateGraphView()
     }
 
-    // MARK: - Bar Chart Setup
-
-    private func setupBarChart() {
-        layoutBarChart()
-    }
-
-    private func layoutBarChart() {
-        barChart.frame = CGRect(x: 0, y: 0, width: graphView.frame.size.width, height: graphView.frame.size.height)
-        graphView.addSubview(barChart)
-        entries = generateChartDataEntries()
-        let data = createBarChartData(with: entries)
-        configureXAxis()
-        configureYAxis()
-        configureLegend()
-        updateChartWithData(data)
-    }
-
-    private func generateChartDataEntries() -> [BarChartDataEntry] {
-        return filteredMovements.enumerated().map { index, movement in
-            let yValue = calculateYValue(for: movement)
-            return BarChartDataEntry(x: Double(index), y: yValue)
-        }.sorted { $0.x < $1.x }
-    }
-
-    private func calculateYValue(for movement: Movement) -> Double {
-        var yValue = movement.properties.amount ?? 0.0
-        if let isIncome = movement.properties.isIncome, !isIncome {
-            yValue = -yValue
-        }
-        return yValue
-    }
-
-    private func createBarChartData(with entries: [BarChartDataEntry]) -> BarChartData {
-        let set = BarChartDataSet(entries: entries, label: "Amount")
-        set.colors = gradientColors(values: entries.map { $0.y })
-        set.valueTextColor = .label
-        return BarChartData(dataSet: set)
-    }
-
-    private func configureXAxis() {
-        let xAxis = barChart.xAxis
-        xAxis.labelPosition = .bottom
-        xAxis.drawLabelsEnabled = true
-        xAxis.valueFormatter = IndexAxisValueFormatter(values: getXAxisLabels())
-    }
-
-    private func getXAxisLabels() -> [String] {
-        var xAxisLabels: [String] = []
-        for (index, movement) in filteredMovements.enumerated() {
-            guard let movementDate = movement.properties.date else { continue }
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM dd"
-            let label = dateFormatter.string(from: movementDate)
-            if index % 2 == 0 {
-                xAxisLabels.append(label)
-            } else {
-                xAxisLabels.append("") // Opcional: Puedes usar una cadena vacía para saltar la etiqueta
-            }
-        }
-        return xAxisLabels
-    }
-
-    private func configureYAxis() {
-        let leftAxis = barChart.leftAxis
-        leftAxis.labelPosition = .outsideChart
-        leftAxis.drawLabelsEnabled = true
-    }
-
-    private func configureLegend() {
-        let legend = barChart.legend
-        legend.textColor = .label
-        legend.form = .square
-        legend.formSize = 12.0
-        legend.formToTextSpace = 5.0
-        legend.horizontalAlignment = .left
-    }
+     
 
     // MARK: - Helper Methods
 
