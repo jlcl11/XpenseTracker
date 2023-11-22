@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Charts
  
 // MARK: Color rgb initializer
 extension UIColor {
@@ -185,5 +186,86 @@ extension MovementProperties: Equatable {
             lhs.date == rhs.date &&
             lhs.isIncome == rhs.isIncome &&
             lhs.tags == rhs.tags
+    }
+}
+
+//MARK: Configure graphview
+
+extension GraphViewController: ChartViewDelegate {
+    // MARK: - Bar Chart Setup
+
+     func setupBarChart() {
+        layoutBarChart()
+    }
+
+     func layoutBarChart() {
+        barChart.frame = CGRect(x: 0, y: 0, width: graphView.frame.size.width, height: graphView.frame.size.height)
+        graphView.addSubview(barChart)
+        entries = generateChartDataEntries()
+        let data = createBarChartData(with: entries)
+        configureXAxis()
+        configureYAxis()
+        configureLegend()
+        updateChartWithData(data)
+    }
+
+     func generateChartDataEntries() -> [BarChartDataEntry] {
+        return filteredMovements.enumerated().map { index, movement in
+            let yValue = calculateYValue(for: movement)
+            return BarChartDataEntry(x: Double(index), y: yValue)
+        }.sorted { $0.x < $1.x }
+    }
+
+     func calculateYValue(for movement: Movement) -> Double {
+        var yValue = movement.properties.amount ?? 0.0
+        if let isIncome = movement.properties.isIncome, !isIncome {
+            yValue = -yValue
+        }
+        return yValue
+    }
+
+     func createBarChartData(with entries: [BarChartDataEntry]) -> BarChartData {
+        let set = BarChartDataSet(entries: entries, label: "Amount")
+        set.colors = gradientColors(values: entries.map { $0.y })
+        set.valueTextColor = .label
+        return BarChartData(dataSet: set)
+    }
+
+     func configureXAxis() {
+        let xAxis = barChart.xAxis
+        xAxis.labelPosition = .bottom
+        xAxis.drawLabelsEnabled = true
+        xAxis.valueFormatter = IndexAxisValueFormatter(values: getXAxisLabels())
+    }
+
+     func getXAxisLabels() -> [String] {
+        var xAxisLabels: [String] = []
+        for (index, movement) in filteredMovements.enumerated() {
+            guard let movementDate = movement.properties.date else { continue }
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM dd"
+            let label = dateFormatter.string(from: movementDate)
+            if index % 2 == 0 {
+                xAxisLabels.append(label)
+            } else {
+                xAxisLabels.append("") // Opcional: Puedes usar una cadena vacía para saltar la etiqueta
+            }
+        }
+        return xAxisLabels
+    }
+
+     func configureYAxis() {
+        let leftAxis = barChart.leftAxis
+        leftAxis.labelPosition = .outsideChart
+        leftAxis.drawLabelsEnabled = true
+    }
+
+     func configureLegend() {
+        let legend = barChart.legend
+        legend.textColor = .label
+        legend.form = .square
+        legend.formSize = 12.0
+        legend.formToTextSpace = 5.0
+        legend.horizontalAlignment = .left
     }
 }
