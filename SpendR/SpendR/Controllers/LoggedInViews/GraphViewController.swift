@@ -3,7 +3,7 @@ import Charts
 
 class GraphViewController: ReusableHorizontalScrollView, ChartViewDelegate {
     
-    //TODO: Arreglar el scrollview y las fechas de la gráfica
+    // TODO: Arreglar el scrollview y las fechas de la gráfica
     @IBOutlet weak var graphView: UIView!
     @IBOutlet weak var notEnoughMovementsLabel: UILabel!
     @IBOutlet weak var movementView: UIView!
@@ -40,11 +40,10 @@ class GraphViewController: ReusableHorizontalScrollView, ChartViewDelegate {
         }
         movementView.isHidden = true
         graphView.isHidden = false
-        notEnoughMovementsLabel.isHidden
-        = true
+        notEnoughMovementsLabel.isHidden = true
         
         let data = createBarChartData(with: entries)
-        configureXAxis(with: .year)
+        configureXAxis()
         configureYAxis()
         configureLegend()
         updateChartWithData(data)
@@ -60,32 +59,27 @@ class GraphViewController: ReusableHorizontalScrollView, ChartViewDelegate {
     @IBAction func seeMovementsFromYesterday(_ sender: Any) {
         movementView.isHidden = true
         filterMovements(from: Date(), byAdding: .hour, value: -24)
-        configureXAxis(with: .hour)
     }
 
     @IBAction func seeMovementsFromLastWeek(_ sender: Any) {
         movementView.isHidden = true
         filterMovements(from: Date(), byAdding: .day, value: -7)
-        configureXAxis(with: .weekday)
     }
 
     @IBAction func seeMovementsFromLastMonth(_ sender: Any) {
         movementView.isHidden = true
         filterMovements(from: Date(), byAdding: .month, value: -1)
-        configureXAxis(with: .day)
     }
 
     @IBAction func seeMovementsFromLastYear(_ sender: Any) {
         movementView.isHidden = true
         filterMovements(from: Date(), byAdding: .year, value: -1)
-        configureXAxis(with: .month)
     }
 
     @IBAction func seeAllMovements(_ sender: Any) {
         movementView.isHidden = true
         filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? []
         updateGraphView()
-        configureXAxis(with: .year)
     }
 
     private func filterMovements(from currentDate: Date, byAdding component: Calendar.Component, value: Int) {
@@ -135,68 +129,27 @@ class GraphViewController: ReusableHorizontalScrollView, ChartViewDelegate {
         return BarChartData(dataSet: set)
     }
 
-    private func configureXAxis(with component: Calendar.Component? = nil) {
+    private func configureXAxis() {
         let xAxis = barChart.xAxis
-        if let component = component {
-            configureXAxisValues(xAxis, with: component)
-        }
         xAxis.labelPosition = .bottom
         xAxis.drawLabelsEnabled = true
+        xAxis.valueFormatter = IndexAxisValueFormatter(values: getXAxisLabels())
     }
 
-    private func configureXAxisValues(_ xAxis: XAxis, with component: Calendar.Component) {
-        switch component {
-        case .hour:
-            xAxis.valueFormatter = IndexAxisValueFormatter(values: entries.map { entry in
-                let date = Date(timeIntervalSinceNow: entry.x * 3600)
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "HH:mm"
-                return dateFormatter.string(from: date)
-            })
-        case .weekday:
-            xAxis.valueFormatter = IndexAxisValueFormatter(values: entries.map { entry in
-                let date = Date(timeIntervalSinceNow: entry.x * 86400)
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "EEE"
-                return dateFormatter.string(from: date)
-            })
-        case .day:
-            xAxis.valueFormatter = IndexAxisValueFormatter(values: entries.map { entry in
-                let date = Date(timeIntervalSinceNow: entry.x * 86400)
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "dd"
-                return dateFormatter.string(from: date)
-            })
-        case .month:
-            xAxis.valueFormatter = IndexAxisValueFormatter(values: entries.map { entry in
-                let date = Date(timeIntervalSinceNow: entry.x * 2629743) // 1 month in seconds
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "MMM dd"
-                return dateFormatter.string(from: date)
-            })
-        case .year:
-            xAxis.valueFormatter = IndexAxisValueFormatter(values: entries.map { entry in
-                let date = Date(timeIntervalSinceNow: entry.x * 31556952) // 1 year in seconds
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy"
-                return dateFormatter.string(from: date)
-            })
-        default:
-            break
+    private func getXAxisLabels() -> [String] {
+        var xAxisLabels: [String] = []
+        for (index, movement) in filteredMovements.enumerated() {
+            guard let movementDate = movement.properties.date else { continue }
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM dd"
+            let label = dateFormatter.string(from: movementDate)
+            if index % 2 == 0 {
+                xAxisLabels.append(label)
+            } else {
+                xAxisLabels.append("") // Opcional: Puedes usar una cadena vacía para saltar la etiqueta
+            }
         }
-    }
-
-
-    private func getDayOfWeekString(from index: Int) -> String {
-        guard index >= 1 && index <= 7 else { return "" }
-        let daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-        return daysOfWeek[index - 1]
-    }
-
-    private func getMonthAndDayString(from index: Int) -> String {
-        guard index >= 1 && index <= 12 else { return "" }
-        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        return months[index - 1]
+        return xAxisLabels
     }
 
     private func configureYAxis() {
@@ -234,6 +187,7 @@ class GraphViewController: ReusableHorizontalScrollView, ChartViewDelegate {
             setupMovementView(index: index)
         }
     }
+
     func setupMovementView(index: Int) {
         movementView.isHidden = false
         movementNameLabel.text = filteredMovements[index].properties.name
