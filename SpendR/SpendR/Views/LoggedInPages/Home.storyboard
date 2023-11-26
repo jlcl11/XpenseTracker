@@ -144,7 +144,7 @@
                             <barButtonItem title="Item" image="person.circle" catalog="system" id="6n2-Lt-lgc">
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <connections>
-                                    <action selector="goToUserPage:" destination="Y6W-OH-hqX" id="Xc3-Ux-bdY"/>
+                                    <action selector="goToUserPage:" destination="Y6W-OH-hqX" id="sa2-yy-idc"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="chart.bar.xaxis.ascending" catalog="system" id="hu0-ir-2Y0">
