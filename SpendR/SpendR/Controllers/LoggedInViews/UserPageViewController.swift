@@ -14,12 +14,14 @@ class UserPageViewController: ReusableHorizontalScrollView {
 
     let currencies: [String: String] = [
         "US Dollar": "$", "Euro": "€", "Japanese Yen": "¥", "British Pound": "£", "Australian Dollar": "A$", "Canadian Dollar": "C$", "Swiss Franc": "₣", "Chinese Yuan": "¥", "Indian Rupee": "₹", "Mexican Peso": "Mex$"]
+    weak var delegate: homeScreenDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTagsScrollView()
         navigationController?.navigationBar.prefersLargeTitles = true
         setPopup()
+      
     }
 
     @IBAction func addTag(_ sender: Any) {
@@ -27,7 +29,7 @@ class UserPageViewController: ReusableHorizontalScrollView {
     }
 
     @IBAction func logOut(_ sender: Any) {
-        FirebaseOperations().logOut(vc: self)
+        
     }
 
     private func setupTagsScrollView() {
@@ -55,6 +57,9 @@ class UserPageViewController: ReusableHorizontalScrollView {
             UserManager.shared.setCurrentUser(user ?? User(properties: UserProperties(name: "", surname: "", email: "", currency: "", currencyName: ""), userTags: [], movements: []))
 
             FirebaseOperations().uploadUser(user: user!, vc: self)
+
+                self.delegate?.setUpBalanceLabel()
+                self.delegate?.didAddNewMovement()               
         }
 
         var actions: [UIAction] = []
