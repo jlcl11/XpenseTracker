@@ -180,4 +180,31 @@ class FirebaseOperations {
             "iconName": tag.properties?.iconName ?? ""
         ]
     }
+    
+    func logout(sender: UIViewController) {
+        func signOutAndPrintMessage(provider: String) {
+            do {
+                try Auth.auth().signOut()
+                print("Usuario desconectado de \(provider) correctamente.")
+                let login = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "Login") as! LoginViewController
+                UsefullFunctions().showNewPage(sender: sender, destination: login)
+            } catch let signOutError as NSError {
+                print("Error al desconectar de \(provider): \(signOutError.localizedDescription)")
+            }
+        }
+
+        if let currentUser = GIDSignIn.sharedInstance.currentUser {
+            do {
+                try GIDSignIn.sharedInstance.signOut()
+                print("Usuario desconectado de Google Sign-In correctamente.")
+                signOutAndPrintMessage(provider: "Google Sign-In")
+            } catch let signOutError as NSError {
+                print("Error al desconectar de Google Sign-In: \(signOutError.localizedDescription)")
+                signOutAndPrintMessage(provider: "Firebase")
+            }
+        } else {
+            signOutAndPrintMessage(provider: "Firebase")
+        }
+    }
+
 }

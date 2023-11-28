@@ -42,7 +42,7 @@ class HomeViewController: ReusableHorizontalScrollView  {
     @IBAction func goToUserPage(_ sender: Any) {
         let userPage = UIStoryboard(name: "UserPage", bundle: nil).instantiateViewController(withIdentifier: "UserPage") as! UserPageViewController
         userPage.delegate = self
-        UsefullFunctions().presentNewPage(sender: self, destination: userPage)
+        UsefullFunctions().showNewPage(sender: self, destination: userPage)
     }
     
     // MARK: View Setting
