@@ -29,7 +29,7 @@ class UserPageViewController: ReusableHorizontalScrollView {
     }
 
     @IBAction func logOut(_ sender: Any) {
-        
+        FirebaseOperations().logout(sender: self)
     }
 
     private func setupTagsScrollView() {
@@ -57,9 +57,8 @@ class UserPageViewController: ReusableHorizontalScrollView {
             UserManager.shared.setCurrentUser(user ?? User(properties: UserProperties(name: "", surname: "", email: "", currency: "", currencyName: ""), userTags: [], movements: []))
 
             FirebaseOperations().uploadUser(user: user!, vc: self)
-
                 self.delegate?.setUpBalanceLabel()
-                self.delegate?.didAddNewMovement()               
+                self.delegate?.didAddNewMovement()
         }
 
         var actions: [UIAction] = []
