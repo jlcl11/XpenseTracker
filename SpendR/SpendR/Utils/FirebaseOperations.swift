@@ -15,8 +15,6 @@ class FirebaseOperations {
     private let db = Firestore.firestore()
     
     // MARK: LOGIN FUNCTIONS
-    // All the needed functions used in the Login Screen
-    
     func loginWithEmailAndPassword(email: String, password: String, sender: UIViewController, destination: UIViewController) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let _error = error {
@@ -29,11 +27,7 @@ class FirebaseOperations {
     
     private func fetchUserByEmail(email: String, completion: @escaping (Result<User, Error>) -> Void) {
         db.collection("users").document(email).getDocument { (documentSnapshot, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-
+      
             guard let document = documentSnapshot, document.exists else {
                 let userNotFoundError = NSError(domain: "com.example.app", code: 404, userInfo: [NSLocalizedDescriptionKey: "Usuario no encontrado"])
                 completion(.failure(userNotFoundError))
@@ -43,29 +37,11 @@ class FirebaseOperations {
             do {
                 let userProperties = try document.data(as: UserProperties.self)
 
-                var userTags: [Tag] = []
-                if let tagPropertiesArray = userProperties.userTags {
-                    for tagProperties in tagPropertiesArray {
-                        userTags.append(Tag(properties: tagProperties))
-                    }
-                }
+                let userTags: [Tag] = userProperties.userTags?.map { Tag(properties: $0) } ?? []
 
-                var movements: [Movement] = []
-                if let movementsDataArray = document.get("movements") as? [[String: Any]] {
-                    for movementData in movementsDataArray {
-                        if let movementProperties = try? Firestore.Decoder().decode(MovementProperties.self, from: movementData) {
-                            var tags: [Tag] = []
-                            if let tagPropertiesArray = movementProperties.tags {
-                                for tagProperties in tagPropertiesArray {
-                                    tags.append(Tag(properties: tagProperties))
-                                }
-                            }
-
-                            let movement = Movement(properties: movementProperties)
-                            movements.append(movement)
-                        }
-                    }
-                }
+                let movements: [Movement] = (document.get("movements") as? [[String: Any]])?.compactMap {
+                    try? Firestore.Decoder().decode(MovementProperties.self, from: $0)
+                }.map { Movement(properties: $0) } ?? []
 
                 let user = User(properties: userProperties, userTags: userTags, movements: movements)
                 completion(.success(user))
@@ -88,17 +64,21 @@ class FirebaseOperations {
 
     private func sharedInstanceSignIn(sender: UIViewController, destination: UIViewController)  {
         GIDSignIn.sharedInstance.signIn(withPresenting: sender) { [unowned self] result, error in
-          guard error == nil else { UsefullFunctions().showAlert(title: "Something went wrong", message: error?.localizedDescription ?? "", viewController: sender)
-              return
-          }
-            if result != nil { goToHomeScreen(sender: sender) } else {}
+            if let error = error {
+                UsefullFunctions().showAlert(title: "Something went wrong", message: error.localizedDescription, viewController: sender)
+                return
+            } else {
+                if result != nil {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                        self.goToHomeScreen(sender: sender)
+                    }
+                } else {}
+            }
         }
     }
 
-
     private func setUpCredential(result: GIDSignInResult) -> AuthCredential {
-        return  GoogleAuthProvider.credential(withIDToken: setupGUser(result: result).idToken?.tokenString ?? "",
-                                                        accessToken: setupGUser(result: result).accessToken.tokenString)
+        return  GoogleAuthProvider.credential(withIDToken: setupGUser(result: result).idToken?.tokenString ?? "", accessToken: setupGUser(result: result).accessToken.tokenString)
     }
 
     private func setupGUser(result: GIDSignInResult) -> GIDGoogleUser  {
@@ -106,22 +86,32 @@ class FirebaseOperations {
     }
     
     private func goToHomeScreen(sender: UIViewController) {
-        self.fetchUserByEmail(email: Auth.auth().currentUser?.email ?? "") { result in
-            switch result {
-            case .success(let user):
-                UserManager.shared.setCurrentUser(user)  // Configura el usuario en UserManager
-                let signUpVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home") as! HomeViewController
-                UsefullFunctions().showNewPage(sender: sender, destination: signUpVC)
-            case .failure(let error):
-                UsefullFunctions().showAlert(title: "Something went wrong", message: error.localizedDescription, viewController: sender)
+        var userEmail: String?
+
+        if let currentUser = Auth.auth().currentUser {
+            userEmail = currentUser.email
+        } else if let googleUser = GIDSignIn.sharedInstance.currentUser {
+            userEmail = googleUser.profile?.email ?? ""
+        }
+
+        if let userEmail = userEmail {
+            self.fetchUserByEmail(email: userEmail) { result in
+                switch result {
+                case .success(let user):
+                    UserManager.shared.setCurrentUser(user)
+                    let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home") as! HomeViewController
+                    UsefullFunctions().showNewPage(sender: sender, destination: homeVC)
+                case .failure(let error):
+                    UsefullFunctions().showAlert(title: "Something went wrong", message: error.localizedDescription, viewController: sender)
+                }
             }
+        } else {
+            UsefullFunctions().showAlert(title: "User Not Authenticated", message: "The user is not authenticated.", viewController: sender)
         }
     }
-    
 
 // MARK: SIGN UP FUNCTIONS
-    // All the needed functions and variables used in the Sign Up Screen
-    
+
     func createUser( user: User, password: String, vc: UIViewController) {
         Auth.auth().createUser(withEmail: user.properties.email ?? "", password: password){ success, error in
             if let error = error {
@@ -185,21 +175,17 @@ class FirebaseOperations {
         func signOutAndPrintMessage(provider: String) {
             do {
                 try Auth.auth().signOut()
-                print("Usuario desconectado de \(provider) correctamente.")
                 let login = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "Login") as! LoginViewController
                 UsefullFunctions().showNewPage(sender: sender, destination: login)
             } catch let signOutError as NSError {
-                print("Error al desconectar de \(provider): \(signOutError.localizedDescription)")
             }
         }
 
-        if let currentUser = GIDSignIn.sharedInstance.currentUser {
+        if GIDSignIn.sharedInstance.currentUser != nil {
             do {
                 try GIDSignIn.sharedInstance.signOut()
-                print("Usuario desconectado de Google Sign-In correctamente.")
                 signOutAndPrintMessage(provider: "Google Sign-In")
             } catch let signOutError as NSError {
-                print("Error al desconectar de Google Sign-In: \(signOutError.localizedDescription)")
                 signOutAndPrintMessage(provider: "Firebase")
             }
         } else {

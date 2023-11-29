@@ -3,7 +3,6 @@ import Charts
 
 class GraphViewController: ReusableHorizontalScrollView {
     
-    // TODO: Arreglar el scrollview y las fechas de la gráfica
     @IBOutlet weak var graphView: UIView!
     @IBOutlet weak var notEnoughMovementsLabel: UILabel!
     @IBOutlet weak var movementView: UIView!
