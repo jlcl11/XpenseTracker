@@ -13,17 +13,13 @@ struct Tag: Hashable {
     var icon: UIImage?
     var color: UIColor?
     
-    // Hashable conformidad personalizada para Tag
     func hash(into hasher: inout Hasher) {
-        // Use una propiedad única o combinación de propiedades que garantice la unicidad
         if let name = properties?.name {
             hasher.combine(name)
         }
     }
     
-    // Implementa Equatable si deseas comparar Tags
     static func ==(lhs: Tag, rhs: Tag) -> Bool {
-        // Compara las propiedades que definas como relevantes para la igualdad
         return lhs.properties == rhs.properties
     }
   
@@ -33,7 +29,6 @@ struct Tag: Hashable {
         self.color = UIColor(rgb: properties?.color ?? 0)
     }
 }
-
 
 struct TagProperties: Codable, Equatable {
     var iconName: String?
@@ -48,9 +43,7 @@ struct TagProperties: Codable, Equatable {
         self.owner = owner
     }
 
-    // Implementación personalizada de Equatable para comparar instancias de TagProperties
     static func ==(lhs: TagProperties, rhs: TagProperties) -> Bool {
-        // Compara las propiedades relevantes para la igualdad
         return lhs.iconName == rhs.iconName &&
                lhs.color == rhs.color &&
                lhs.name == rhs.name &&
