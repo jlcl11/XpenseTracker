@@ -6,34 +6,84 @@
 //
 
 import UIKit
+import SwiftUI
+import SymbolPicker
 
+struct SymbolPickerView: View {
+        @State private var iconPickerPresented = false
+        @State var icon = "pencil"
+
+        var body: some View {
+            Button {
+                iconPickerPresented = true
+            } label: {
+                HStack {
+                            Image(systemName: icon)
+                                .font(.system(size: 35)) 
+                        }
+            }
+            .sheet(isPresented: $iconPickerPresented) {
+                SymbolPicker(symbol: $icon)
+            }
+        }
+    }
 class UserPageViewController: ReusableHorizontalScrollView {
 
     @IBOutlet weak var currencyPopUpButton: UIButton!
     @IBOutlet weak var tagsScrollView: UIScrollView!
+    @IBOutlet weak var newTagView: UIView!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var colorWell: UIColorWell!
+    @IBOutlet weak var colorLabel: UILabel!
+    @IBOutlet weak var swiftUIViewContainer: UIView!
 
     let currencies: [String: String] = [
         "US Dollar": "$", "Euro": "€", "Japanese Yen": "¥", "British Pound": "£", "Australian Dollar": "A$", "Canadian Dollar": "C$", "Swiss Franc": "₣", "Chinese Yuan": "¥", "Indian Rupee": "₹", "Mexican Peso": "Mex$"]
     weak var delegate: homeScreenDelegate?
+    var swiftUIHostingController: UIHostingController<SymbolPickerView>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTagsScrollView()
         navigationController?.navigationBar.prefersLargeTitles = true
         setPopup()
-      
+        colorWell.addTarget(self, action: #selector(colorWellChangedColor(_:)), for: .valueChanged)
+        newTagView.isHidden = true
+        setupSymbolPicker()
     }
 
     @IBAction func addTag(_ sender: Any) {
-        let newTag = UIStoryboard(name: "NewTag", bundle: nil).instantiateViewController(withIdentifier: "NewTag") as! NewTagViewController
-        
-        UsefullFunctions().presentNewPage(sender: self, destination: newTag)
+        newTagView.isHidden.toggle()
+        newTagView.isHidden = newTagView.isHidden ? true : false
     }
-
+    
+    @IBAction func saveTag(_ sender: Any) {
+        if let mySwiftUIView = swiftUIHostingController?.rootView {
+            print("Icon value: \(mySwiftUIView.icon)")
+        }
+    }
+    
     @IBAction func logOut(_ sender: Any) {
         FirebaseOperations().logout(sender: self)
     }
-
+    
+    @objc func colorWellChangedColor(_ sender: UIButton) {
+        colorLabel.textColor = colorWell.selectedColor
+    }
+    
+    private func setupSymbolPicker() {
+        let symbolPickerView = SymbolPickerView()
+        swiftUIHostingController = UIHostingController(rootView: symbolPickerView)
+        addChild(swiftUIHostingController!)
+        swiftUIViewContainer.addSubview(swiftUIHostingController!.view)
+        swiftUIHostingController!.view.translatesAutoresizingMaskIntoConstraints = false
+        swiftUIHostingController!.view.topAnchor.constraint(equalTo: swiftUIViewContainer.topAnchor).isActive = true
+        swiftUIHostingController!.view.leadingAnchor.constraint(equalTo: swiftUIViewContainer.leadingAnchor).isActive = true
+        swiftUIHostingController!.view.trailingAnchor.constraint(equalTo: swiftUIViewContainer.trailingAnchor).isActive = true
+        swiftUIHostingController!.view.bottomAnchor.constraint(equalTo: swiftUIViewContainer.bottomAnchor).isActive = true
+        swiftUIHostingController!.didMove(toParent: self)
+    }
+    
     private func setupTagsScrollView() {
         guard let currentUser = UserManager.shared.getCurrentUser() else {
             return
