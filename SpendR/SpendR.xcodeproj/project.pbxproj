@@ -18,6 +18,8 @@
 		914B971C2AFFFDE300C2AB64 /* MovementDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914B971B2AFFFDE300C2AB64 /* MovementDetailViewController.swift */; };
 		914EA05B2AF00DBA00D41568 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 914EA05A2AF00DBA00D41568 /* CustomTableViewCell.xib */; };
 		914EA05E2AF00DF400D41568 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914EA05D2AF00DF400D41568 /* CustomTableViewCell.swift */; };
+		91544C782B17BFDD0081A3C4 /* NewTag.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91544C772B17BFDD0081A3C4 /* NewTag.storyboard */; };
+		91544C7A2B17C2BF0081A3C4 /* NewTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91544C792B17C2BF0081A3C4 /* NewTagViewController.swift */; };
 		9159EB562AFE5C350035E541 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159EB552AFE5C350035E541 /* UserManager.swift */; };
 		915F11682B0E2B7B005A568D /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F11672B0E2B7B005A568D /* UserPageViewController.swift */; };
 		915F116A2B0E2C9B005A568D /* UserPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 915F11692B0E2C9B005A568D /* UserPage.storyboard */; };
@@ -53,6 +55,8 @@
 		914B971B2AFFFDE300C2AB64 /* MovementDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDetailViewController.swift; sourceTree = "<group>"; };
 		914EA05A2AF00DBA00D41568 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		914EA05D2AF00DF400D41568 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		91544C772B17BFDD0081A3C4 /* NewTag.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewTag.storyboard; sourceTree = "<group>"; };
+		91544C792B17C2BF0081A3C4 /* NewTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTagViewController.swift; sourceTree = "<group>"; };
 		9159EB552AFE5C350035E541 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		915F11672B0E2B7B005A568D /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
 		915F11692B0E2C9B005A568D /* UserPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserPage.storyboard; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 				914608D32AEFDDAE008BFC93 /* Home.storyboard */,
 				913FE76A2B0645D4006BF261 /* Graph.storyboard */,
 				915F11692B0E2C9B005A568D /* UserPage.storyboard */,
+				91544C772B17BFDD0081A3C4 /* NewTag.storyboard */,
 			);
 			path = LoggedInPages;
 			sourceTree = "<group>";
@@ -248,6 +253,7 @@
 				914608D52AEFDE21008BFC93 /* HomeViewController.swift */,
 				913FE7682B063B0F006BF261 /* GraphViewController.swift */,
 				915F11672B0E2B7B005A568D /* UserPageViewController.swift */,
+				91544C792B17C2BF0081A3C4 /* NewTagViewController.swift */,
 			);
 			path = LoggedInViews;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 				914608D42AEFDDAE008BFC93 /* Home.storyboard in Resources */,
 				913FE76B2B0645D4006BF261 /* Graph.storyboard in Resources */,
 				91D120052AEEBBC90073810E /* LaunchScreen.storyboard in Resources */,
+				91544C782B17BFDD0081A3C4 /* NewTag.storyboard in Resources */,
 				914608CA2AEFB128008BFC93 /* SignUp.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +419,7 @@
 				91D1201C2AEEC3000073810E /* Movements.swift in Sources */,
 				91D11FF92AEEBBC90073810E /* AppDelegate.swift in Sources */,
 				914EA05E2AF00DF400D41568 /* CustomTableViewCell.swift in Sources */,
+				91544C7A2B17C2BF0081A3C4 /* NewTagViewController.swift in Sources */,
 				91D120202AEEC32A0073810E /* UsefullFunctions.swift in Sources */,
 				914608D62AEFDE21008BFC93 /* HomeViewController.swift in Sources */,
 				91D11FFB2AEEBBC90073810E /* SceneDelegate.swift in Sources */,
