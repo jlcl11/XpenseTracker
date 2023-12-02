@@ -25,7 +25,9 @@ class UserPageViewController: ReusableHorizontalScrollView {
     }
 
     @IBAction func addTag(_ sender: Any) {
-        // Implementación de addTag si es necesario
+        let newTag = UIStoryboard(name: "NewTag", bundle: nil).instantiateViewController(withIdentifier: "NewTag") as! NewTagViewController
+        
+        UsefullFunctions().presentNewPage(sender: self, destination: newTag)
     }
 
     @IBAction func logOut(_ sender: Any) {
