@@ -25,6 +25,7 @@
 		915F116A2B0E2C9B005A568D /* UserPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 915F11692B0E2C9B005A568D /* UserPage.storyboard */; };
 		9162F34B2AF2703F00B97E1D /* NewMovementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162F34A2AF2703F00B97E1D /* NewMovementViewController.swift */; };
 		9162F34D2AF2706100B97E1D /* NewMovement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9162F34C2AF2706100B97E1D /* NewMovement.storyboard */; };
+		91C87A062B1B5CE100C15775 /* SymbolPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 91C87A052B1B5CE100C15775 /* SymbolPicker */; };
 		91D11FF92AEEBBC90073810E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D11FF82AEEBBC90073810E /* AppDelegate.swift */; };
 		91D11FFB2AEEBBC90073810E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D11FFA2AEEBBC90073810E /* SceneDelegate.swift */; };
 		91D120052AEEBBC90073810E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91D120032AEEBBC90073810E /* LaunchScreen.storyboard */; };
@@ -85,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91C87A062B1B5CE100C15775 /* SymbolPicker in Frameworks */,
 				A1E04AACCFB7A580629F2E8A /* Pods_SpendR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +306,9 @@
 			dependencies = (
 			);
 			name = SpendR;
+			packageProductDependencies = (
+				91C87A052B1B5CE100C15775 /* SymbolPicker */,
+			);
 			productName = SpendR;
 			productReference = 91D11FF52AEEBBC90073810E /* SpendR.app */;
 			productType = "com.apple.product-type.application";
@@ -332,6 +337,9 @@
 				Base,
 			);
 			mainGroup = 91D11FEC2AEEBBC90073810E;
+			packageReferences = (
+				91C87A042B1B5CE100C15775 /* XCRemoteSwiftPackageReference "SymbolPicker" */,
+			);
 			productRefGroup = 91D11FF62AEEBBC90073810E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -643,6 +651,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		91C87A042B1B5CE100C15775 /* XCRemoteSwiftPackageReference "SymbolPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/xnth97/SymbolPicker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		91C87A052B1B5CE100C15775 /* SymbolPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91C87A042B1B5CE100C15775 /* XCRemoteSwiftPackageReference "SymbolPicker" */;
+			productName = SymbolPicker;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 91D11FED2AEEBBC90073810E /* Project object */;
 }
