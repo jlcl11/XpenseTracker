@@ -26,7 +26,6 @@ struct Movement: Equatable {
     }
 
     static func ==(lhs: Movement, rhs: Movement) -> Bool {
-        // Compara las propiedades y las etiquetas para determinar la igualdad
         return lhs.properties == rhs.properties && lhs.tags == rhs.tags
     }
 }
