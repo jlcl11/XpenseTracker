@@ -7,31 +7,24 @@
 
 import SwiftUI
 import UIKit
+import Combine
 import SymbolPicker
 
+class CounterModel: ObservableObject {
+    @Published var counter = 0
+}
+
 struct SymbolPickerView: View {
-    @State private var iconPickerPresented = false
-    @State var icon = "pencil"
-    @State var iconName = ""
+    @ObservedObject var counterModel = CounterModel()
 
     var body: some View {
-        Button {
-            iconPickerPresented = true
-        } label: {
-            HStack {
-                Image(systemName: icon)
+        VStack {
+            Button("Contador: \(counterModel.counter)") {
+                self.counterModel.counter += 1
             }
-        }
-        .sheet(isPresented: $iconPickerPresented) {
-            SymbolPicker(symbol: $icon)
-        }
-        .onChange(of: icon) { newIcon in
-            iconName = newIcon
-            print(iconName)
         }
     }
 }
-
 
 class UserPageViewController: ReusableHorizontalScrollView {
 
@@ -47,7 +40,6 @@ class UserPageViewController: ReusableHorizontalScrollView {
         "US Dollar": "$", "Euro": "€", "Japanese Yen": "¥", "British Pound": "£", "Australian Dollar": "A$", "Canadian Dollar": "C$", "Swiss Franc": "₣", "Chinese Yuan": "¥", "Indian Rupee": "₹", "Mexican Peso": "Mex$"]
     weak var delegate: homeScreenDelegate?
     var swiftUIHostingController: UIHostingController<SymbolPickerView>?
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,14 +50,18 @@ class UserPageViewController: ReusableHorizontalScrollView {
         newTagView.isHidden.toggle()
         newTagView.isHidden = newTagView.isHidden ? true : false
     }
-    
+
     @IBAction func saveTag(_ sender: Any) {
         if let mySwiftUIView = swiftUIHostingController?.rootView {
-            let tag = Tag(properties: TagProperties(iconName: mySwiftUIView.icon,color: colorWell.selectedColor?.rgb(), name: nameTextField.text))
-            print(tag)
+            // Acceder al valor del contador
+            let counterValue = mySwiftUIView.counterModel.counter
+            print("Contador actual desde SwiftUI: \(counterValue)")
+
+            // Puedes realizar otras acciones con el valor del contador si es necesario
             newTagView.isHidden.toggle()
         }
     }
+
     
     @IBAction func logOut(_ sender: Any) {
         FirebaseOperations().logout(sender: self)
