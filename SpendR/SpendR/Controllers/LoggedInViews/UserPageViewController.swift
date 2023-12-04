@@ -5,28 +5,34 @@
 //  Created by José Luis Corral on 22/11/23.
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 import SymbolPicker
 
 struct SymbolPickerView: View {
-        @State private var iconPickerPresented = false
-        @State var icon = "pencil"
+    @State private var iconPickerPresented = false
+    @State var icon = "pencil"
+    @State var iconName = ""
 
-        var body: some View {
-            Button {
-                iconPickerPresented = true
-            } label: {
-                HStack {
-                            Image(systemName: icon)
-                                .font(.system(size: 35)) 
-                        }
-            }
-            .sheet(isPresented: $iconPickerPresented) {
-                SymbolPicker(symbol: $icon)
+    var body: some View {
+        Button {
+            iconPickerPresented = true
+        } label: {
+            HStack {
+                Image(systemName: icon)
             }
         }
+        .sheet(isPresented: $iconPickerPresented) {
+            SymbolPicker(symbol: $icon)
+        }
+        .onChange(of: icon) { newIcon in
+            iconName = newIcon
+            print(iconName)
+        }
     }
+}
+
+
 class UserPageViewController: ReusableHorizontalScrollView {
 
     @IBOutlet weak var currencyPopUpButton: UIButton!
@@ -41,15 +47,11 @@ class UserPageViewController: ReusableHorizontalScrollView {
         "US Dollar": "$", "Euro": "€", "Japanese Yen": "¥", "British Pound": "£", "Australian Dollar": "A$", "Canadian Dollar": "C$", "Swiss Franc": "₣", "Chinese Yuan": "¥", "Indian Rupee": "₹", "Mexican Peso": "Mex$"]
     weak var delegate: homeScreenDelegate?
     var swiftUIHostingController: UIHostingController<SymbolPickerView>?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTagsScrollView()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        setPopup()
-        colorWell.addTarget(self, action: #selector(colorWellChangedColor(_:)), for: .valueChanged)
-        newTagView.isHidden = true
-        setupSymbolPicker()
+        setupView()
     }
 
     @IBAction func addTag(_ sender: Any) {
@@ -59,7 +61,9 @@ class UserPageViewController: ReusableHorizontalScrollView {
     
     @IBAction func saveTag(_ sender: Any) {
         if let mySwiftUIView = swiftUIHostingController?.rootView {
-            print("Icon value: \(mySwiftUIView.icon)")
+            let tag = Tag(properties: TagProperties(iconName: mySwiftUIView.icon,color: colorWell.selectedColor?.rgb(), name: nameTextField.text))
+            print(tag)
+            newTagView.isHidden.toggle()
         }
     }
     
@@ -69,6 +73,15 @@ class UserPageViewController: ReusableHorizontalScrollView {
     
     @objc func colorWellChangedColor(_ sender: UIButton) {
         colorLabel.textColor = colorWell.selectedColor
+    }
+    
+    func setupView(){
+        setupTagsScrollView()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        setPopup()
+        colorWell.addTarget(self, action: #selector(colorWellChangedColor(_:)), for: .valueChanged)
+        newTagView.isHidden = true
+        setupSymbolPicker()
     }
     
     private func setupSymbolPicker() {
@@ -88,7 +101,6 @@ class UserPageViewController: ReusableHorizontalScrollView {
         guard let currentUser = UserManager.shared.getCurrentUser() else {
             return
         }
-
         createHorizontalScrollViewWithButtons(tags: currentUser.userTags, scrollView: tagsScrollView)
     }
 
