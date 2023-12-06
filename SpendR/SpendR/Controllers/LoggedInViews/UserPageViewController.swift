@@ -7,7 +7,6 @@
 
 import SwiftUI
 import UIKit
-import Combine
 import SymbolPicker
 
 class CounterModel: ObservableObject {
@@ -17,22 +16,24 @@ class CounterModel: ObservableObject {
 struct SymbolPickerView: View {
     @State private var iconPickerPresented = false
     @ObservedObject var counterModel = CounterModel()
+    @ObservedObject var userPageViewController: UserPageViewController
 
     var body: some View {
-            Button {
-                iconPickerPresented = true
-            } label: {
-                HStack {
-                    Image(systemName: counterModel.icon)
-                }
+        Button {
+            iconPickerPresented = true
+        } label: {
+            HStack {
+                Image(systemName: counterModel.icon)
             }
-            .sheet(isPresented: $iconPickerPresented) {
-                SymbolPicker(symbol: $counterModel.icon)
-            }
+            .foregroundColor(userPageViewController.buttonColor)
         }
+        .sheet(isPresented: $iconPickerPresented) {
+            SymbolPicker(symbol: $counterModel.icon)
+        }
+    }
 }
 
-class UserPageViewController: ReusableHorizontalScrollView {
+class UserPageViewController: ReusableHorizontalScrollView, ObservableObject{
 
     @IBOutlet weak var currencyPopUpButton: UIButton!
     @IBOutlet weak var tagsScrollView: UIScrollView!
@@ -46,6 +47,7 @@ class UserPageViewController: ReusableHorizontalScrollView {
         "US Dollar": "$", "Euro": "€", "Japanese Yen": "¥", "British Pound": "£", "Australian Dollar": "A$", "Canadian Dollar": "C$", "Swiss Franc": "₣", "Chinese Yuan": "¥", "Indian Rupee": "₹", "Mexican Peso": "Mex$"]
     weak var delegate: homeScreenDelegate?
     var swiftUIHostingController: UIHostingController<SymbolPickerView>?
+    @Published var buttonColor: Color = .blue
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +64,7 @@ class UserPageViewController: ReusableHorizontalScrollView {
             let cancellable = mySwiftUIView.counterModel.$icon.sink { value in
                    print("Imagen actual: \(value)")
                }
-               cancellable.cancel() 
+               cancellable.cancel()
                newTagView.isHidden.toggle()
         }
     }
@@ -72,8 +74,10 @@ class UserPageViewController: ReusableHorizontalScrollView {
     }
     
     @objc func colorWellChangedColor(_ sender: UIButton) {
-        colorLabel.textColor = colorWell.selectedColor
-    }
+          colorLabel.textColor = colorWell.selectedColor
+        let swiftUIColor = Color(colorWell.selectedColor ?? .black)
+          buttonColor = swiftUIColor
+      }
     
     func setupView(){
         setupTagsScrollView()
@@ -85,7 +89,7 @@ class UserPageViewController: ReusableHorizontalScrollView {
     }
     
     private func setupSymbolPicker() {
-        let symbolPickerView = SymbolPickerView()
+        let symbolPickerView = SymbolPickerView(userPageViewController: self)
         swiftUIHostingController = UIHostingController(rootView: symbolPickerView)
         addChild(swiftUIHostingController!)
         swiftUIViewContainer.addSubview(swiftUIHostingController!.view)
