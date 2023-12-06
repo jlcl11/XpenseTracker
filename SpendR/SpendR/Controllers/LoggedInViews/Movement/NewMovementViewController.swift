@@ -10,6 +10,7 @@ import UIKit
 protocol homeScreenDelegate: class {
     func didAddNewMovement()
     func setUpBalanceLabel() 
+    func setUpScrollView()
 }
 
 class NewMovementViewController: ReusableHorizontalScrollView {
@@ -58,7 +59,7 @@ class NewMovementViewController: ReusableHorizontalScrollView {
         let calendar = Calendar.current
             datePicker.maximumDate = Date()
             datePicker.minimumDate = calendar.date(byAdding: .year, value: -1, to: Date())
-        decriptionTextView.delegate = self
-        nameTextField.delegate = self
+            decriptionTextView.delegate = self
+            nameTextField.delegate = self
     }
 }

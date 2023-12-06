@@ -62,7 +62,14 @@ class UserPageViewController: ReusableHorizontalScrollView, ObservableObject{
     @IBAction func saveTag(_ sender: Any) {
         if let mySwiftUIView = swiftUIHostingController?.rootView {
             let cancellable = mySwiftUIView.counterModel.$icon.sink { value in
-                   print("Imagen actual: \(value)")
+                var user = UserManager.shared.getCurrentUser()
+                let tag = Tag(properties: TagProperties(iconName: value, color: self.colorWell.selectedColor?.rgb(), name: self.nameTextField.text))
+                user?.userTags.append(tag)
+                UserManager.shared.setCurrentUser(user ?? User(properties: UserProperties(name: "", surname: "", email: "", currency: "", currencyName: ""), userTags: [], movements: []))
+                self.removeButtonsFromScrollView(self.tagsScrollView)
+                self.createHorizontalScrollViewWithButtons(tags: user?.userTags ?? [] , scrollView: self.tagsScrollView)
+                self.delegate?.setUpScrollView()
+                FirebaseOperations().uploadUser(user: user ?? User(properties: UserProperties(name: "", surname: "", email: "", currency: "", currencyName: ""), userTags: [], movements: []), vc: self)
                }
                cancellable.cancel()
                newTagView.isHidden.toggle()
