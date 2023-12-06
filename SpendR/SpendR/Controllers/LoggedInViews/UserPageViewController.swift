@@ -11,19 +11,25 @@ import Combine
 import SymbolPicker
 
 class CounterModel: ObservableObject {
-    @Published var counter = 0
+    @Published var icon: String = "pencil"
 }
 
 struct SymbolPickerView: View {
+    @State private var iconPickerPresented = false
     @ObservedObject var counterModel = CounterModel()
 
     var body: some View {
-        VStack {
-            Button("Contador: \(counterModel.counter)") {
-                self.counterModel.counter += 1
+            Button {
+                iconPickerPresented = true
+            } label: {
+                HStack {
+                    Image(systemName: counterModel.icon)
+                }
+            }
+            .sheet(isPresented: $iconPickerPresented) {
+                SymbolPicker(symbol: $counterModel.icon)
             }
         }
-    }
 }
 
 class UserPageViewController: ReusableHorizontalScrollView {
@@ -53,15 +59,13 @@ class UserPageViewController: ReusableHorizontalScrollView {
 
     @IBAction func saveTag(_ sender: Any) {
         if let mySwiftUIView = swiftUIHostingController?.rootView {
-            // Acceder al valor del contador
-            let counterValue = mySwiftUIView.counterModel.counter
-            print("Contador actual desde SwiftUI: \(counterValue)")
-
-            // Puedes realizar otras acciones con el valor del contador si es necesario
-            newTagView.isHidden.toggle()
+            let cancellable = mySwiftUIView.counterModel.$icon.sink { value in
+                   print("Imagen actual: \(value)")
+               }
+               cancellable.cancel() 
+               newTagView.isHidden.toggle()
         }
     }
-
     
     @IBAction func logOut(_ sender: Any) {
         FirebaseOperations().logout(sender: self)
@@ -138,5 +142,4 @@ class UserPageViewController: ReusableHorizontalScrollView {
         currencyPopUpButton.showsMenuAsPrimaryAction = true
         currencyPopUpButton.changesSelectionAsPrimaryAction = true
     }
-
 }
