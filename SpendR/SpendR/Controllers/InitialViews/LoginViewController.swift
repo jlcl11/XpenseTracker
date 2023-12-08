@@ -18,20 +18,35 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
     }
+    
+    //MARK: IBACtions
    
     @IBAction func logInButton(_ sender: Any) {
-        firebaseFuncs.loginWithEmailAndPassword(email: emailTextField.text ?? "", password: passwordTextField.text ?? "", sender: self, destination: HomeViewController())
+        login()
     }
     
     @IBAction func googleSignInButton(_ sender: Any) {
-        firebaseFuncs.googleLogin(sender: self, destination: SignUpViewController())
+        googleLogin()
     }
     
     @IBAction func goToSignInButton(_ sender: Any) {
-        
-        let signUpVC = UIStoryboard(name: "SignUp", bundle: nil).instantiateViewController(withIdentifier: "SignUp") as! SignUpViewController
-
-        UsefullFunctions().showNewPage(sender: self, destination: signUpVC)
+        navigateToSignUp()
     }
     
+    // MARK: - Private Functions
+    
+    private func login() {
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        firebaseFuncs.loginWithEmailAndPassword(email: email, password: password, sender: self, destination: HomeViewController())
+    }
+
+    private func googleLogin() {
+        firebaseFuncs.googleLogin(sender: self, destination: SignUpViewController())
+    }
+
+    private func navigateToSignUp() {
+        let signUpVC = UIStoryboard(name: "SignUp", bundle: nil).instantiateViewController(withIdentifier: "SignUp") as! SignUpViewController
+        UsefulFunctions.showNewPage(sender: self, destination: signUpVC)
+    }
 }

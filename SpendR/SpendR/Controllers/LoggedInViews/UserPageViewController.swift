@@ -9,6 +9,7 @@ import SwiftUI
 import UIKit
 import SymbolPicker
 
+//MARK: SwiftUI View
 class CounterModel: ObservableObject {
     @Published var icon: String = "pencil"
 }
@@ -34,6 +35,7 @@ struct SymbolPickerView: View {
     }
 }
 
+//MARK: Viewcontroller
 class UserPageViewController: ReusableHorizontalScrollView, ObservableObject{
 
     @IBOutlet weak var currencyPopUpButton: UIButton!
@@ -46,7 +48,7 @@ class UserPageViewController: ReusableHorizontalScrollView, ObservableObject{
 
     let currencies: [String: String] = [
         "US Dollar": "$", "Euro": "€", "Japanese Yen": "¥", "British Pound": "£", "Australian Dollar": "A$", "Canadian Dollar": "C$", "Swiss Franc": "₣", "Chinese Yuan": "¥", "Indian Rupee": "₹", "Mexican Peso": "Mex$"]
-    weak var delegate: homeScreenDelegate?
+    weak var delegate: HomeScreenDelegate?
     var swiftUIHostingController: UIHostingController<SymbolPickerView>?
     @Published var buttonColor: Color = .blue
 
@@ -55,6 +57,7 @@ class UserPageViewController: ReusableHorizontalScrollView, ObservableObject{
         setupView()
     }
 
+    //MARK: IBActions
     @IBAction func addTag(_ sender: Any) {
         newTagView.isHidden.toggle()
         newTagView.isHidden = newTagView.isHidden ? true : false
@@ -78,17 +81,12 @@ class UserPageViewController: ReusableHorizontalScrollView, ObservableObject{
     }
     
     @IBAction func logOut(_ sender: Any) {
-        UsefullFunctions().showWarningConfirmationAlert(title: "Are you sure?", message: "You will log out", viewController: self){
+        UsefulFunctions.showWarningConfirmationAlert(title: "Are you sure?", message: "You will log out", viewController: self){
             FirebaseOperations().logout(sender: self)
         }
     }
     
-    @objc func colorWellChangedColor(_ sender: UIButton) {
-          colorLabel.textColor = colorWell.selectedColor
-        let swiftUIColor = Color(colorWell.selectedColor ?? .black)
-          buttonColor = swiftUIColor
-      }
-    
+    //MARK: View setting
     func setupView(){
         setupTagsScrollView()
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -97,36 +95,11 @@ class UserPageViewController: ReusableHorizontalScrollView, ObservableObject{
         newTagView.isHidden = true
         setupSymbolPicker()
         buttonAction = { button in
-            UsefullFunctions().showWarningConfirmationAlert(title: "Are you sure?", message: "You will delete this tag and all the movements that tag contains", viewController: self){
+            UsefulFunctions.showWarningConfirmationAlert(title: "Are you sure?", message: "You will delete this tag and all the movements that tag contains", viewController: self){
                 self.deleteTag(button: button)
             }
         }
     }
-    
-    private func deleteTag(button: UIButton) {
-        guard let tagName = button.titleLabel?.text else { return }
-       
-        if let index = self.classTags.firstIndex(where: { $0.properties?.name == tagName }) {
-            
-            guard var currentUser = UserManager.shared.getCurrentUser() else {
-                return
-            }
-           
-            currentUser.userTags.remove(at: index)
-            currentUser.movements = currentUser.movements.filter { movement in
-                !movement.tags.contains { $0.properties?.name == tagName }
-            }
-            
-            self.removeButtonsFromScrollView(self.tagsScrollView)
-            createHorizontalScrollViewWithButtons(tags: currentUser.userTags, scrollView: tagsScrollView)
-            UserManager.shared.setCurrentUser(currentUser)
-            FirebaseOperations().uploadUser(user: currentUser, vc: self)
-            delegate?.setUpScrollView()
-            delegate?.setUpBalanceLabel()
-            delegate?.didAddNewMovement()
-        }
-    }
-
     
     private func setupSymbolPicker() {
         let symbolPickerView = SymbolPickerView(userPageViewController: self)
@@ -186,4 +159,35 @@ class UserPageViewController: ReusableHorizontalScrollView, ObservableObject{
         currencyPopUpButton.showsMenuAsPrimaryAction = true
         currencyPopUpButton.changesSelectionAsPrimaryAction = true
     }
+    
+    //MARK: Viewcontroller logic
+    private func deleteTag(button: UIButton) {
+        guard let tagName = button.titleLabel?.text else { return }
+       
+        if let index = self.classTags.firstIndex(where: { $0.properties?.name == tagName }) {
+            
+            guard var currentUser = UserManager.shared.getCurrentUser() else {
+                return
+            }
+           
+            currentUser.userTags.remove(at: index)
+            currentUser.movements = currentUser.movements.filter { movement in
+                !movement.tags.contains { $0.properties?.name == tagName }
+            }
+            
+            self.removeButtonsFromScrollView(self.tagsScrollView)
+            createHorizontalScrollViewWithButtons(tags: currentUser.userTags, scrollView: tagsScrollView)
+            UserManager.shared.setCurrentUser(currentUser)
+            FirebaseOperations().uploadUser(user: currentUser, vc: self)
+            delegate?.setUpScrollView()
+            delegate?.setUpBalanceLabel()
+            delegate?.didAddNewMovement()
+        }
+    }
+    
+    @objc func colorWellChangedColor(_ sender: UIButton) {
+          colorLabel.textColor = colorWell.selectedColor
+        let swiftUIColor = Color(colorWell.selectedColor ?? .black)
+          buttonColor = swiftUIColor
+      }
 }
