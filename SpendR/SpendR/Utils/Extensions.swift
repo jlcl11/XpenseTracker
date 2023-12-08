@@ -8,19 +8,19 @@
 import Foundation
 import UIKit
 import Charts
- 
-// MARK: Color rgb initializer
+
+// MARK: - Color RGB Initializer
 extension UIColor {
 
     convenience init(rgb: Int) {
-            let iBlue = rgb & 0xFF
-            let iGreen =  (rgb >> 8) & 0xFF
-            let iRed =  (rgb >> 16) & 0xFF
-            let iAlpha =  (rgb >> 24) & 0xFF
-            self.init(red: CGFloat(iRed)/255, green: CGFloat(iGreen)/255,
-                      blue: CGFloat(iBlue)/255, alpha: CGFloat(iAlpha)/255)
-        }
-    
+        let iBlue = rgb & 0xFF
+        let iGreen =  (rgb >> 8) & 0xFF
+        let iRed =  (rgb >> 16) & 0xFF
+        let iAlpha =  (rgb >> 24) & 0xFF
+        self.init(red: CGFloat(iRed)/255, green: CGFloat(iGreen)/255,
+                  blue: CGFloat(iBlue)/255, alpha: CGFloat(iAlpha)/255)
+    }
+
     func rgb() -> Int? {
         var fRed : CGFloat = 0
         var fGreen : CGFloat = 0
@@ -32,17 +32,15 @@ extension UIColor {
             let iBlue = Int(fBlue * 255.0)
             let iAlpha = Int(fAlpha * 255.0)
 
-            //  (Bits 24-31 are alpha, 16-23 are red, 8-15 are green, 0-7 are blue).
             let rgb = (iAlpha << 24) + (iRed << 16) + (iGreen << 8) + iBlue
             return rgb
         } else {
-            // Could not extract RGBA components:
             return nil
         }
     }
 }
 
-// MARK: Meassuring Strings length
+// MARK: - Measuring Strings Length
 extension String {
     func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
@@ -51,17 +49,17 @@ extension String {
     }
 }
 
-//MARK: Setting up the TableView
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredMovements.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = movementsTableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as? CustomTableViewCell else { return UITableViewCell() }
-        
+
         let movement = filteredMovements[indexPath.row]
-        
+
         if let amount = movement.properties.amount, let currency = UserManager.shared.getCurrentUser()?.properties.currency, let iconName = movement.tags.first?.properties?.iconName, let name = movement.properties.name {
             cell.priceLabel.textColor = movement.properties.isIncome ?? false ? .systemGreen : .red
             cell.priceLabel.text = "\(amount) \(currency)"
@@ -71,7 +69,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.priceLabel.text = ""
         }
-        
+
         if let date = movement.properties.date {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -79,76 +77,105 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.subtitleLabel.text = "Ejemplo"
         }
-        
+
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //TODO: SS
         let movementDetailVC = UIStoryboard(name: "MovementDetail", bundle: nil).instantiateViewController(withIdentifier: "MovementDetail") as! MovementDetailViewController
         movementDetailVC.movement = filteredMovements[indexPath.row]
         movementDetailVC.delegate = self
-        UsefullFunctions().showNewPage(sender: self, destination: movementDetailVC)
+        UsefulFunctions.showNewPage(sender: self, destination: movementDetailVC)
     }
 }
 
-// MARK: Setting Up the Search bar
-
+// MARK: - UISearchBarDelegate
 extension HomeViewController: UISearchBarDelegate {
-    
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredMovements = filterMovementsByTagsAndSearchText(searchText: searchText)
-        
-        if filteredMovements.isEmpty { filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? [] }
-        
+        filteredMovements = filterMovementsByTagsAndSearchText(searchText: searchText, selectedTags: selectedTags)
+
+        if filteredMovements.isEmpty && selectedTags.isEmpty {
+            filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? []
+        } else if filteredMovements.isEmpty && !selectedTags.isEmpty {
+            filterMovementsByTags()
+        }
+
         movementsTableView.reloadData()
     }
-    
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.resignFirstResponder()
-        
-        if filteredMovements.isEmpty { filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? []}
+
+        if filteredMovements.isEmpty && selectedTags.isEmpty {
+            filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? []
+        } else if filteredMovements.isEmpty && !selectedTags.isEmpty {
+            filterMovementsByTags()
+        }
+
         sortMovements()
-        
         movementsTableView.reloadData()
+    }
+    
+    private func filterMovementsByTagsAndSearchText(searchText: String, selectedTags: Set<String>) -> [Movement] {
+        let movementsBasedOnTags = selectedTags.isEmpty ? (UserManager.shared.getCurrentUser()?.movements ?? []) : (UserManager.shared.getCurrentUser()?.movements.filter { movement in
+            let movementTags = movement.tags.compactMap { $0.properties?.name }
+            return !selectedTags.isDisjoint(with: Set(movementTags))
+        } ?? [])
+
+        if searchText.isEmpty {
+            return movementsBasedOnTags
+        } else {
+            return movementsBasedOnTags.filter { movement in
+                let movementName = movement.properties.name ?? ""
+                return movementName.localizedCaseInsensitiveContains(searchText)
+            }
+        }
     }
 }
 
-//MARK: Home screen Delegate
-extension HomeViewController: homeScreenDelegate {
+// MARK: - HomeScreenDelegate
+extension HomeViewController: HomeScreenDelegate {
+
     func setUpScrollView() {
         let userTags = UserManager.shared.getCurrentUser()?.userTags ?? []
         removeButtonsFromScrollView(self.scrollView)
         createHorizontalScrollViewWithButtons(tags: userTags, scrollView: scrollView)
     }
-    
+
     func setUpBalanceLabel()  {
-        var balance:Double = 0
+        var balance: Double = 0
         if let movements = UserManager.shared.getCurrentUser()?.movements {
             for movement in movements {
                 balance += (movement.properties.isIncome ?? false) ? (movement.properties.amount ?? 0) : -(movement.properties.amount ?? 0)
             }
         }
+
         var user: User = UserManager.shared.getCurrentUser() ?? User(properties: UserProperties(name: "", surname: "", email: "", currency: "", currencyName: ""), userTags: [], movements: [])
         user.properties.balance = balance
         UserManager.shared.setCurrentUser(user)
-        
+
         balanceLabel.textColor = (UserManager.shared.getCurrentUser()?.properties.balance ?? 0 > 0) ? .systemGreen : (UserManager.shared.getCurrentUser()?.properties.balance ?? 0 < 0) ? .red : .black
+
         guard let currency = UserManager.shared.getCurrentUser()?.properties.currency else {
             return
         }
 
         balanceLabel.text = "\(balance) \(currency)"
     }
-    
+
     func didAddNewMovement() {
         filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? []
         sortMovements()
     }
 }
 
-// MARK: New movement textview delegate
+
+// MARK: - New Movement TextView Delegate
 extension NewMovementViewController: UITextViewDelegate {
+
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.text = ""
     }
@@ -165,27 +192,26 @@ extension NewMovementViewController: UITextViewDelegate {
 
         return newText.count <= characterLimit
     }
-
 }
 
-// MARK: New movement textfield delegate
+// MARK: - New Movement TextField Delegate
 extension NewMovementViewController: UITextFieldDelegate {
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            let currentText = textField.text ?? ""
-            let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
-            let characterLimit = 15
-            return newText.count <= characterLimit
-        }
+        let currentText = textField.text ?? ""
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        let characterLimit = 15
+        return newText.count <= characterLimit
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 }
 
-//MARK: Movement properties equatable
-
+// MARK: - Movement Properties Equatable
 extension MovementProperties: Equatable {
-    // Implementa la función == para comparar dos instancias de MovementProperties
     static func ==(lhs: MovementProperties, rhs: MovementProperties) -> Bool {
         return lhs.description == rhs.description &&
             lhs.amount == rhs.amount &&
@@ -195,16 +221,15 @@ extension MovementProperties: Equatable {
     }
 }
 
-//MARK: Configure graphview
-
+// MARK: - Configure GraphView
 extension GraphViewController: ChartViewDelegate {
-    // MARK: - Bar Chart Setup
 
-     func setupBarChart() {
+    // MARK: - Bar Chart Setup
+    func setupBarChart() {
         layoutBarChart()
     }
 
-     func layoutBarChart() {
+    func layoutBarChart() {
         barChart.frame = CGRect(x: 0, y: 0, width: graphView.frame.size.width, height: graphView.frame.size.height)
         graphView.addSubview(barChart)
         entries = generateChartDataEntries()
@@ -215,14 +240,14 @@ extension GraphViewController: ChartViewDelegate {
         updateChartWithData(data)
     }
 
-     func generateChartDataEntries() -> [BarChartDataEntry] {
+    func generateChartDataEntries() -> [BarChartDataEntry] {
         return filteredMovements.enumerated().map { index, movement in
             let yValue = calculateYValue(for: movement)
             return BarChartDataEntry(x: Double(index), y: yValue)
         }.sorted { $0.x < $1.x }
     }
 
-     func calculateYValue(for movement: Movement) -> Double {
+    func calculateYValue(for movement: Movement) -> Double {
         var yValue = movement.properties.amount ?? 0.0
         if let isIncome = movement.properties.isIncome, !isIncome {
             yValue = -yValue
@@ -230,21 +255,21 @@ extension GraphViewController: ChartViewDelegate {
         return yValue
     }
 
-     func createBarChartData(with entries: [BarChartDataEntry]) -> BarChartData {
+    func createBarChartData(with entries: [BarChartDataEntry]) -> BarChartData {
         let set = BarChartDataSet(entries: entries, label: "Amount")
         set.colors = gradientColors(values: entries.map { $0.y })
         set.valueTextColor = .label
         return BarChartData(dataSet: set)
     }
 
-     func configureXAxis() {
+    func configureXAxis() {
         let xAxis = barChart.xAxis
         xAxis.labelPosition = .bottom
         xAxis.drawLabelsEnabled = true
         xAxis.valueFormatter = IndexAxisValueFormatter(values: getXAxisLabels())
     }
 
-     func getXAxisLabels() -> [String] {
+    func getXAxisLabels() -> [String] {
         var xAxisLabels: [String] = []
         for (index, movement) in filteredMovements.enumerated() {
             guard let movementDate = movement.properties.date else { continue }
@@ -254,19 +279,19 @@ extension GraphViewController: ChartViewDelegate {
             if index % 2 == 0 {
                 xAxisLabels.append(label)
             } else {
-                xAxisLabels.append("") 
+                xAxisLabels.append("")
             }
         }
         return xAxisLabels
     }
 
-     func configureYAxis() {
+    func configureYAxis() {
         let leftAxis = barChart.leftAxis
         leftAxis.labelPosition = .outsideChart
         leftAxis.drawLabelsEnabled = true
     }
 
-     func configureLegend() {
+    func configureLegend() {
         let legend = barChart.legend
         legend.textColor = .label
         legend.form = .square

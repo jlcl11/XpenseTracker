@@ -1,3 +1,10 @@
+//
+//  HomeViewController.swift
+//  SpendR
+//
+//  Created by José Luis Corral on 30/10/23.
+//
+
 import UIKit
 import Charts
 
@@ -17,14 +24,20 @@ class GraphViewController: ReusableHorizontalScrollView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       setUpView()
+    }
+    
+    //MARK: View setting
+    private func setUpView() {
         setupInitialData()
         setupBarChart()
         updateGraphView()
     }
-
+    
     private func setupInitialData() {
         filteredMovements = UserManager.shared.getCurrentUser()?.movements ?? []
         barChart.delegate = self
+        movementView.isHidden = true
         barChart.setScaleEnabled(true)
         barChart.extraBottomOffset = 10.0
     }

@@ -70,7 +70,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Aquí tiene que ir una descripción, no el nombre que ahora mismo tiene un puto nombre como descripción" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lnR-wi-ZvH">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lnR-wi-ZvH">
                                 <rect key="frame" x="16" y="356.66666666666674" width="361" height="352"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -96,7 +96,7 @@
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="deleteMovementButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Vcl-5E-Xgz"/>
+                                    <action selector="deleteMovement:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="z40-We-AXS"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -125,7 +125,6 @@
                     <connections>
                         <outlet property="datePicker" destination="WgL-bA-CcI" id="oGQ-Ft-c5L"/>
                         <outlet property="descriptionTextView" destination="lnR-wi-ZvH" id="U3e-RU-Oa5"/>
-                        <outlet property="deteleMovement" destination="hwm-YI-sjd" id="XNb-Pa-QAr"/>
                         <outlet property="incomeLabel" destination="aYv-js-9Cx" id="5jy-ZK-atb"/>
                         <outlet property="tagsScrollView" destination="LfD-UZ-1Ds" id="TdV-rz-Xgd"/>
                     </connections>
