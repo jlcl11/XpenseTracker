@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "symbolpicker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/xnth97/SymbolPicker.git",
+      "state" : {
+        "revision" : "e0601230feea4289760c0e5b68dbafa15aa59bfb",
+        "version" : "1.5.1"
+      }
+    }
+  ],
+  "version" : 2
+}

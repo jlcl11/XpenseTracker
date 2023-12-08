@@ -34,20 +34,17 @@ struct TagProperties: Codable, Equatable {
     var iconName: String?
     var color: Int?
     var name: String?
-    var owner: String?
     
     init(iconName: String? = nil, color: Int? = nil, name: String? = nil, owner: String? = nil) {
         self.iconName = iconName
         self.color = color
         self.name = name
-        self.owner = owner
     }
 
     static func ==(lhs: TagProperties, rhs: TagProperties) -> Bool {
         return lhs.iconName == rhs.iconName &&
                lhs.color == rhs.color &&
-               lhs.name == rhs.name &&
-               lhs.owner == rhs.owner
+               lhs.name == rhs.name 
     }
 }
 
