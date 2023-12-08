@@ -1,6 +1,6 @@
 # SpendR
 
-The Financial Tracker App is a powerful and intuitive iOS application designed to help users manage their finances seamlessly. This portfolio project showcases a robust implementation of financial tracking features with a clean and user-friendly interface.
+SpendR is a powerful and intuitive iOS application designed to help users manage their finances seamlessly. This portfolio project showcases a robust implementation of financial tracking features with a clean and user-friendly interface.
 
 ## Key Features
 
