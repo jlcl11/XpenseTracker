@@ -32,7 +32,7 @@
 		91D1201C2AEEC3000073810E /* Movements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D120192AEEC3000073810E /* Movements.swift */; };
 		91D1201D2AEEC3000073810E /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1201A2AEEC3000073810E /* Tag.swift */; };
 		91D1201E2AEEC3000073810E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1201B2AEEC3000073810E /* User.swift */; };
-		91D120202AEEC32A0073810E /* UsefullFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1201F2AEEC32A0073810E /* UsefullFunctions.swift */; };
+		91D120202AEEC32A0073810E /* UsefulFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1201F2AEEC32A0073810E /* UsefulFunctions.swift */; };
 		91D120222AEEC33F0073810E /* FirebaseOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D120212AEEC33F0073810E /* FirebaseOperations.swift */; };
 		91D1202A2AEEC9740073810E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D120292AEEC9740073810E /* Extensions.swift */; };
 		91D1202F2AEECAA30073810E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91D1202E2AEECAA30073810E /* Assets.xcassets */; };
@@ -69,7 +69,7 @@
 		91D120192AEEC3000073810E /* Movements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movements.swift; sourceTree = "<group>"; };
 		91D1201A2AEEC3000073810E /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		91D1201B2AEEC3000073810E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		91D1201F2AEEC32A0073810E /* UsefullFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsefullFunctions.swift; sourceTree = "<group>"; };
+		91D1201F2AEEC32A0073810E /* UsefulFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsefulFunctions.swift; sourceTree = "<group>"; };
 		91D120212AEEC33F0073810E /* FirebaseOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseOperations.swift; sourceTree = "<group>"; };
 		91D120292AEEC9740073810E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		91D1202E2AEECAA30073810E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Utils/Assets.xcassets; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				9159EB572AFE5E250035E541 /* Singletons */,
-				91D1201F2AEEC32A0073810E /* UsefullFunctions.swift */,
+				91D1201F2AEEC32A0073810E /* UsefulFunctions.swift */,
 				91D120212AEEC33F0073810E /* FirebaseOperations.swift */,
 				91D120292AEEC9740073810E /* Extensions.swift */,
 			);
@@ -420,7 +420,7 @@
 				91D1201C2AEEC3000073810E /* Movements.swift in Sources */,
 				91D11FF92AEEBBC90073810E /* AppDelegate.swift in Sources */,
 				914EA05E2AF00DF400D41568 /* CustomTableViewCell.swift in Sources */,
-				91D120202AEEC32A0073810E /* UsefullFunctions.swift in Sources */,
+				91D120202AEEC32A0073810E /* UsefulFunctions.swift in Sources */,
 				914608D62AEFDE21008BFC93 /* HomeViewController.swift in Sources */,
 				91D11FFB2AEEBBC90073810E /* SceneDelegate.swift in Sources */,
 				915F11682B0E2B7B005A568D /* UserPageViewController.swift in Sources */,
