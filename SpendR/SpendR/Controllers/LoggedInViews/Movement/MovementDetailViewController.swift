@@ -25,14 +25,15 @@ class MovementDetailViewController: ReusableHorizontalScrollView {
     }
     
     @IBAction func deleteMovementButton(_ sender: Any) {
-        
-        if var currentUser = UserManager.shared.getCurrentUser() {
-            currentUser.movements.removeAll {$0 == movement}
-            FirebaseOperations().uploadUser(user: currentUser, vc: self)
-            UserManager.shared.setCurrentUser(currentUser)
-            self.delegate?.didAddNewMovement()
-            self.delegate?.setUpBalanceLabel()
-            navigationController?.popViewController(animated: true)
+        UsefullFunctions().showWarningConfirmationAlert(title: "Are you sure?", message: "You will delete this movement", viewController: self) {
+            if var currentUser = UserManager.shared.getCurrentUser() {
+                currentUser.movements.removeAll {$0 == self.movement}
+                FirebaseOperations().uploadUser(user: currentUser, vc: self)
+                UserManager.shared.setCurrentUser(currentUser)
+                self.delegate?.didAddNewMovement()
+                self.delegate?.setUpBalanceLabel()
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
     

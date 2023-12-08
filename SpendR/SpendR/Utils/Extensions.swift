@@ -116,6 +116,12 @@ extension HomeViewController: UISearchBarDelegate {
 
 //MARK: Home screen Delegate
 extension HomeViewController: homeScreenDelegate {
+    func setUpScrollView() {
+        let userTags = UserManager.shared.getCurrentUser()?.userTags ?? []
+        removeButtonsFromScrollView(self.scrollView)
+        createHorizontalScrollViewWithButtons(tags: userTags, scrollView: scrollView)
+    }
+    
     func setUpBalanceLabel()  {
         var balance:Double = 0
         if let movements = UserManager.shared.getCurrentUser()?.movements {
@@ -248,7 +254,7 @@ extension GraphViewController: ChartViewDelegate {
             if index % 2 == 0 {
                 xAxisLabels.append(label)
             } else {
-                xAxisLabels.append("") // Opcional: Puedes usar una cadena vacía para saltar la etiqueta
+                xAxisLabels.append("") 
             }
         }
         return xAxisLabels
