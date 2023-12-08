@@ -53,6 +53,7 @@ The Financial Tracker App is a powerful and intuitive iOS application designed t
 - **Firebase**: Used for authentication and data storage.
 - **UIKit**: Core framework for building the iOS application.
 - **Google Sign-In**: Integrated for convenient user authentication.
+- **SymbolPicker**: [SymbolPicker Library](https://github.com/example/symbol-picker) - A library for easy integration of symbol picking in your iOS app.
 
 ## How to Contribute
 
