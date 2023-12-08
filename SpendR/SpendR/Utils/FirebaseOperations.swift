@@ -11,25 +11,24 @@ import Firebase
 import GoogleSignIn
 
 class FirebaseOperations {
-    
+
     private let db = Firestore.firestore()
-    
+
     // MARK: LOGIN FUNCTIONS
     func loginWithEmailAndPassword(email: String, password: String, sender: UIViewController, destination: UIViewController) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let _error = error {
-                UsefullFunctions().showAlert(title: "Something went wrong", message: _error.localizedDescription, viewController: sender)
+                UsefulFunctions.showAlert(title: "Something went wrong", message: _error.localizedDescription, viewController: sender)
             } else {
                 self.goToHomeScreen(sender: sender)
             }
         }
     }
-    
+
     private func fetchUserByEmail(email: String, completion: @escaping (Result<User, Error>) -> Void) {
         db.collection("users").document(email).getDocument { (documentSnapshot, error) in
-      
             guard let document = documentSnapshot, document.exists else {
-                let userNotFoundError = NSError(domain: "com.example.app", code: 404, userInfo: [NSLocalizedDescriptionKey: "Usuario no encontrado"])
+                let userNotFoundError = NSError(domain: "com.example.app", code: 404, userInfo: [NSLocalizedDescriptionKey: "User not found"])
                 completion(.failure(userNotFoundError))
                 return
             }
@@ -51,40 +50,40 @@ class FirebaseOperations {
         }
     }
 
-    func googleLogin(sender: UIViewController, destination: UIViewController)  {
+    func googleLogin(sender: UIViewController, destination: UIViewController) {
         configGIDInstance(sender: sender, destination: destination)
         sharedInstanceSignIn(sender: sender, destination: destination)
     }
 
-    private func configGIDInstance(sender: UIViewController, destination: UIViewController)  {
+    private func configGIDInstance(sender: UIViewController, destination: UIViewController) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
     }
 
-    private func sharedInstanceSignIn(sender: UIViewController, destination: UIViewController)  {
+    private func sharedInstanceSignIn(sender: UIViewController, destination: UIViewController) {
         GIDSignIn.sharedInstance.signIn(withPresenting: sender) { [unowned self] result, error in
             if let error = error {
-                UsefullFunctions().showAlert(title: "Something went wrong", message: error.localizedDescription, viewController: sender)
+                UsefulFunctions.showAlert(title: "Something went wrong", message: error.localizedDescription, viewController: sender)
                 return
             } else {
-                if result != nil {
+                if let _ = result {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                         self.goToHomeScreen(sender: sender)
                     }
-                } else {}
+                }
             }
         }
     }
 
     private func setUpCredential(result: GIDSignInResult) -> AuthCredential {
-        return  GoogleAuthProvider.credential(withIDToken: setupGUser(result: result).idToken?.tokenString ?? "", accessToken: setupGUser(result: result).accessToken.tokenString)
+        return GoogleAuthProvider.credential(withIDToken: setupGUser(result: result).idToken?.tokenString ?? "", accessToken: setupGUser(result: result).accessToken.tokenString)
     }
 
-    private func setupGUser(result: GIDSignInResult) -> GIDGoogleUser  {
+    private func setupGUser(result: GIDSignInResult) -> GIDGoogleUser {
         return result.user
     }
-    
+
     private func goToHomeScreen(sender: UIViewController) {
         var userEmail: String?
 
@@ -100,44 +99,44 @@ class FirebaseOperations {
                 case .success(let user):
                     UserManager.shared.setCurrentUser(user)
                     let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "Home") as! HomeViewController
-                    UsefullFunctions().showNewPage(sender: sender, destination: homeVC)
+                    UsefulFunctions.showNewPage(sender: sender, destination: homeVC)
                 case .failure(let error):
-                    UsefullFunctions().showAlert(title: "Something went wrong", message: error.localizedDescription, viewController: sender)
+                    UsefulFunctions.showAlert(title: "Something went wrong", message: error.localizedDescription, viewController: sender)
                 }
             }
         } else {
-            UsefullFunctions().showAlert(title: "User Not Authenticated", message: "The user is not authenticated.", viewController: sender)
+            UsefulFunctions.showAlert(title: "User Not Authenticated", message: "The user is not authenticated.", viewController: sender)
         }
     }
 
-// MARK: SIGN UP FUNCTIONS
+    // MARK: SIGN UP FUNCTIONS
 
-    func createUser( user: User, password: String, vc: UIViewController) {
-        Auth.auth().createUser(withEmail: user.properties.email ?? "", password: password){ success, error in
+    func createUser(user: User, password: String, vc: UIViewController) {
+        Auth.auth().createUser(withEmail: user.properties.email ?? "", password: password) { success, error in
             if let error = error {
-                UsefullFunctions().showAlert(title: "Oh no!", message: error.localizedDescription, viewController: vc)
+                UsefulFunctions.showAlert(title: "Oh no!", message: error.localizedDescription, viewController: vc)
                 return
-            }else {
+            } else {
                 self.uploadUser(user: user, vc: vc)
-                UsefullFunctions().showAlert(title: "Welcome!", message: "You've been signed up successfully", viewController: vc)
+                UsefulFunctions.showAlert(title: "Welcome!", message: "You've been signed up successfully", viewController: vc)
             }
         }
     }
 
     func uploadUser(user: User, vc: UIViewController) {
         let userData = createUserData(from: user)
-        
+
         db.collection("users").document("\(user.properties.email ?? "")").setData(userData) { error in
             if let error = error {
-                UsefullFunctions().showAlert(title: "Oh oh!", message: error.localizedDescription, viewController: vc)
-            } 
+                UsefulFunctions.showAlert(title: "Oh oh!", message: error.localizedDescription, viewController: vc)
+            }
         }
     }
 
     private func createUserData(from user: User) -> [String: Any] {
         let userTagsData = user.userTags.map { createTagData(from: $0) }
         let movementsData = user.movements.map { createMovementData(from: $0) }
-        
+
         return [
             "name": user.properties.name ?? "",
             "surname": user.properties.surname ?? "",
@@ -152,7 +151,7 @@ class FirebaseOperations {
 
     private func createMovementData(from movement: Movement) -> [String: Any] {
         let tagsData = movement.tags.map { createTagData(from: $0) }
-        
+
         return [
             "description": movement.properties.description ?? "",
             "name" : movement.properties.name ?? "",
@@ -170,14 +169,14 @@ class FirebaseOperations {
             "iconName": tag.properties?.iconName ?? ""
         ]
     }
-    
+
     func logout(sender: UIViewController) {
         func signOutAndPrintMessage(provider: String) {
             do {
                 try Auth.auth().signOut()
                 let login = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "Login") as! LoginViewController
-                UsefullFunctions().showNewPage(sender: sender, destination: login)
-            } catch let signOutError as NSError {
+                UsefulFunctions.showNewPage(sender: sender, destination: login)
+            } catch _ as NSError {
             }
         }
 
@@ -185,7 +184,7 @@ class FirebaseOperations {
             do {
                 try GIDSignIn.sharedInstance.signOut()
                 signOutAndPrintMessage(provider: "Google Sign-In")
-            } catch let signOutError as NSError {
+            } catch _ as NSError {
                 signOutAndPrintMessage(provider: "Firebase")
             }
         } else {
