@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,7 +13,7 @@
             <objects>
                 <navigationController id="1eZ-ug-gGj" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="aCy-vm-Fgj">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="24" width="820" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -29,11 +29,11 @@
             <objects>
                 <viewController storyboardIdentifier="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="HomeViewController" customModule="SpendR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="24,7 €" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgW-s5-I0r">
-                                <rect key="frame" x="16" y="175" width="361" height="60"/>
+                                <rect key="frame" x="16" y="146" width="788" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="wBM-0a-w97"/>
                                 </constraints>
@@ -42,10 +42,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gaK-84-kaj">
-                                <rect key="frame" x="16" y="364" width="361" height="40"/>
+                                <rect key="frame" x="16" y="335" width="788" height="40"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="AdN-Mj-aJe">
-                                        <rect key="frame" x="0.0" y="0.0" width="178" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="391.5" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PP2-MH-EeM">
                                                 <rect key="frame" x="0.0" y="0.0" width="55" height="40"/>
@@ -54,7 +54,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="604-EQ-ndl">
-                                                <rect key="frame" x="60" y="0.0" width="118" height="41"/>
+                                                <rect key="frame" x="60" y="0.0" width="331.5" height="41"/>
                                                 <segments>
                                                     <segment title="" image="calendar" catalog="system"/>
                                                     <segment title="" image="dollarsign.circle" catalog="system"/>
@@ -66,16 +66,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fbH-90-iAl">
-                                        <rect key="frame" x="183" y="0.0" width="178" height="40"/>
+                                        <rect key="frame" x="396.5" y="0.0" width="391.5" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cks-mP-jFy">
-                                                <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="67" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HO2-oA-SXB">
-                                                <rect key="frame" x="71.666666666666686" y="0.0" width="106.33333333333331" height="41"/>
+                                                <rect key="frame" x="72" y="0.0" width="319.5" height="41"/>
                                                 <segments>
                                                     <segment title="" image="arrow.up" catalog="system"/>
                                                     <segment title="" image="arrow.down" catalog="system"/>
@@ -92,7 +92,7 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mPb-ie-Gk2">
-                                <rect key="frame" x="0.0" y="412" width="393" height="406"/>
+                                <rect key="frame" x="0.0" y="383" width="820" height="777"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="393" id="GA2-RQ-lbq"/>
@@ -100,7 +100,7 @@
                                 </constraints>
                             </tableView>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="uZe-vL-JKV">
-                                <rect key="frame" x="16" y="251" width="361" height="56"/>
+                                <rect key="frame" x="16" y="222" width="788" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="pfz-VE-wv0"/>
                                 </constraints>
@@ -110,7 +110,7 @@
                                 </connections>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6IH-Q8-QA9">
-                                <rect key="frame" x="16" y="311" width="361" height="45"/>
+                                <rect key="frame" x="16" y="282" width="788" height="45"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fj5-D7-99D">
                                         <rect key="frame" x="8" y="0.0" width="345" height="45"/>
