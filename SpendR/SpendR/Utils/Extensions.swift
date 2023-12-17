@@ -221,10 +221,9 @@ extension MovementProperties: Equatable {
     }
 }
 
-// MARK: - Configure GraphView
+// MARK: - GraphView Configuration
 extension GraphViewController: ChartViewDelegate {
 
-    // MARK: - Bar Chart Setup
     func setupBarChart() {
         layoutBarChart()
     }
@@ -233,6 +232,7 @@ extension GraphViewController: ChartViewDelegate {
         barChart.frame = CGRect(x: 0, y: 0, width: graphView.frame.size.width, height: graphView.frame.size.height)
         graphView.addSubview(barChart)
         entries = generateChartDataEntries()
+        barChart.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         let data = createBarChartData(with: entries)
         configureXAxis()
         configureYAxis()
