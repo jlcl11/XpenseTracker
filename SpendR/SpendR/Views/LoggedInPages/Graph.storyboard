@@ -158,7 +158,7 @@
                                         <rect key="frame" x="0.0" y="165.66666666666663" width="414" height="46.333333333333343"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0B4-LJ-I0F">
-                                                <rect key="frame" x="0.0" y="0.0" width="296" height="47"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="387" height="47"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </scrollView>
                                         </subviews>
@@ -217,7 +217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3.75" y="-3.1690140845070425"/>
+            <point key="canvasLocation" x="2.7906976744186047" y="-3.218884120171674"/>
         </scene>
     </scenes>
     <resources>
