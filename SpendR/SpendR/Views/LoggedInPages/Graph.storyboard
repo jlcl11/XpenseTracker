@@ -188,21 +188,6 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gg0-9i-tJ6">
                                 <rect key="frame" x="0.0" y="205.33333333333334" width="430" height="452.66666666666663"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There aren't enough movements to dislay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kww-fa-veR">
-                                        <rect key="frame" x="65" y="216.66666666666666" width="300" height="19.333333333333343"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                        </variation>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="kww-fa-veR" firstAttribute="centerX" secondItem="gg0-9i-tJ6" secondAttribute="centerX" id="R3k-4p-iff"/>
-                                    <constraint firstItem="kww-fa-veR" firstAttribute="centerY" secondItem="gg0-9i-tJ6" secondAttribute="centerY" id="Wbl-ez-74i"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -228,7 +213,6 @@
                         <outlet property="movementNameLabel" destination="W02-n7-DXT" id="rz0-aA-vqo"/>
                         <outlet property="movementTagScrollView" destination="0B4-LJ-I0F" id="8GL-Hd-lwt"/>
                         <outlet property="movementView" destination="Htg-NA-KWb" id="EAr-sg-zdr"/>
-                        <outlet property="notEnoughMovementsLabel" destination="kww-fa-veR" id="QJ6-OL-7EJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
