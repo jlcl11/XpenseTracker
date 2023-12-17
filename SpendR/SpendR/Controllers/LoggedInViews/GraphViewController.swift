@@ -11,7 +11,6 @@ import Charts
 class GraphViewController: ReusableHorizontalScrollView {
     
     @IBOutlet weak var graphView: UIView!
-    @IBOutlet weak var notEnoughMovementsLabel: UILabel!
     @IBOutlet weak var movementView: UIView!
     @IBOutlet weak var movementNameLabel: UILabel!
     @IBOutlet weak var movementAmountLabel: UILabel!
@@ -47,12 +46,11 @@ class GraphViewController: ReusableHorizontalScrollView {
 
         guard entries.count >= 2 else {
             graphView.isHidden = true
-            notEnoughMovementsLabel.isHidden = false
+            UsefulFunctions.showAlert(title: "Warning", message: "There aren't enough movements to display, add more", viewController: self)
             return
         }
         movementView.isHidden = true
         graphView.isHidden = false
-        notEnoughMovementsLabel.isHidden = true
         
         let data = createBarChartData(with: entries)
         configureXAxis()
