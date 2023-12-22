@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class SpendRUITests: XCTestCase {
+final class LoginTests: XCTestCase {
 
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -57,6 +57,21 @@ final class SpendRUITests: XCTestCase {
         
         let navigationTittle = app.navigationBars["Sign Up"].staticTexts["Sign Up"]
         XCTAssertTrue(navigationTittle.exists)
+    }
+  
+    func testLoginWrentWrong() throws{
+        
+        let app = XCUIApplication()
+        let loginButton = app/*@START_MENU_TOKEN@*/.staticTexts["Log In"]/*[[".buttons[\"Log In\"].staticTexts[\"Log In\"]",".staticTexts[\"Log In\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        XCTAssertTrue(loginButton.exists)
+        loginButton.tap()
+        
+        let alert = app.alerts["Something went wrong"].scrollViews.otherElements.buttons["Ok"]
+        XCTAssertTrue(alert.exists)
+        
+        let loginLabel = XCUIApplication().staticTexts["Please sign in to continue"]
+        XCTAssertTrue(loginLabel.exists)
+                
     }
     
 }

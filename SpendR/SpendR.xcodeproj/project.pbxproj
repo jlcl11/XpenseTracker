@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		911779D82AFAC42700FA7B60 /* ReusableHorizontalScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911779D72AFAC42700FA7B60 /* ReusableHorizontalScrollView.swift */; };
+		911BC9FF2B35AAED00105577 /* SignUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911BC9FE2B35AAED00105577 /* SignUpTests.swift */; };
 		913FE7692B063B0F006BF261 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913FE7682B063B0F006BF261 /* GraphViewController.swift */; };
 		913FE76B2B0645D4006BF261 /* Graph.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 913FE76A2B0645D4006BF261 /* Graph.storyboard */; };
 		914608CA2AEFB128008BFC93 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 914608C92AEFB128008BFC93 /* SignUp.storyboard */; };
@@ -23,7 +24,7 @@
 		915F116A2B0E2C9B005A568D /* UserPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 915F11692B0E2C9B005A568D /* UserPage.storyboard */; };
 		9162F34B2AF2703F00B97E1D /* NewMovementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9162F34A2AF2703F00B97E1D /* NewMovementViewController.swift */; };
 		9162F34D2AF2706100B97E1D /* NewMovement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9162F34C2AF2706100B97E1D /* NewMovement.storyboard */; };
-		91BB6E462B30D96100DEFB6D /* SpendRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BB6E452B30D96100DEFB6D /* SpendRUITests.swift */; };
+		91BB6E462B30D96100DEFB6D /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BB6E452B30D96100DEFB6D /* LoginTests.swift */; };
 		91BB6E482B30D96100DEFB6D /* SpendRUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BB6E472B30D96100DEFB6D /* SpendRUITestsLaunchTests.swift */; };
 		91C87A062B1B5CE100C15775 /* SymbolPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 91C87A052B1B5CE100C15775 /* SymbolPicker */; };
 		91D11FF92AEEBBC90073810E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D11FF82AEEBBC90073810E /* AppDelegate.swift */; };
@@ -56,6 +57,7 @@
 		56347127FDAD87069F3ECEBF /* Pods_SpendR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpendR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		788775B47BF83BB04882ABD4 /* Pods-SpendR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpendR.debug.xcconfig"; path = "Target Support Files/Pods-SpendR/Pods-SpendR.debug.xcconfig"; sourceTree = "<group>"; };
 		911779D72AFAC42700FA7B60 /* ReusableHorizontalScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableHorizontalScrollView.swift; sourceTree = "<group>"; };
+		911BC9FE2B35AAED00105577 /* SignUpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTests.swift; sourceTree = "<group>"; };
 		913FE7682B063B0F006BF261 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		913FE76A2B0645D4006BF261 /* Graph.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Graph.storyboard; sourceTree = "<group>"; };
 		914608C92AEFB128008BFC93 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
@@ -72,7 +74,7 @@
 		9162F34A2AF2703F00B97E1D /* NewMovementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMovementViewController.swift; sourceTree = "<group>"; };
 		9162F34C2AF2706100B97E1D /* NewMovement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewMovement.storyboard; sourceTree = "<group>"; };
 		91BB6E432B30D96100DEFB6D /* SpendRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpendRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		91BB6E452B30D96100DEFB6D /* SpendRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendRUITests.swift; sourceTree = "<group>"; };
+		91BB6E452B30D96100DEFB6D /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		91BB6E472B30D96100DEFB6D /* SpendRUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendRUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		91D11FF52AEEBBC90073810E /* SpendR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpendR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D11FF82AEEBBC90073810E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -177,7 +179,8 @@
 		91BB6E442B30D96100DEFB6D /* SpendRUITests */ = {
 			isa = PBXGroup;
 			children = (
-				91BB6E452B30D96100DEFB6D /* SpendRUITests.swift */,
+				91BB6E452B30D96100DEFB6D /* LoginTests.swift */,
+				911BC9FE2B35AAED00105577 /* SignUpTests.swift */,
 				91BB6E472B30D96100DEFB6D /* SpendRUITestsLaunchTests.swift */,
 			);
 			path = SpendRUITests;
@@ -475,7 +478,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				91BB6E482B30D96100DEFB6D /* SpendRUITestsLaunchTests.swift in Sources */,
-				91BB6E462B30D96100DEFB6D /* SpendRUITests.swift in Sources */,
+				911BC9FF2B35AAED00105577 /* SignUpTests.swift in Sources */,
+				91BB6E462B30D96100DEFB6D /* LoginTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
