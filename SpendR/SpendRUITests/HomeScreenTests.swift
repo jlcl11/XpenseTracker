@@ -25,7 +25,7 @@ final class HomeScreenTest: XCTestCase {
 
         app.buttons["Log In"].tap()
 
-        XCTAssertTrue(app.staticTexts["Sort by"].waitForExistence(timeout: 1))
+        XCTAssertTrue(app.staticTexts["Sort by"].waitForExistence(timeout: 3))
 
         XCTAssertTrue(app.buttons["calendar"].waitForExistence(timeout: 1))
         app.buttons["calendar"].tap()

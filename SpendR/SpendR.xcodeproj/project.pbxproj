@@ -11,6 +11,7 @@
 		911BC9FF2B35AAED00105577 /* SignUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911BC9FE2B35AAED00105577 /* SignUpTests.swift */; };
 		913FE7692B063B0F006BF261 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913FE7682B063B0F006BF261 /* GraphViewController.swift */; };
 		913FE76B2B0645D4006BF261 /* Graph.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 913FE76A2B0645D4006BF261 /* Graph.storyboard */; };
+		9144166E2B36F20A000BB4B2 /* UserPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9144166D2B36F20A000BB4B2 /* UserPageTest.swift */; };
 		914608CA2AEFB128008BFC93 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 914608C92AEFB128008BFC93 /* SignUp.storyboard */; };
 		914608CC2AEFB148008BFC93 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914608CB2AEFB148008BFC93 /* SignUpViewController.swift */; };
 		914608D42AEFDDAE008BFC93 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 914608D32AEFDDAE008BFC93 /* Home.storyboard */; };
@@ -61,6 +62,7 @@
 		911BC9FE2B35AAED00105577 /* SignUpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTests.swift; sourceTree = "<group>"; };
 		913FE7682B063B0F006BF261 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		913FE76A2B0645D4006BF261 /* Graph.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Graph.storyboard; sourceTree = "<group>"; };
+		9144166D2B36F20A000BB4B2 /* UserPageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageTest.swift; sourceTree = "<group>"; };
 		914608C92AEFB128008BFC93 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		914608CB2AEFB148008BFC93 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		914608D32AEFDDAE008BFC93 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				911BC9FE2B35AAED00105577 /* SignUpTests.swift */,
 				91BB6E472B30D96100DEFB6D /* SpendRUITestsLaunchTests.swift */,
 				9150E6C62B36013400FF446C /* HomeScreenTests.swift */,
+				9144166D2B36F20A000BB4B2 /* UserPageTest.swift */,
 			);
 			path = SpendRUITests;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				9150E6C72B36013400FF446C /* HomeScreenTests.swift in Sources */,
 				91BB6E482B30D96100DEFB6D /* SpendRUITestsLaunchTests.swift in Sources */,
 				911BC9FF2B35AAED00105577 /* SignUpTests.swift in Sources */,
+				9144166E2B36F20A000BB4B2 /* UserPageTest.swift in Sources */,
 				91BB6E462B30D96100DEFB6D /* LoginTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
