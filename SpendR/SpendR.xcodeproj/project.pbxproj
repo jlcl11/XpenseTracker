@@ -18,6 +18,7 @@
 		914608D62AEFDE21008BFC93 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914608D52AEFDE21008BFC93 /* HomeViewController.swift */; };
 		914B97192AFFFD3400C2AB64 /* MovementDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 914B97182AFFFD3400C2AB64 /* MovementDetail.storyboard */; };
 		914B971C2AFFFDE300C2AB64 /* MovementDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914B971B2AFFFDE300C2AB64 /* MovementDetailViewController.swift */; };
+		914E04C42B375BFB00AF943D /* CreateAndDeleteMovementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914E04C32B375BFB00AF943D /* CreateAndDeleteMovementTests.swift */; };
 		914EA05B2AF00DBA00D41568 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 914EA05A2AF00DBA00D41568 /* CustomTableViewCell.xib */; };
 		914EA05E2AF00DF400D41568 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914EA05D2AF00DF400D41568 /* CustomTableViewCell.swift */; };
 		9150E6C72B36013400FF446C /* HomeScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9150E6C62B36013400FF446C /* HomeScreenTests.swift */; };
@@ -69,6 +70,7 @@
 		914608D52AEFDE21008BFC93 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		914B97182AFFFD3400C2AB64 /* MovementDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MovementDetail.storyboard; sourceTree = "<group>"; };
 		914B971B2AFFFDE300C2AB64 /* MovementDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDetailViewController.swift; sourceTree = "<group>"; };
+		914E04C32B375BFB00AF943D /* CreateAndDeleteMovementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAndDeleteMovementTests.swift; sourceTree = "<group>"; };
 		914EA05A2AF00DBA00D41568 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		914EA05D2AF00DF400D41568 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		9150E6C62B36013400FF446C /* HomeScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTests.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				91BB6E472B30D96100DEFB6D /* SpendRUITestsLaunchTests.swift */,
 				9150E6C62B36013400FF446C /* HomeScreenTests.swift */,
 				9144166D2B36F20A000BB4B2 /* UserPageTest.swift */,
+				914E04C32B375BFB00AF943D /* CreateAndDeleteMovementTests.swift */,
 			);
 			path = SpendRUITests;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				9150E6C72B36013400FF446C /* HomeScreenTests.swift in Sources */,
 				91BB6E482B30D96100DEFB6D /* SpendRUITestsLaunchTests.swift in Sources */,
 				911BC9FF2B35AAED00105577 /* SignUpTests.swift in Sources */,
+				914E04C42B375BFB00AF943D /* CreateAndDeleteMovementTests.swift in Sources */,
 				9144166E2B36F20A000BB4B2 /* UserPageTest.swift in Sources */,
 				91BB6E462B30D96100DEFB6D /* LoginTests.swift in Sources */,
 			);

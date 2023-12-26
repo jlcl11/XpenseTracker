@@ -63,6 +63,5 @@ final class SignUpTests: XCTestCase {
         
         let signUpLabel = app.staticTexts["Sign Up to continue using the app"]
         XCTAssertTrue(signUpLabel.exists)
-                         
     }
 }
