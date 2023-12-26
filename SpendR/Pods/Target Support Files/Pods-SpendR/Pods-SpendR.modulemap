@@ -1,0 +1,6 @@
+framework module Pods_SpendR {
+  umbrella header "Pods-SpendR-umbrella.h"
+
+  export *
+  module * { export * }
+}
