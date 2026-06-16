@@ -10,10 +10,10 @@
   <br>
 </h1>
 
-<h3 align="center">A clean UIKit expense tracker with Firebase auth and interactive charts.</h3>
+<h3 align="center">A clean UIKit expense tracker with Firebase auth, Firestore and interactive charts.</h3>
 
 <p align="center">
-  <strong>UIKit</strong> &nbsp;·&nbsp; <strong>Firebase Auth</strong> &nbsp;·&nbsp; <strong>Realtime Database</strong> &nbsp;·&nbsp; <strong>Interactive Charts</strong>
+  <strong>UIKit</strong> &nbsp;·&nbsp; <strong>Firebase Auth</strong> &nbsp;·&nbsp; <strong>Cloud Firestore</strong> &nbsp;·&nbsp; <strong>Interactive Charts</strong>
 </p>
 
 <p align="center">
@@ -28,9 +28,9 @@
 
 ## What is XpenseTracker
 
-XpenseTracker is a personal-finance iOS app to record expenses and income, organise them with custom tags, and visualise spending patterns over time. It's a portfolio project focused on showing UIKit fluency, Firebase backend integration and clean MVVM separation.
+XpenseTracker (SpendR) is a personal-finance iOS app to record expenses and income, organise them with custom tags, and visualise spending patterns over time. It's a portfolio project focused on showing UIKit fluency, Firebase backend integration and clean MVVM separation.
 
-Built with UIKit screens, Firebase Authentication (email/password + Google Sign-In), Realtime Database for cloud storage and interactive charts for trends.
+Built with UIKit screens, Firebase Authentication (email/password + Google Sign-In) and Cloud Firestore for persistence. Dependencies are managed with CocoaPods.
 
 ---
 
@@ -63,26 +63,31 @@ Built with UIKit screens, Firebase Authentication (email/password + Google Sign-
 ## Architecture
 
 ```
-SpendR/                           Main app target (Xcode project)
-  AppDelegate / SceneDelegate     Lifecycle and Firebase setup
-  Views/                          UIKit view controllers + storyboards
-    Components/                   Reusable cells and views
-  ViewModels/                     Bindable state holders
-  Models/                         Movement, Tag, User
-  Services/                       FirebaseAuthService, RealtimeDBService
-  Extensions/                     UIKit conveniences and helpers
+SpendR/                           CocoaPods workspace
+  Podfile                         CocoaPods dependency manifest
+  SpendR.xcworkspace              Open this (not the .xcodeproj)
+  SpendR/                         Main app target
+    AppComponents/                AppDelegate / SceneDelegate
+    Controllers/
+      LoggedInViews/              Home, Graph, UserPage view controllers
+      LoggedOutViews/             Login / SignUp view controllers
+    Models/                       Movement, Tag, User
+    Utils/                        FirebaseOperations and helpers
+    Extensions/                   UIKit conveniences
+  Pods/                           Resolved CocoaPods (gitignored in real life)
 ```
 
 ---
 
 ## Quick Start
 
-**Requirements:** Xcode 14+ · iOS 15+ · Firebase project (Auth + Realtime Database enabled)
+**Requirements:** Xcode 14+ · iOS 15+ · CocoaPods · Firebase project (Auth + Cloud Firestore enabled)
 
 ```bash
 git clone https://github.com/jlcl11/XpenseTracker.git
-cd XpenseTracker
-open SpendR.xcodeproj
+cd XpenseTracker/SpendR
+pod install
+open SpendR.xcworkspace
 ```
 
 Drop your `GoogleService-Info.plist` into the project (Firebase console → iOS app), enable Email/Password + Google Sign-In providers, then build and run.
@@ -95,10 +100,10 @@ Drop your `GoogleService-Info.plist` into the project (Firebase console → iOS 
 |---|---|
 | **UIKit** | Core view layer — controllers, storyboards, programmatic constraints |
 | **Firebase Auth** | Email + Google Sign-In authentication |
-| **Firebase Realtime Database** | Cloud storage for movements and tags |
+| **Cloud Firestore** | Cloud-stored documents for movements, tags and user profile |
 | **Charts** | Interactive chart rendering for spending trends |
 | **SymbolPicker** | Symbol picker for tag and category icons |
-| **MVVM** | Clean separation of view and business logic |
+| **CocoaPods** | Dependency management |
 
 ---
 
