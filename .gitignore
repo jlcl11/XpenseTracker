@@ -1,0 +1,22 @@
+# Xcode
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+DerivedData/
+build/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+
+# CocoaPods
+Pods/
+
+# macOS
+.DS_Store
+
+# Local tooling
+.claude/
