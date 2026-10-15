@@ -28,7 +28,7 @@
 
 ## What is XpenseTracker
 
-XpenseTracker (SpendR) is a personal-finance iOS app to record expenses and income, organise them with custom tags, and visualise spending patterns over time. It's a portfolio project focused on showing UIKit fluency, Firebase backend integration and clean MVVM separation.
+XpenseTracker (SpendR) is a personal-finance iOS app to record expenses and income, organise them with custom tags, and visualise spending patterns over time. It's a 2023 portfolio project focused on showing UIKit fluency and Firebase integration, with a classic MVC structure.
 
 Built with UIKit screens, Firebase Authentication (email/password + Google Sign-In) and Cloud Firestore for persistence. Dependencies are managed with CocoaPods.
 
@@ -69,19 +69,20 @@ SpendR/                           CocoaPods workspace
   SpendR/                         Main app target
     AppComponents/                AppDelegate / SceneDelegate
     Controllers/
-      LoggedInViews/              Home, Graph, UserPage view controllers
-      LoggedOutViews/             Login / SignUp view controllers
+      InitialViews/               Login / SignUp view controllers
+      LoggedInViews/              Home, Graph, UserPage and movement view controllers
+      utilVCs/                    Reusable horizontal tag scroller
     Models/                       Movement, Tag, User
-    Utils/                        FirebaseOperations and helpers
-    Extensions/                   UIKit conveniences
-  Pods/                           Resolved CocoaPods (gitignored in real life)
+    Utils/                        FirebaseOperations, UserManager, extensions
+    Views/                        Storyboards and XIBs
+  SpendRUITests/                  XCUITest flows: login, sign-up, home, movements
 ```
 
 ---
 
 ## Quick Start
 
-**Requirements:** Xcode 14+ · iOS 15+ · CocoaPods · Firebase project (Auth + Cloud Firestore enabled)
+**Requirements:** Xcode 15+ · iOS 17+ · CocoaPods · Firebase project (Auth + Cloud Firestore enabled)
 
 ```bash
 git clone https://github.com/jlcl11/XpenseTracker.git
@@ -104,6 +105,7 @@ Drop your `GoogleService-Info.plist` into the project (Firebase console → iOS 
 | **Charts** | Interactive chart rendering for spending trends |
 | **SymbolPicker** | Symbol picker for tag and category icons |
 | **CocoaPods** | Dependency management |
+| **XCTest** | UI tests for login, sign-up, home and movements |
 
 ---
 
